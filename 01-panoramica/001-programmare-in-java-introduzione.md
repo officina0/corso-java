@@ -35,36 +35,40 @@ La distinzione tra oggetto e classe è enfatizzata dalle seguenti definizioni:
 
 Una classe in java si definisce con la keyword `class`:
 
-/\*\* \* Classe per rappresentare un Conto \*/ public class Conto { private double amount; private String owner;
+/\*\* \* Classe per rappresentare un Conto \*/ 
 
 ```text
-// costruttore
-public Conto(String owner, double initialAmount) {
-    this.owner = owner;
-    this.amount = initialAmount;
-}
+public class Conto { 
+	private double amount; 
+	private String owner;
+	// costruttore
+	public Conto(String owner, double initialAmount) {
+    	this.owner = owner;
+    	this.amount = initialAmount;
+	}
 
-public  void  versamento(double qty) {
-    amount += qty;
-}
+	public  void  versamento(double qty) {
+	    amount += qty;
+	}
 
-public boolean prelievo(double qty) {
-    if(amount < qty)
-        return false;
-    amount -= qty;
-    return true;
-}
+	public boolean prelievo(double qty) {
+	    if(amount < qty)
+	        return false;
+	    amount -= qty;
+	    return true;
+	}
 
-/\* Getters */
-public double getAmount() {
-    return amount;
-}
-public String getOwner() {
-    return owner;
+	/\* Getters */
+	public double getAmount() {
+	    return amount;
+	}
+	public String getOwner() {
+	    return owner;
+	}
 }
 ```
 
-}
+
 
 dove si può osservare che:
 
