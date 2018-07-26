@@ -35,9 +35,10 @@ La distinzione tra oggetto e classe è enfatizzata dalle seguenti definizioni:
 
 Una classe in java si definisce con la keyword `class`:
 
+```text
 /\*\* \* Classe per rappresentare un Conto \*/ 
 
-```text
+
 public class Conto { 
 	private double amount; 
 	private String owner;
@@ -135,59 +136,61 @@ L’accesso ai field sarebbe possibile con la medesima notation \(e.g. `conto.am
 
 L’utilità della strutturazione OO diventa palese, a mio parere, se si pensa a questo punto che potrebbe nascere la necessità di estendere l’immaginario programma per la gestione di conti con una banalizzazione di un conto in cui alcune somme vengano vincolate \(e.g. nel tempo: sono nel conto ma disponibili solo dopo una certa data\); in tal caso potremmo “estendere” direttamente la classe Conto:
 
+```text
 public class ContoVincolato extends Conto {
 
-```text
-private double importoVincolato;
-private Date fineVincolo;
 
-public ContoVincolato(String  o, double a) {
-    super(o,a);
-    importoVincolato=0;
-}
+    private double importoVincolato;
+    private Date fineVincolo;
 
-public boolean vincola(double qty, Date fineVincolo) {
-    if(importoVincolato != 0 || getAmount() < qty) 
-        return false;
-    else {
-        prelievo(qty);
-        importoVincolato = qty;
-        this.fineVincolo = fineVincolo; 
-        return true;
+    public ContoVincolato(String  o, double a) {
+        super(o,a);
+        importoVincolato=0;
     }
-}
 
-/\*\* 
- \* svincola l'importo vincolato se è passata la data di vincolo
- */
-public boolean svincola() {
-    if(importoVincolato > 0) {
-        Date adesso =  new Date();
-        if( adesso.after(fineVincolo) ) {
-            this.versamento(importoVincolato);
-            this.importoVincolato = 0;
+    public boolean vincola(double qty, Date fineVincolo) {
+        if(importoVincolato != 0 || getAmount() < qty) 
+            return false;
+        else {
+            prelievo(qty);
+            importoVincolato = qty;
+            this.fineVincolo = fineVincolo; 
             return true;
         }
     }
-    return false;
-}
 
-//overloaded getAmount
-public double getAmount(Date quando) {
+    /\*\* 
+    \* svincola l'importo vincolato se è passata la data di vincolo
+    */
+    public boolean svincola() {
+        if(importoVincolato > 0) {
+            Date adesso =  new Date();
+            if( adesso.after(fineVincolo) ) {
+                this.versamento(importoVincolato);
+                this.importoVincolato = 0;
+                return true;
+            }
+        }
+        return false;
+    }
 
-    if(importoVincolato == 0 || quando.before(fineVincolo)) 
-        return getAmount();
+    //overloaded getAmount
+    public double getAmount(Date quando) {
 
-    return getAmount() + importoVincolato;
-}
+        if(importoVincolato == 0 || quando.before(fineVincolo)) 
+            return getAmount();
 
-public double getAmount() {
-    svincola();
-    return super.getAmount();
+        return getAmount() + importoVincolato;
+    }
+
+    public double getAmount() {
+        svincola();
+        return super.getAmount();
+    }
+
+
 }
 ```
-
-}
 
 Questo codice serve a mostrare come estendere \(cioè aggiungere funzionalità\) alla classe `Conto` senza doverne riscrivere il codice. In questo caso si è aggiunta la funzionalità di vincolare un importo fino ad una certa data e inserito un metodo che renderà di nuovo disponibile l’importo vincolato se chiamato dopo la data di scadenza del vincolo.
 
