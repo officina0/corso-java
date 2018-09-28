@@ -7,11 +7,11 @@ _java.util.Format_ è l’implementazione base che si incarica di gestire gli as
 Listato 14.1. Primi esempi di formattazione del testo
 
 import java.util.Date;  
-import java.util.Formatter;  
-  
-public class FormatterTest {  
-  
-  public static void main(String\[\] args) {  
+import java.util.Formatter;
+
+public class FormatterTest {
+
+  public static void main(String[] args) {  
     String name = “Pasquale”;  
     Date today = new Date();  
     double cifra=12.332334;  
@@ -56,10 +56,10 @@ Listato 14.2. Esempio di lettura di un parametro e di un file
 
 import java.io.File;  
 import java.io.FileNotFoundException;  
-import java.util.Scanner;  
-  
+import java.util.Scanner;
+
 public class TestScanner {  
-  public static void main(String\[\] args) throws FileNotFoundException {  
+  public static void main(String[] args) throws FileNotFoundException {  
     System.out.println(“Insert file name>>”);  
     Scanner scan=new Scanner(System.in);  
     String fileName=scan.next();  
@@ -76,8 +76,8 @@ Bisogna utilizzare sempre i metodi `nextXXX()` in coppia con `hasNextXXX()` perc
 Seguiamo e vediamo come si presenta il metodo utilizzato per leggere il file (e stamparne il contenuto):
 
   private static void printToScreen(String fileName) throws FileNotFoundException {  
-    Scanner scan=new Scanner(new File(fileName));  
-  
+    Scanner scan=new Scanner(new File(fileName));
+
     while(scan.hasNext()){  
       String tmp=scan.next();  
       System.out.println(tmp);  
@@ -93,8 +93,8 @@ private static void printURL() throws Exception {
   URL url = new URL (“http://www.html.it/”);  
     
   Scanner scan=new Scanner(url.openConnection().getInputStream());  
-  scan.useDelimiter(“\\Z”);  
-  
+  scan.useDelimiter(“\\Z”);
+
   while(scan.hasNext()){  
     String tmp = scan.next();  
     System.out.println(tmp);  
@@ -117,8 +117,8 @@ public final class Console implements Flushable {
   public String readLine(String fmt, Object…args);  
   public String readLine();  
     
-  public char\[\] readPassword(String fmt, Object…args);  
-  public char\[\] readPassword();  
+  public char[] readPassword(String fmt, Object…args);  
+  public char[] readPassword();  
     
   public void flush();  
 }
@@ -130,26 +130,26 @@ Vediamo un esempio concreto dove utilizziamo solo l’interfaccia Console per tu
 Listato 14.4. Esempio di utilizzo dell’interfaccia Console
 
 package it.html.j16;  
-import java.io.Console;  
-  
+import java.io.Console;
+
 public class ConsoleTest {  
-  public static void main(String\[\] args) {  
+  public static void main(String[] args) {  
     //Recuperiamo l’istanza di Console  
     //associata a questa macchina virtuale  
-    Console console = System.console();  
-  
+    Console console = System.console();
+
     //Utilizziamola per scrivere in output  
-    console.printf(“Benvenuto alla console Java 1.6”);  
-  
+    console.printf(“Benvenuto alla console Java 1.6”);
+
     if (args.length>0){  
       //Ora chiediamo un valore in input (notare il formato %s)  
-      String line = console.readLine(“nPrego, %s, inserisci un testo >>”, args\[0\]);  
-  
+      String line = console.readLine(“nPrego, %s, inserisci un testo >>”, args[0]);
+
       //facciamo l’eco uppercase  
-      console.printf(“Echo: “+line.toUpperCase());  
-  
-      char pwd\[\] = console.readPassword(“nPrego, %s, inserisci il PIN >>”, args\[0\]);  
-  
+      console.printf(“Echo: “+line.toUpperCase());
+
+      char pwd[] = console.readPassword(“nPrego, %s, inserisci il PIN >>”, args[0]);
+
       if (pinEsatto(pwd))  
         console.printf(“Bene! PIN CORRETTO!”);  
       else  
@@ -160,10 +160,10 @@ public class ConsoleTest {
       //Mostro la sintassi  
       console.printf(“nPrego inserire un argomento: java it.html.j16.ConsoleTest yourName”);  
     }  
-  }  
-  
-  private static boolean pinEsatto(char\[\] pwd) {  
-    char pinEsatto\[\] = {‘H’,’T’,’M’,’L’,’.’,’I’,’T’};  
+  }
+
+  private static boolean pinEsatto(char[] pwd) {  
+    char pinEsatto[] = {‘H’,’T’,’M’,’L’,’.’,’I’,’T’};  
     //Usiamo l’utility della classe Arrays  
     return java.util.Arrays.equals(pwd, pinEsatto);  
   }  

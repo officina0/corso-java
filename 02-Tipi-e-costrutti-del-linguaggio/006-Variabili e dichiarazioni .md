@@ -23,7 +23,9 @@ In generale in Java **il tipo di una variabile** può essere uno dei tipi predef
 
 La sintassi per la **dichiarazione di una variabile** in Java è la seguente:
 
-\[public|protected|private\] \[static\] \[final\] Tipo identificatore \[= value\];
+```
+[public|protected|private] [static] [final] Tipo identificatore [= value];
+```
 
 dove le parti tra parentesi quadre ‘`[]`‘ sono opzionali ed il simbolo _pipe_ ‘`|`‘ deve essere letto “oppure” (il significato delle keywords verrà chiarito nel seguito).
 
@@ -33,13 +35,17 @@ Possiamo anche inizializzare la variabile quando è presente il simbolo ‘`=`�
 
 Sintatticamente l’identificatore (nome) di una variabile è una sequenza di lettere e cifre il cui primo elemento deve essere una lettera oppure il carattere _underscore_ (‘`_`‘) o ancora il carattere _dollaro_ (‘`$`‘).
 
-Vige comunque la **convenzione** (non regola sintattica) che i nomi delle variabili inizino con una _lettera minuscola_ e, qualora formati da più parole concatenate, tutte le parole successive alla prima siano capitalizzate e non vengano usati i simboli `_` e `$` nonostante siano ammessi. Ad esempio:
+Vige comunque la **convenzione** (non regola sintattica) che i nomi delle variabili inizino con una _lettera minuscola_ e, qualora formati da più parole concatenate, tutte le parole successive alla prima siano capitalizzate e non vengano usati i simboli `_` e `$` nonostante siano ammessi. Ad esempio:  
 
+```
 int nomeDellaVariabileIntera;
+```
 
 Per i nomi dei tipi, ovvero per le classi, la convenzione prevede invece che la prima lettera sia maiuscola):
 
+```
 class LaMiaClasse
+```
 
 L’identificatore può essere una qualsiasi stringa ma esistono alcune parole riservare del linguaggio che non possono essere utilizzate come identificatori:
 
@@ -146,7 +152,8 @@ L’identificatore può essere una qualsiasi stringa ma esistono alcune parole r
 Tipi di variabili
 -----------------
 
-In Java si distinguono tre tipi di variabili: variabili locali, variabili di istanza e variabili di classe. Vediamo in dettaglio di che si tratta.
+In Java si distinguono tre tipi di variabili: variabili locali, variabili di istanza e  
+variabili di classe. Vediamo in dettaglio di che si tratta.
 
 ### Variabili Locali
 
@@ -158,21 +165,23 @@ Ogni variabile dichiarata all’interno del metodo può essere utilizzata solame
 
 Per esempio, se provassimo a compilare il seguente metodo:
 
+```
 void add(long i) {
-	
-	long j; 
-	j = j + i; 
-} 
+	long j;
+	j = j + i;
+}
+```
 
 il compilatore Java ci darebbe un messaggio di errore perchè la variabile `j` non è stata inizializzata prima del suo uso e non è quindi possibile aggiungere un valore alla variabile fino a che a questa non è stato assegnato un valore.
 
 Il codice seguente sarebbe invece compilato senza alcun errore:
 
+```
 void add(long i) {
-
 	long j = 1;
 	j = j + i;
-} 
+}
+```
 
 Nell’esecuzione di questo frammento di codice la macchina virtuale Java crea in memoria lo spazio per registrare le variabili locali `i` e `j`, per poi cancellarle (liberando lo spazio in memoria) alla fine dell’esecuzione del metodo `add`.
 
@@ -192,51 +201,39 @@ Può succedere che una variabile locale in un metodo (oppure il parametro di un 
 
 Vediamo un esempio:
 
+```
 public class Scope {
-	
 	int var = 6;
-	
 	public void primoMetodo(int var) {
-		
-		int i = var;  
+		int i = var;
 		// in questo caso ha precedenza il parametro e
 		// i assume il valore che sarà passato come parametro al metodo
-		
 		// ...
 	}
-  
 	public void secondoMetodo() {
-		
 		int var = 7;
-		int i = var;   
+		int i = var;
 		// qui ha precedenza la variabile locale al metodo, quindi
 		// i ha il valore 7
-		
-		// ... 
+		// ...
 	}
-  
 	public void terzoMetodo() {
-	
-		int i = var;    
-		// qui semplicemente assegnamo ad i il valore della 
+		int i = var;
+		// qui semplicemente assegnamo ad i il valore della
 		// variabile di istanza e i prende il valore 6
-		
 		// ...
 	}
-
 	public void quartoMetodo(int var) {
-		
-		int i = this.var; 
-		// in questo caso i assume il valore 6 indipendentemente 
-		// dal valore del parametro poiché abbiamo utilizzato la 
-		// keyword 'this', indica di utilizzare la variabile 'var' 
-		// che abbiamo definito come field e che appartiene 
+		int i = this.var;
+		// in questo caso i assume il valore 6 indipendentemente
+		// dal valore del parametro poiché abbiamo utilizzato la
+		// keyword 'this', indica di utilizzare la variabile 'var'
+		// che abbiamo definito come field e che appartiene
 		// all'istanza corrente della classe.
-		
 		// ...
 	}
-
 }
+```
 
 Un’istanza di una variabile (non statica) continua ad esistere nella memoria di un programma fino a quando esiste l’oggetto che la contiene (ed un oggetto “rimane in vita” fino a quando ne esiste almeno una referenza, quindi una variabile associata ad esso).
 
@@ -244,7 +241,9 @@ Un’istanza di una variabile (non statica) continua ad esistere nella memoria d
 
 Le variabili di classe infine, comunemente dette anche _static field_ o **campi statici**, sono variabili di istanza ma nella loro definizione viene usata la keyword ‘static’.
 
+```
 static int var = 6;
+```
 
 Una variabile di classe è una variabile **visibile da tutte le istanze** di quell’oggetto ed il suo valore non cambia da istanza ad istanza, per questo appartiene trasversalmente a tutta la classe.
 

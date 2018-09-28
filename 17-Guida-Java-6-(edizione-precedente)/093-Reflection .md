@@ -3,7 +3,7 @@ L’introduzione dei [tipi Generics](http://java.html.it/guide/lezione/3972/java
 Anche l’introduzione delle annotazioni porta all’evoluzione del package con l’introduzione di metodi per accedere a runtime alla [definizione delle annotazioni](http://java.html.it/guide/lezione/3966/introduzione-a-java-annotations/). Ad esempio, la classe _java.lang.reflection.Class_ introduce i due metodi:
 
 <A extends Annotation> A getAnnotation(Class<A> annotationClass)  
-Annotation\[\] getAnnotations()
+Annotation[] getAnnotations()
 
 Attraverso questi metodi riusciamo a recuperare a runtime il tipo Annotation che dinamicamente possiamo interrogare per gestire il comportamento dinamico definito dall’annotazione.
 

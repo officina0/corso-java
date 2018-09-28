@@ -10,13 +10,13 @@ Preseguiamo con un esempio concreto per mostrare l’uso della classe. Come cont
 
 Listato 24.1. Definisce la virtualizzazione di una risorsa condivisa, in questo caso un party
 
-package it.html.threads.semaphore;  
-  
+package it.html.threads.semaphore;
+
 import java.util.concurrent.Semaphore;  
-import java.util.concurrent.TimeUnit;  
-  
-public class Party {  
-  
+import java.util.concurrent.TimeUnit;
+
+public class Party {
+
   //Dimensione massima della sala: quante persone al massimo riusciamo a servire  
   int dimensione;  
     
@@ -65,10 +65,10 @@ Le classi che accedono alla festa sono le classi Invited e LazyInvited che eredi
 
 Listato 24.2. Simulazione del “traffico” alla festa, con ingressi e uscite
 
-package it.html.threads.semaphore;  
-  
-import java.util.concurrent.TimeUnit;  
-  
+package it.html.threads.semaphore;
+
+import java.util.concurrent.TimeUnit;
+
 public class Invited extends Thread {  
   String name;  
   Party party;  
@@ -81,20 +81,20 @@ public class Invited extends Thread {
   //Facciamo un ciclo infinito di ingressi, attese, uscite, attese, …  
   public void run(){  
     while(true){  
-      System.out.println(“\[“+name+”: \] Sono in coda. Aspetto.”);  
+      System.out.println(“[“+name+”: ] Sono in coda. Aspetto.”);  
       party.goIn();  
-      System.out.println(“\[“+name+”: \] Yuppy! Sono dentro.”);  
+      System.out.println(“[“+name+”: ] Yuppy! Sono dentro.”);  
       try{  
         //Si diverte un po’ alla festa  
         int timeToSleep = (int) (Math.random()*10);  
-        System.out.println(“\[“+name+”: \] rimarrò “+timeToSleep+” secs.”);  
+        System.out.println(“[“+name+”: ] rimarrò “+timeToSleep+” secs.”);  
         TimeUnit.SECONDS.sleep(timeToSleep);  
       }catch(InterruptedException e){  
         e.printStackTrace();  
       }  
       //decide di uscire…  
       party.goOut();  
-      System.out.println(“\[“+name+”: \] Esco a prendere aria.”);  
+      System.out.println(“[“+name+”: ] Esco a prendere aria.”);  
       try{  
         //sta un po’ fuori…  
         int timeToSleep = (int) (Math.random()*10);  
@@ -113,34 +113,35 @@ La coppia di metodi `goIn()` e `goOut()` ci assicura la consistenza dell’azion
 Listato 24.3. Gestione della vita dell’invitato
 
 package it.html.threads.semaphore;  
-import java.util.concurrent.TimeUnit;  
-  
+import java.util.concurrent.TimeUnit;
+
 public class LazyInvited extends Invited {  
   public LazyInvited(String name, Party party) {  
     super(name, party);  
-  }  
-  
+  }
+
   //Facciamo un ciclo infinito di ingressi (con attesa limitata), attese, uscite, attese  
   public void run(){  
     while(true){  
-      System.out.println(“\[“+name+”: \] Sono in coda. Aspetterò un po’ (5 sec).”);  
+      System.out.println(“[“+name+”: ] Sono in coda. Aspetterò un po’ (5 sec).”);  
       boolean in = party.goIn(5);  
       if (in){  
-        System.out.println(“\[“+name+”: \] Yuppy! Sono dentro.”);  
+        System.out.println(“[“+name+”: ] Yuppy! Sono dentro.”);  
         try{  
           //Si diverte un po’ alla festa  
           int timeToSleep = (int) (Math.random()*10);  
-          System.out.println(“\[“+name+”: \] rimarrò “+timeToSleep+”  
-secs.”);           TimeUnit.SECONDS.sleep(timeToSleep);  
+          System.out.println(“[“+name+”: ] rimarrò “+timeToSleep+”  
+secs.”);  
+          TimeUnit.SECONDS.sleep(timeToSleep);  
         }catch(InterruptedException e){  
           e.printStackTrace();  
         }  
         //decide di uscire…  
         party.goOut();  
-        System.out.println(“\[“+name+”: \] Esco a prendere aria.”);  
+        System.out.println(“[“+name+”: ] Esco a prendere aria.”);  
       }else{  
         //timeout di attesa scaduto!  
-        System.out.println(“\[“+name+”: \] Basta! mi sono rotto, esco.”);  
+        System.out.println(“[“+name+”: ] Basta! mi sono rotto, esco.”);  
       }  
         
       try{  
@@ -160,16 +161,16 @@ Per vedere il tutto all’opera creiamo un main e seguiamo l’evoluzione della 
 
 Listato 24.4. Simulazioni inviti e ingressi
 
-package it.html.threads.semaphore;  
-  
+package it.html.threads.semaphore;
+
 public class MainPR {  
   //Simulazione del PR che invita la gente al party  
-  public static void main(String\[\] args) {  
+  public static void main(String[] args) {  
     //Definiamo il party di 20 persone concorrenti  
     Party party = new Party(20);  
       
     //creiamo 40 invitati  
-    Invited inLista\[\] = new Invited\[40\];  
+    Invited inLista[] = new Invited[40];  
       
     //metà saranno lazy, gli altri no  
     for(int i=0;i<inLista.length;i++){  
@@ -180,11 +181,11 @@ public class MainPR {
       else  
         tmp = new LazyInvited(“Lazy#”+i, party);  
           
-      inLista\[i\]=tmp;  
+      inLista[i]=tmp;  
     }  
       
     for(int i=0;i<inLista.length;i++){  
-      inLista\[i\].start();  
+      inLista[i].start();  
     }  
   }  
 }

@@ -1,6 +1,8 @@
 In Java vige la regola generale che ogni classe (ed interfaccia) deve essere definita in un file che deve avere il medesimo nome della classe. Inoltre per ottenere istanze di oggetti, deve essere usata la sintassi:
 
+```
 TypeNameA  var = new TypeName(...);
+```
 
 dove `TypeName` può essere solamente il nome di una classe (non astratta) mentre `TypeNameA` (il tipo della variabile) deve essere il nome di una delle classi da cui TypeName deriva (quindi la super-classe, la super-classe della super-classe e così via, detti ancestors) oppure il nome di una delle interfacce implementate da TypeName (oppure un ancestor di queste).
 
@@ -21,36 +23,29 @@ Una **classe inner** in Java è una classe definita in modo analogo ad ogni altr
 
 Una classe inner in Java può essere definita ovunque nel corpo di una classe ma all’esterno del corpo dei metodi. Se la definizione si trova all’interno di un metodo, più precisamente sarebbe giusto dire di un **blocco** (codice racchiuso tra parentesi graffe) la classe si dice locale.
 
+```
 class Enclosing  {
-   
 	// ...
-	
 	class Inner {
 		//...
 	}
-   
 	//...
-   
 	static class InnerStatic {
 		//...
 	} 
-
 	interface InnerInterface {
 		//...
 	}
-	
 	// ...
-	
 	public void metod(...) {
-		
 		//...
-		
 		class LocalClass {
 			// ...
 		}
 		// ...
 	}
-} 
+}
+```
 
 La sintassi per la creazione di classi inner (ed interfaccie inner, come si vede dall’esempio) è del tutto identica a quella per la definizione di una classe “regolare” tranne per il fatto che per le classi è possibile specificare la keyword static con una peculiare funzionalità.
 
@@ -71,15 +66,21 @@ Java8 ha introdotto un nuovo concetto di variabile detto **effectively final** (
 
 Per fare riferimento ad una classe inner si deve usare il nome della classe ospitante seguito da un punto e dal nome della classe:
 
+```
 Enclising.Inner
 Encolsing.InnerInterface
 Enclosing.InnerStatic
+```
 
 ma mentre per le static inner classes è possibile utilizzare la comune sintassi dell’operatore new:
 
+```
 Enclosing.InnerStatic  v = new Enclosing.InnerStatic(...);
+```
 
 per istanziare una classe inner non statica deve essere prima ottenuta una istanza della classe enclosing, con una sintassi piuttosto sorprendente:
 
+```
 Enclosing enclosing = new Enclosing(...);
 Enclosing.Inner  v = enclosing.new Inner(...);
+```

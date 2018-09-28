@@ -60,16 +60,16 @@ seq.open();
 seq.setSequence(S);  
 seq.start();  
 System.out.println(“Sorpresa per tutti i miei coetanei”);  
-System.out.println(“Premere CtrL-C per interrompere”);  
-  
+System.out.println(“Premere CtrL-C per interrompere”);
+
 }  
 catch(MidiUnavailableException ecc){}  
 catch(InvalidMidiDataException ecc2){}  
 catch(IOException ecc3){}  
 ;  
-}  
-  
-public static void main(String\[\] ar)  
+}
+
+public static void main(String[] ar)  
 {  
 new midifiles();  
 }  

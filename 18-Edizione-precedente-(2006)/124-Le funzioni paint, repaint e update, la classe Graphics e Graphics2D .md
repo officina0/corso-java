@@ -1,9 +1,12 @@
 Java ci permette di disegnare su un’applet semplicemente ridefinendone il metodo `paint`, questo metodo viene automaticamente invocato dal sistema quando la finestra contenente l’applet va in primo piano, quindi ogni comando grafico all’applet sarà dato nel metodo `paint` dell’applet:
 
+```
 void paint (Graphics g)
 {
   // Disegno
 }
+
+```
 
 Quando l’applet ha disegnato, e si vogliono visualizzare eventuali modifiche è possibile invocare il metodo `repaint()` oppure il metodo `update(Graphics g)` che cancella l’area in cui l’applet ha disegnato e ne reinvoca la paint.
 
@@ -17,6 +20,7 @@ A questo punto si spiega anche il parametro `g` di tipo `Graphics` della `paint`
 
 Graphics è una classe che non può essere instanziata, ma `nella` paint viene ricevuta come paramtero, ed è solo qui che può essere usata, essa contiene i metodi:
 
+```
 abstract void clearRect(int x, int y, int width, int height)
 
 abstract void clipRect(int x, int y, int width, int height)
@@ -33,9 +37,9 @@ void draw3DRect(int x, int y, int width, int height,boolean raised)
 
 abstract void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle)
 
-void drawBytes(byte\[\] data, int offset, int length, int x, int y)
+void drawBytes(byte[] data, int offset, int length, int x, int y)
 
-void drawChars(char\[\] data, int offset, int length, int x, int y)
+void drawChars(char[] data, int offset, int length, int x, int y)
 
 abstract boolean drawImage(...) // ne esistono diverse versioni
 
@@ -43,11 +47,11 @@ abstract void drawLine(int x1, int y1, int x2, int y2)
 
 abstract void drawOval(int x, int y, int width, int height)
 
-abstract void drawPolygon(int\[\] xPoints, int\[\] yPoints, int nPoints)
+abstract void drawPolygon(int[] xPoints, int[] yPoints, int nPoints)
 
 void drawPolygon(Polygon p)
 
-abstract void drawPolyline(int\[\] xPoints, int\[\] yPoints, int nPoints)
+abstract void drawPolyline(int[] xPoints, int[] yPoints, int nPoints)
 
 void drawRect(int x, int y, int width, int height)
 
@@ -63,7 +67,7 @@ abstract void fillArc(int x, int y, int width, int height, int startAngle, int a
 
 abstract void fillOval(int x, int y, int width, int height)
 
-abstract void fillPolygon(int\[\] xPoints, int\[\] yPoints, int nPoints)
+abstract void fillPolygon(int[] xPoints, int[] yPoints, int nPoints)
 
 void fillPolygon(Polygon p)
 
@@ -106,15 +110,21 @@ String toString()
 
 abstract void translate(int x, int y)
 
+```
+
 Avremo modo tra non molto di vedere in dettaglio tutti questi metodi.
 
 In Java 2 la classe `Graphics` è stata potenziata aggiungendo la classe `Graphics2D`, che la estende aggiungendo notevoli potenzialità alla grafica in Java. Per avere un’assaggio delle potenzialità di Java potete vedere la Demo rilasciata insieme al JDK, se ad esempio avete scaricato il JDK 1.3 e lo avete installato in `c:jdk1.3`, la demo si trova in:
 
+```
 c:jdk1.3demojfcJava2D
+```
 
 e per eseguirla bisogna digitare dal prompt:
 
+```
 java -jar Java2Demo.jar
+```
 
 Demo Java
 

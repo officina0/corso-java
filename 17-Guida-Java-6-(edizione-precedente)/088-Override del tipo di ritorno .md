@@ -4,8 +4,8 @@ Creiamo una semplice gerarchia di oggetti, quelli tipici degli esercizi Java per
 
 Listato 11.1. Esempio con la gerarchia di oggetti
 
-package it.html.covariantreturn;  
-  
+package it.html.covariantreturn;
+
 public class Point {  
   int x;  
   int y;  
@@ -14,11 +14,11 @@ public class Point {
     this.x=x;  
     this.y=y;  
   }  
-}  
-  
+}
+
 class Point3D extends Point{  
-  int z;  
-  
+  int z;
+
   public Point3D(int x,int y,int z){  
     super(x,y);  
     this.z=z;  
@@ -36,8 +36,8 @@ public class Figure {
   public Point onePoint(){  
     return p;  
   }  
-}  
-  
+}
+
 class Figure3D extends Figure{  
   Point3D p = new Point3D(0,0,0);  
   //…  
@@ -53,19 +53,19 @@ Per completezza vediamo una classe di prova:
 
 Listato 11.3. Classe di prova dell’override
 
-package it.html.covariantreturn;  
-  
+package it.html.covariantreturn;
+
 public class Main {  
-  public static void main(String\[\] args) {  
+  public static void main(String[] args) {  
     Figure f = new Figure();  
     Figure3D f2 = new Figure3D();  
       
     Point p = f.onePoint();  
-    System.out.println(“\[“+p.x+”, “+p.y+”\]”);  
+    System.out.println(“[“+p.x+”, “+p.y+”]”);  
       
     Point3D p2 = f2.onePoint();  
-    System.out.println(“\[“+p2.x+”, “+p2.y+”, “+p2.z+”\]”);  
-  
+    System.out.println(“[“+p2.x+”, “+p2.y+”, “+p2.z+”]”);
+
     //In Java 1.4 avremmo dovuto fare:  
     Point p3 = (Point3D) f2.onePoint();  
       

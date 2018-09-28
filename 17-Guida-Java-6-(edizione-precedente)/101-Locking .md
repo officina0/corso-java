@@ -18,12 +18,12 @@ Queste nuove caratteristiche rendono possibile sviluppare evitando le tante insi
 
 Listato 25.1. Classe che codifica blocchi atomici
 
-package it.html.threads;  
-  
+package it.html.threads;
+
 import java.util.concurrent.TimeUnit;  
 import java.util.concurrent.locks.Lock;  
-import java.util.concurrent.locks.ReentrantLock;  
-  
+import java.util.concurrent.locks.ReentrantLock;
+
 public class LockableAction {  
   private Lock l;  
     

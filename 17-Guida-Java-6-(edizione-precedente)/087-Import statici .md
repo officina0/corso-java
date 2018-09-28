@@ -8,10 +8,10 @@ Listato 10.1. Esempio di Import statico
 
 package it.html.tiger;  
 import static java.lang.System.out;  
-import static java.lang.System.err;  
-  
+import static java.lang.System.err;
+
 public class ImportTest {  
-  public static void main(String\[\] args) {  
+  public static void main(String[] args) {  
     //Chiamiamo direttamente la variabile out  
     out.println(“Salve!”);  
     //e la variabile err  

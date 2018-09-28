@@ -9,22 +9,19 @@ Lo statement **break** (già visto nella sua forma più semplice e comune quando
 
 La forma completa di break, detta _labeled_ per la presenza di una etichetta, è la seguente:
 
+```
 etichetta:
 	loop-or-switch {
-         
 		// blocco prima del break
-         
 		loop-or-switch-2 {
-			
 			// ...
 			break etichetta;
 		}
-         
-		// blocco dopo il break 
-		// (senza etichetta il programma salterebbe qui!) 
+		// blocco dopo il break
+		// (senza etichetta il programma salterebbe qui!)
      }
-	 
 // fine del blocco etichettato (il programma salta qui!)
+```
 
 dove:
 
@@ -44,35 +41,31 @@ Naturalmente non avrebbe senso utilizzare `continue` con lo statement `switch` e
 
 La peculiarità di `continue` è forse più facilmente comprensibile per mezzo dei seguenti esempi:
 
+```
 int sum = 0;
-
 for(int i = 1; i < 10; i++) {
-
 	if(i%2 == 0) {
-
 		break; // il blocco che viene interrotto con break
-               // è quello "corrente" nel senso 
+               // è quello "corrente" nel senso
 			   // "del ciclo corrente" (il for)
 	}
-
 	sum++;
 }
-
 System.err.println(sum);
+```
 
 Questo snippet produce come output “`1`“, quindi le istruzioni dopo il break sono state eseguite solamente una volta mentre in questo esempio in cui sostituiamo `break` con `continue`:
 
+```
 int sum = 0;
-
 for(int i = 1; i < 10; i++) {
-
 	if(i % 2 == 0) {	
-		
 		continue;
 	}
 	sum++;
 }
 System.err.println(sum);
+```
 
 otteniamo come output “`5`“. Questa volta le istruzioni dopo `continue` sono state eseguite per tutti i numeri tra 1 e 10 (escluso) che non sono divisibili per 2 (1,3,5,7,9 appunto 5 volte).
 

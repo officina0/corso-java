@@ -6,16 +6,16 @@ La prima interfaccia che vediamo è l’interfaccia `Callable<T>` che ha un semp
 
 Listato 22.1. Esempio di utilizzo di Callable
 
-package it.html.threads;  
-  
+package it.html.threads;
+
 import java.util.Collection;  
 import java.util.NoSuchElementException;  
 import java.util.Vector;  
 import java.util.concurrent.Callable;  
-import java.util.concurrent.TimeUnit;  
-  
-public class CallableTask implements Callable<Collection<String>> {  
-  
+import java.util.concurrent.TimeUnit;
+
+public class CallableTask implements Callable<Collection<String>> {
+
   String keyword;  
     
   public CallableTask(String key){  
@@ -46,7 +46,7 @@ In questo esempio immaginiamo di avere un task che restituisca il risultato di u
 In questo caso restituiamo un risultato concreto oppure solleviamo l’eccezione **EmptyListException**, per segnalare che la ricerca non ha dato esito (è una checked exception). Vediamo il resto dell’esempio (un main di test e l’eccezione):
 
 …  
-  public static void main(String args\[\]) throws InterruptedException{  
+  public static void main(String args[]) throws InterruptedException{  
     CallableTask task = new CallableTask(“games”);  
       
     System.out.println(“Search result (dovrebbero passare 5 secondi prima di vedere il risultato…):”);  
@@ -58,10 +58,10 @@ In questo caso restituiamo un risultato concreto oppure solleviamo l’eccezione
       
     System.out.println(“… fine della computazione”);  
       
-  }  
-  
-class EmptyListException extends Exception{  
-  
+  }
+
+class EmptyListException extends Exception{
+
   public EmptyListException(String string) {  
     super(string);  
   }  

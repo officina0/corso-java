@@ -4,6 +4,7 @@ Vediamo quindi come **creare una Finestra usando il package AWT**. Al solito cre
 
 La classe `Frame` ha diversi metodi e costruttori, che verdremo tra poco, per ora creiamo la nostra prima finestra con titolo “Prima Finestra” e che non contiene niente, la salviamo nel file `Finestra.java`.
 
+```
 import java.awt.*;
 public class Finestra extends Frame
 {
@@ -19,12 +20,14 @@ public class Finestra extends Frame
 		// che ora è un metodo deprecato
   }
   
-  public static void main(String\[\] arg)
+  public static void main(String[] arg)
   {
     new Finestra();
     System.out.println("Ho creato la finestra");
   }
 }
+
+```
 
 All’inizio, come per ogni applicazione viene invocato il `main`, il quale crea un nuovo oggetto di tipo `Finestra` (avremmo potuto anche inserire il `main` e la finestra in due file separati).
 
@@ -44,6 +47,7 @@ Non è gestito invece l’evento “chiudi” della finestra (il bottone con la 
 
 Da notare che possiamo associare ad una applicazione più di una sola finestra: Java è un linguaggio che supporta la multiprogrammazione, ogni finestra è un programma a se stante che gira in parallelo agli altri, quindi possiamo creare per la stessa applicazione più finestre Frame, come nell’esempio che segue.
 
+```
 import java.awt.*;
 
 public class Finestre extends Frame
@@ -56,7 +60,7 @@ public class Finestre extends Frame
     setVisible(true);
   }
   
-  public static void main(String\[\] args)
+  public static void main(String[] args)
   {
     System.out.println("Creo 4 finestre sovrapposte");
     for (int i=1;i<5;i++) new Finestra("Finestra "+i,10+(i\*10), 10+(i\*10));
@@ -68,8 +72,11 @@ public class Finestre extends Frame
 	}
 }
 
+```
+
 Le stesse cose si potevano fare estendendo la classe JFrame del package `javax.swing`.
 
+```
 import javax.swing.*;
 
 public class FinestraSwing extends JFrame
@@ -82,12 +89,14 @@ public class FinestraSwing extends JFrame
     setVisible(true);
   }
   
-  public static void main(String\[\] arg)
+  public static void main(String[] arg)
   {
     new FinestraSwing();
     System.out.println("Ho creato la finestra");
   }
 }
+
+```
 
 Questo programma è come `Finestra.java`. solo che estende `JFrame` di `swing`, le uniche differenze sono il contenuto della finestra, questa volta grigio, prima bianco e il bottone "chiudi", che questa volta chiude la finestra (solo la finestra però, non l'applicazione intera)
 
@@ -103,11 +112,15 @@ Vediamo quindi cosa contiene **la classe Frame**, innanzitutto i costruttori son
 Gli attributi della classe sono:
 --------------------------------
 
+```
 static int ICONIFIED
 static int NORMAL
 
+```
+
 per indicare lo stato della finestra, e
 
+```
 static int CROSSHAIR_CURSOR
 static int DEFAULT_CURSOR
 static int E\_REsize\_CURSOR
@@ -122,6 +135,8 @@ static int SW\_REsize\_CURSOR
 static int TEXT_CURSOR
 static int W\_REsize\_CURSOR
 static int WAIT_CURSOR 
+
+```
 
 tutti dichiarati deprecated, per i cursori, rimpiazzati dalla classe Cursor. Eredita gli allineamenti dei componenti da Component.
 
@@ -199,17 +214,20 @@ imposta lo stato del frame
 
 imposta il titolo del frame
 
-`Frame` è una classe che estende `java.awt.Window`, e quindi ne eredita metodi e attributi. In effetti `Frame` è una `Window` con in più un bordo e una `MenuBar`. I metodi ereditati da window sono:
+`Frame` è una classe che estende `java.awt.Window`, e quindi ne eredita metodi e attributi.  
+In effetti `Frame` è una `Window` con in più un bordo e una `MenuBar`. I metodi ereditati da window sono:
 
 Metodi ereditati da Window
 
-addWindowListener, applyResourceBundle, applyResourceBundle, dispose, getFocusOwner, getInputContext, getLocale, getOwnedWindows, getOwner, getToolkit, getWarningString, isShowing, pack, postEvent, processEvent, processWindowEvent, removeWindowListener, show, toBack, toFront
+addWindowListener, applyResourceBundle, applyResourceBundle, dispose, getFocusOwner,  
+getInputContext, getLocale, getOwnedWindows, getOwner, getToolkit, getWarningString, isShowing, pack, postEvent, processEvent, processWindowEvent, removeWindowListener, show, toBack, toFront
 
 `Window` estende `java.awt.Container`, esso è un contenitore di oggetti AWT, è un componente che può contenere altri componenti, quindi per transitività `Frame` ne eredita metodi e attributi, i metodi sono:
 
 Metodi e attributi ereditati da Container
 
-add, add, add, add, add, addContainerListener, addImpl, countComponents, deliverEvent, doLayout, findComponentAt, findComponentAt, getalignmentX, getalignmentY, getComponent, getComponentAt, getComponentAt, getComponentCount, getComponents, getInsets, getLayout, getMaximumsize, getMinimumsize, getPreferredsize, insets, invalidate, isAncestorOf, layout, list, list, locate, minimumsize, paint, paintComponents, preferredsize, print, printComponents, processContainerEvent, remove, remove, removeAll, removeContainerListener, setfont, setLayout, update, validate, validatetree
+add, add, add, add, add, addContainerListener, addImpl, countComponents, deliverEvent, doLayout, findComponentAt, findComponentAt, getalignmentX, getalignmentY, getComponent, getComponentAt, getComponentAt, getComponentCount, getComponents, getInsets, getLayout, getMaximumsize, getMinimumsize, getPreferredsize, insets, invalidate, isAncestorOf, layout, list, list, locate, minimumsize, paint, paintComponents, preferredsize, print, printComponents, processContainerEvent, remove, remove, removeAll, removeContainerListener, setfont, setLayout,  
+update, validate, validatetree
 
 `Container` estende `java.awt.Component`, un `Component` è un oggetto che ha una rappresentazione grafica, ad esempio un bottone sarà una estensione di questa classe, la quale estende a sua volta `java.lang.Object`.
 
@@ -219,7 +237,8 @@ BOTTOM\_alignMENT, CENTER\_alignMENT, LEFT\_alignMENT, RIGHT\_alignMENT, TOP_ali
 
 Attributi ereditati da Component
 
-action, add, addComponentListener, addFocusListener, addInputMethodListener, addKeyListener, addMouseListener, addMouseMotionListener, addPropertyChangeListener, addPropertyChangeListener, bounds, checkImage, checkImage, coalesceEvents, contains, contains, createImage, createImage, disable, disableEvents, dispatchEvent, enable, enable, enableEvents, enableInputMethods, firePropertyChange, getBackground, getBounds, getBounds, getColorModel, getComponentOrientation, getCursor, getdropTarget, getfont, getfontMetrics, getForeground, getGraphics, getHeight, getInputMethodRequests, getLocation, getLocation, getLocationOnScreen, getName, getParent, getPeer, getsize, getsize, gettreeLock, getwidth, getX, getY, gotFocus, handleEvent, hasFocus, hide, imageUpdate, inside, isDisplayable, isDoubleBuffered, isEnabled, isFocustraversable, isLightweight, isOpaque, isValid, isVisible, keyDown, keyUp, list, list, list, location, lostFocus, mouseDown, mouseDrag, mouseEnter, mouseExit, mouseMove, mouseUp, move, nextFocus, paintAll, prepareImage, prepareImage, printAll, processComponentEvent, processFocusEvent, processInputMethodEvent, processKeyEvent, processMouseEvent, processMouseMotionEvent, removeComponentListener, removeFocusListener, removeInputMethodListener, removeKeyListener, removeMouseListener, removeMouseMotionListener, removePropertyChangeListener, removePropertyChangeListener, repaint, repaint, repaint, repaint, requestFocus, reshape, resize, resize, setBackground, setBounds, setBounds, setComponentOrientation, setCursor, setdropTarget, setEnabled, setForeground, setLocale, setLocation, setLocation, setName, setsize, setsize, setVisible, show, size, toString, transferFocus
+action, add, addComponentListener, addFocusListener, addInputMethodListener, addKeyListener,  
+addMouseListener, addMouseMotionListener, addPropertyChangeListener, addPropertyChangeListener, bounds, checkImage, checkImage, coalesceEvents, contains, contains, createImage, createImage, disable, disableEvents, dispatchEvent, enable, enable, enableEvents, enableInputMethods, firePropertyChange, getBackground, getBounds, getBounds, getColorModel, getComponentOrientation, getCursor, getdropTarget, getfont, getfontMetrics, getForeground, getGraphics, getHeight, getInputMethodRequests, getLocation, getLocation, getLocationOnScreen, getName, getParent, getPeer, getsize, getsize, gettreeLock, getwidth, getX, getY, gotFocus, handleEvent, hasFocus, hide, imageUpdate, inside, isDisplayable, isDoubleBuffered, isEnabled, isFocustraversable, isLightweight, isOpaque, isValid, isVisible, keyDown, keyUp, list, list, list, location, lostFocus, mouseDown, mouseDrag, mouseEnter, mouseExit, mouseMove, mouseUp, move, nextFocus, paintAll, prepareImage, prepareImage, printAll, processComponentEvent, processFocusEvent, processInputMethodEvent, processKeyEvent, processMouseEvent, processMouseMotionEvent, removeComponentListener, removeFocusListener, removeInputMethodListener, removeKeyListener, removeMouseListener, removeMouseMotionListener, removePropertyChangeListener, removePropertyChangeListener, repaint, repaint, repaint, repaint, requestFocus, reshape, resize, resize, setBackground, setBounds, setBounds, setComponentOrientation, setCursor, setdropTarget, setEnabled, setForeground, setLocale, setLocation, setLocation, setName, setsize, setsize, setVisible, show, size, toString, transferFocus
 
 Mentre da Object vengono ereditati i soliti metodi:
 

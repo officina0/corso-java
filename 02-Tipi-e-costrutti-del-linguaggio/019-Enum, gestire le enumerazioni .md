@@ -4,22 +4,25 @@ Se immaginiamo di scrivere un programma che gestisca un calendario probabilmente
 
 Così facendo `giornoDellaSettimana` potrà certamente avere tutti i valori desiderati:
 
+```
 int giornoDellaSettimana = 4; // VEN per la nostra convenzione
+```
 
 e con quache costante (static final) potremmo anche rendere leggibile il codice:
 
+```
 public static final int LUN = 0;
 // ...
 public static final int VEN = 4;
-
 int giornoDellaSettimana = VEN;
+```
 
 ma purtroppo, per il compilatore, `giornoDellaSettimana` è e resta una variabile `int` e quindi non potrà mai verificare che non ci sia mai nel nostro codice una linea in cui viene assegnato il valore `9` (o `-4` essendo gli interi signed), facendoci perdere una delle più preziose comodità di un linguaggio staticamente tipato come Java: il **type checking** al momento della compilazione.
 
 D’altro canto, se invece di cercare di usare (male) un `int`, oppure un altro qualsiasi tipo non pensato per rappresentare un giorno della settimana, definiamo:
 
+```
 public enum Giorno {
-	
 	LUNEDI,
 	MARTEDI,
 	MERCOLEDI,
@@ -28,27 +31,30 @@ public enum Giorno {
 	SABATO,
 	DOMENICA // opzionalmente può terminare con ";"
 }
+```
 
 e poi
 
-Giorno giornoDellaSettimana; 
+```
+Giorno giornoDellaSettimana;
+```
 
 avremo una variabile che potrà contenere _solamente_ un valore appartenente al set specificato nella definizione dell’enum `Giorno` e contemporaneamente avremo a disposizione anche i nomi simbolici (le costanti di prima) da usare nella scrittura del programma:
 
+```
 giornoDellaSettimana = Giorno.VENERDI;
+```
 
 Ricordando la lezione sui costrutti condizionali, è interessante poter usare enumerazioni come quelle definite dal tipo `Giorno` anche con lo statement **switch**.
 
-/\*\* EnumTest.java*/
-
+```
+/** EnumTest.java*/
 public class EnumTest {
 	public enum Giorno { LUNEDI, MARTEDI, MERCOLEDI, GIOVEDI, VENERDI, SABATO, DOMENICA };
-	
-	public static void main(String\[\] args) {
+	public static void main(String[] args) {
 		// scegliamo un valore
 		Giorno giornoDellaSettimana = Giorno.GIOVEDI;
-    
-		// definiamo una logica 
+		// definiamo una logica
 		switch(giornoDellaSettimana){
 			case LUNEDI:
 				System.out.println("Oggi è Lunedì");
@@ -74,10 +80,13 @@ public class EnumTest {
 		}
 	}
 }
+```
 
 Il risultato sarà:
 
+```
 Oggi è Giovedì
+```
 
 Le caratteristiche della classe enum
 ------------------------------------
@@ -86,20 +95,25 @@ Tecnicamente parlando in Java una `enum` è una classe come le altre ma che “i
 
 Il trattamento speciale che Java riserva agli enum riserva anche qualche interessante sorpresa: il compilatore per ogni classe enum sintetizza per noi un metodo statico (**values**) che ritorna un array di tutti i possibili valori che potranno assumere le variabili cha varanno come tipo l’enum, quindi nel nostro esempio il frammento di codice:
 
+```
 for( Giorno d : Giorno.values() ) {
-	
 	System.err.println(d);
 }
+```
 
 stamperebbe tutti i nomi dei giorni della settimana (anche i nomi vengono convertiti automaticamente in stringhe, con il medesimo case).
 
 Analogamente il compilatore ci offre la possibilità di **convertire stringhe in valori** del nostro enum:
 
+```
 Giorno g = Giorno.valueOf("SABATO");
+```
 
 assegnerà alla variabile `g` il valore `Giorno.SABATO` (attenzione, la stinga deve avere il medesimo case e non può contenere spazi, infatti l’esecuzione (non la compilazione) di:
 
+```
 Giorno g = Giorno.valueOf("Sabato");
+```
 
 genererebbe un errore di tipo “java.lang.IllegalArgumentException”.
 
@@ -121,84 +135,82 @@ Immaginiamo di dover gestire in un programa gli elementi chimici (fare riferimen
 
 Poiché il numero di elementi è finito e prefissato, un enum potrebbe essere una scelta opportuna ma ci dovremmo di sicuro preoccupare di associare ad ogni elemento alcune informazioni aggiuntive, diciamo numero atomico e massa atomica per fissare le idee, e predisporre opportuni metodi per accederli, l’enum dovrebbe quindi contenere qualcosa del tipo:
 
+```
 private int numeroAtomico;
-private double massaAtomica; 
+private double massaAtomica;
 private String simbolo;
-
 public int getNumeroAtomico() {
 	return numeroAtomico;
 }
-
 // ... altri getter/setter
+```
 
 e un costruttore per permettere (costringere sarebbe il verbo giusto) l’inizializzazione dei field, quindi:
 
+```
 private Elemento(String simbolo, int numeroAtomico, double massaAtomica) {
-
 	this.simbolo = simbolo;
 	this.numeroAtomico = numeroAtomico;
 	this.massaAtomica = massaAtomica;
 }
+```
 
 Se a questo punto tentassimo di definire i valori dell’enum come abbiamo fatto per i giorni
 
+```
 public enum Elemento {
 	IDROGENO,
-	ELIO, 
+	ELIO,
 	// ... ;
 }
+```
 
 Otterremmo un errore di compilazione che ci avviserebbe che il costruttore default (quello senza argomenti) della classe `Elementi` non esiste. Infatti il costruttore lo abbiamo definito noi e prevede che vangano specificati alcuni parametri e così siamo obbligati a costruire i nostri valori nell’enum, con il costruttore che abbiamo fornito, la definizione giusta sarà quindi:
 
-/\*\* Elemento.java */
-
+```
+/** Elemento.java */
 public enum Elemento {
-		
 		IDROGENO("H", 1, 1.008),
 		ELIO("He", 2, 4.003),
 		// ... altri elementi
 		LITIO("Li", 3, 6.491);
-		
 		private int numeroAtomico;
-		private double massaAtomica; 
+		private double massaAtomica;
 		private String simbolo;
-
 		public int getNumeroAtomico() {
 			return numeroAtomico;
 		}
-		
 		public String getSimbolo() {
 			return simbolo;
 		}
-		
 		private Elemento(String simbolo, int numeroAtomico, double massaAtomica) {
-
 			this.simbolo = simbolo;
 			this.numeroAtomico = numeroAtomico;
 			this.massaAtomica = massaAtomica;
 		}
 }
+```
 
 Copiamo questa definizione in un file `Elemento.java` e la utilizziamo per una prova su strada all’interno di un “main”:
 
-/\*\* main.java */
-
+```
+/** main.java */
 public class main {
-
-	public static void main(String\[\] args) {
-	
+	public static void main(String[] args) {
 		for( Elemento e : Elemento.values() ) {
-			
-			System.out.printf("%s\\t|\\t%d|\\t%s\\n", e.getSimbolo(), e.getNumeroAtomico(), e);
+			System.out.printf("%s\t|\t%d|\t%s\n", e.getSimbolo(), e.getNumeroAtomico(), e);
 		}
 	}
 }
+```
 
 Lanciamo il programma e otteniamo:
 
+```
 H	|	1|	IDROGENO
 He	|	2|	ELIO
 Li	|	3|	LITIO
+```
 
 Le variabili di tipo `Elemento` per costruzione, saranno sempre elementi validi e con le proprietà che ci interessano sempre inizializzate e disponibili.
 
@@ -222,74 +234,63 @@ Possiamo finire approfondendo alcuni aspetti avanzati che possono aiutarci nella
 
 Creiamo quindi il tipo enum `Audio` e il relativo file (`Audio.java`) e lo definiamo con la stessa sintassi che utilizziamo per una classe (alla fine sempre di una classe si tratta), quindi: variabili di istanza, costruttori e metodi. In particolare definiamo un **metodo astratto** _reproduce_ (questa parte si capirà meglio dopo aver parlato della programmazione orientata agli oggetti).
 
-/\*\* Audio.java*/
-
+```
+/** Audio.java*/
 public enum Audio {
-	
 	// Lasciamo lo spazio per gli elementi dell'enumerazione
-	
-	
 	private final String channel;
 	private final int bitrate;
-  
 	Audio(String channel,int bitrate) {
 		this.channel=channel;
 		this.bitrate=bitrate;
 	}
-  
 	Audio(String channel) {
 		this.channel=channel;
 		bitrate = -1;
 	}
-  
 	public abstract String reproduce(String archive);
-	
 	// getter e setter
 	public String getChannel() {
 		return channel;
 	}
-	
 	public int getBitrate() {
 		return bitrate;
 	}
 }
+```
 
 Per realizzare quanto detto sopra, ogni tipo concreto creato (ogni definizione) dovrà implentare concretamente il metodo _reproduce_ ed eventualmente potrà definire una sua propria logica nel suo corpo di classe:
 
-	MP3("mp3",128) {
+```
+MP3("mp3",128) {
 		@Override
 		public String reproduce(String archive) {
 			return archive+" > file MP3";
 		}
 	},
-	
 	PCM("PCM"){
 		@Override
 		public String reproduce(String archive) {
 			return archive+" > file PCM";
 		}
 	},
-	
 	DD("Dolby Digital",256){
 		@Override
 		public String reproduce(String archive){
 			return archive+" > file Dolby Digital";
 		}
-
 		@Override
 		public String toString(){
 			//Override del metodo toString()
 			return "Dolby";
 		}
 	};
-	
 	// qui seguono le definizioni della classe
 	private final String channel;
 	private final int bitrate;
-  
 	Audio(String channel,int bitrate) {
-	
 	// Etc...
+```
 
 Gli elementi, così definiti, li inseriamo nella prima parte della dichiarazione dell’enum.
 
@@ -297,21 +298,22 @@ Esaminando gli elementi vediamo che abbiamo creato ogni singolo tipo concreto sf
 
 Vediamo un main di esempio e l’utilizzo dell’enumerazione appena creata:
 
+```
 public class main {
-
-	public static void main(final String\[\] args) {
-	
+	public static void main(final String[] args) {
 		for( Audio a : Audio.values() ) {
-			
-			System.out.printf("%s\\t| %d\\t| %s\\t | %s\\n", a, a.getBitrate(), a.getChannel(), a.reproduce("myFile"));
+			System.out.printf("%s\t| %d\t| %s\t | %s\n", a, a.getBitrate(), a.getChannel(), a.reproduce("myFile"));
 		}
 	}
 }
+```
 
 Ecco il risultato:
 
+```
 MP3   | 128 | mp3           | myFile > file MP3
 PCM   | -1  | PCM           | myFile > file PCM
 Dolby | 256 | Dolby Digital | myFile > file Dolby Digital
+```
 
 Qui c’è da notare che, per default, il `toString()` del tipo enum è l’identificativo assegnato (`MP3`, `PCM`) mentre, laddove abbiamo effettuato l’override, ovviamente, è il valore che noi abbiamo assegnato (`Dolby` e non `DD`).

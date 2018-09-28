@@ -25,21 +25,26 @@ API Servlet
 Java 3D
 -------
 
-gestisce il disegno tridimensionale, è come la versione Java di OpenGL (JavaGL), la famosissima libreria della SGI (alcuni la conoscono come Glide, ovvero la libreria OpenGL per le 3Dfx) e DirectX della Microsoft.  
+gestisce il disegno tridimensionale, è come la versione Java di OpenGL (JavaGL), la  
+famosissima libreria della SGI (alcuni la conoscono come Glide, ovvero la libreria OpenGL  
+per le 3Dfx) e DirectX della Microsoft.  
 Si può scaricare al sito: [http://java.sun.com/products/java-media/3D/index.html](http://java.sun.com/products/java-media/3D/index.html "Link esterno")
 
 Java Media Framework
 --------------------
 
-gestisce all’interno dei programmi Java vari formati audio, video multimediali, i file supportati sono i seguenti:  
+gestisce all’interno dei programmi Java vari formati audio, video  
+multimediali, i file supportati sono i seguenti:  
 .mov, .avi, .viv, .au, .aiff, .wav, .midi, .rmf, .gsm, .mpg, .mp2, .rtp.  
-Se non tutta, almenu una parte diverrà standard con Java 1.3, la quale è in uscita (fine Aprile). Si scarica al sito:  
+Se non tutta, almenu una parte diverrà standard con Java 1.3, la quale è in uscita (fine Aprile).  
+Si scarica al sito:  
 [http://www.javasoft.com](http://www.javasoft.com/ "Link esterno")
 
 Speech
 ------
 
-funzioni di riconoscimento vocale, non solo per i comandi, ma è possibile anche editare interi file. Questo package fa anche l’output vocale.  
+funzioni di riconoscimento vocale, non solo per i comandi, ma è possibile anche editare  
+interi file. Questo package fa anche l’output vocale.  
 Si può scaricare al sito: [http://java.sun.com/products/java-media/speech/index.html](http://java.sun.com/products/java-media/speech/index.html "Link esterno")
 
 Telephony
@@ -55,7 +60,9 @@ classi per gestire la posta elettronica.
 Java Naming and Directory Services
 ----------------------------------
 
-per accedere ai servizi di nomi e directory usando protocolli come LDAP. Questo packages è diventato standard in JDK 1.3
+per accedere ai servizi di nomi e directory usando  
+protocolli come LDAP.  
+Questo packages è diventato standard in JDK 1.3
 
 Java Management
 ---------------

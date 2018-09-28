@@ -1,15 +1,22 @@
-Capito il funzionamento della paint() siamo pronti a disegnare qualsiasi cosa su un’applet o su un generico componente.  
+Capito il funzionamento della paint() siamo pronti a disegnare qualsiasi cosa su un’applet o su un generico componente.
+
 La cosa più semplice da disegnare è la linea, per farlo usiamo il metodo drawLine() di Graphics:
 
 drawLine(Iniziox, Inizioy, Finex, Finey)
 
-il quale disegna una linea che parte dal punto (Iniziox, Inizioy) e arriva al punto (Finex, Finey)  
+il quale disegna una linea che parte dal punto (Iniziox, Inizioy) e arriva al punto (Finex, Finey)
 
 Prima di usare la drawLine() capiamo come si possono cambiare i colori delle cose disegnate.  
 I colori si cambiano usando il metodo setColor(Color c) della classe Graphics.  
 Color è un’altra classe di awt che permette di definire un colore, alcuni suoi costruttori sono:
 
-Color(float r, float g, float b), crea un colore specificando i valori RGB (Red – Green – Blue, ovvero Rosso – Verde – Blu) con dei valori compresi tra 0 e 1. Color(float r, float g, float b, float a), come il precedente, solo che permette di definire anche il valore alfa Color(int r, int g, int b) , crea un colore specificando i valori RGB (Red – Green – Blue, ovvero Rosso – Verde – Blu) con dei valori compresi tra 0 e 255. Color(int r, int g, int b, int a), come il precedente, solo che permette di definire anche il valore alfa
+Color(float r, float g, float b), crea un colore specificando i valori RGB (Red – Green – Blue, ovvero Rosso – Verde – Blu) con dei valori compresi tra 0 e 1.
+
+Color(float r, float g, float b, float a), come il precedente, solo che permette di definire anche il valore alfa
+
+Color(int r, int g, int b) , crea un colore specificando i valori RGB (Red – Green – Blue, ovvero Rosso – Verde – Blu) con dei valori compresi tra 0 e 255.
+
+Color(int r, int g, int b, int a), come il precedente, solo che permette di definire anche il valore alfa
 
 Alcuni colori semplici sono dati da delle costanti nella classe color:
 
@@ -29,7 +36,8 @@ Color.yellow
 
 Nel seguente applet si disegnano alcune linee colorate.
 
- import java.awt.Graphics;
+```
+import java.awt.Graphics;
  import java.awt.Color;
  import java.awt.Button;
  import java.awt.borderLayout;
@@ -111,12 +119,15 @@ Nel seguente applet si disegnano alcune linee colorate.
         b_=0;
         }
     }
+```
 
 Chiamiamo il file linee.java e lo carichiamo con il file html seguente (linee.html):
 
+```
 <html>
 <head><title>Applet Linee (linee.class)</title></head>
 <body>
 <APPLET code="linee.class" width=200 height=300></APPLET>
 </body>
 </html>
+```

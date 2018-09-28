@@ -7,10 +7,11 @@ while
 
 Il **ciclo while** esegue una istruzione o un blocco di codice finché rimane verificata una certa condizione. In italiano diremmo: “fino a quando la condizione è vera esegui il blocco” ecco un esempio:
 
+```
 while(condizione) { 
-
 	// ...
 }
+```
 
 dove `condizione` deve essere una variabile o una _espressione di tipo booleano_. In questo caso quindi esprimiamo la volontà di eseguire tutte le istruzioni del blocco ripetutamente fino a quando `condizione` ha valore `true`.
 
@@ -21,11 +22,11 @@ do-while
 
 il **ciclo do-while** è simile al `while` tanto da poter essere considerato una sua variante, ed infatti il frammento di codice:
 
+```
 do {
-
 	// ...
-
 } while(condizione);
+```
 
 analogamente a quello sopra presentato, causa l’esecuzione del blocco tra graffe fino a quando la condizione è vera ma con la importante differenza che in questo caso condizione viene presa in considerazione alla fine del blocco. Quindi l’esecuzione del blocco di istruzioni viene effettuata almeno una volta, anche se la condizione risulta da subito `false`.
 
@@ -42,30 +43,31 @@ Il **ciclo for** è un costrutto tra i più conosciuti, comune praticamente a tu
 
 Con un codice simile al seguente:
 
+```
 for(inizializzazione; condizione; incremento) {
-
 	// ...
 }
+```
 
 si ottiene un programma che esegue esattamente una volta inizializzazione, esegue poi il blocco, quindi effettua l’incremento, valuta condizione e, se questa risulta vera (`true`, come al solito condizione deve essere di tipo `boolean`), esegue di nuovo blocco, alla fine del quale ripete il test e così via.
 
 È semplice convincersi con un esempio che un ciclo for ed uno while sono facilmente intercambiabili:
 
+```
 int i=0;
-
 while(i < 10) {
-
 	// ...
-	
 	i++;
 }
+```
 
 è identico a:
 
+```
 for(int i=0; i<10; i++) {
-
 	// ...
 }
+```
 
 dove si vede anche la comune pratica di definire le variabili di iterazione (`i` nell’esempio) direttamente all’interno della sezione di inzializzazione rendendole locali al blocco (ed alle sezioni di incremento e terminazione).
 
@@ -73,10 +75,11 @@ dove si vede anche la comune pratica di definire le variabili di iterazione (`i`
 
 Si osserva che essendo `inizializzazione`, `incremento` e `condizione` opzionali non è strano trovare casi in cui vengano omesse fino all’estremo:
 
+```
 for(;;) {
-
 	// ...
 }
+```
 
 letto anche “_for-ever_” o **ciclo infinito**, poiché la condizione di terminazione è omessa e per default considerata come `true` (il medesimo comportamento si otterrebbe naturalmente con “`while(true) {}`“).
 
@@ -87,10 +90,11 @@ Una importante variante del ciclo `for` è quella che potremmo definire **for-ea
 
 Pur dovendo rimandare una completa descrizione di questa variante a quando parleremo di _Collection_ e _array_ possiamo comunque mostrarne la sintassi:
 
+```
 for( Type item : itemCollection ) {
-
 	// ...
 }
+```
 
 che, continuando i paralleli con la lingua italiana si legge come:
 
@@ -102,28 +106,30 @@ Anche se parleremo più avanti di “Collection” e “generics”, in questa f
 
 Ecco un esempio pratico di una tipica routine di iterazione degli elementi di una Collection che utilizzi i tipi generics:
 
+```
 Queue<String> queue = new LinkedList<String>();
-
 for(Iterator<String> it = queue.iterator(); it.hasNext(); ) {
-
   String tmp = it.next();
   // ... qui fa qualcosa
 }
+```
 
 Senza l’ausilio dei tipi generics la cosa diventa ancora più ardua, poiché bisogna effettuare il cast (su `it.next()`) con il rischio di un’eccezione a runtime. In realtà, seppure con la miglioria dei tipi generics, questa iterazione non è pulita in quanto ci obbliga a utilizzare una struttura dati (Iterator) che di fatto non utilizziamo.
 
 Come abbiamo visto invece, il ciclo **for-each** permette una definizione automatica di tutto ciò in un solo comando integrato:
 
+```
 for(String tmp:queue) {
-
   //...
 }
+```
 
 L’utilizzo della struttura nel secondo esempio verrà tradotto con la codifica definita nel primo, facendoci però perdere qualsiasi riferimento all’iteratore che lavorerà dietro le quinte. Si tratta quindi di una semplificazione che sicuramente dà dei benefici in termine di migliore codifica ma assolutamente non intacca le prestazioni né in positivo né in negativo.
 
+```
 public class ForeachTest {
 	
-	public static void main(String\[\] args) {
+	public static void main(String[] args) {
 	
 		Collection
  coll = new ArrayList<String>();
@@ -140,5 +146,6 @@ public class ForeachTest {
 		}
 	}
 } 
+```
 
 Per semplicità lavoriamo con un array di String (l’array degli argomenti, `args`, del main) e una `Collection<String>` dove ci metteremo il contenuto del primo array. Come si vede dal codice nel primo caso facciamo una semplice iterazione, utilizzando l’oggetto `tmp` (che ha ciclo di vita all’interno del for). Nel secondo iteriamo sulla collezione stampando il risultato.

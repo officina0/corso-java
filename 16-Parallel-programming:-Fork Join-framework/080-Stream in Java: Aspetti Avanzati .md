@@ -2,7 +2,7 @@ In questo capitolo tratteremo aspetti di carattere più avanzato utili per compr
 
 Figura 1. Parallel Streams.
 
-![Parallel Streams](http://www.html.it/wp-content/uploads/2017/11/parallelStreams.png)
+![Parallel Streams](https://tbm-html.s3.amazonaws.com/app/uploads/2017/11/parallelStreams.png)
 
 L’`ArrayList integers` è il punto di partenza per ottenere più Stream in parallelo, la funzione `sorted()` agisce utilizzando le CPU core a disposizione sugli Stream creati per ordinare gli interi. Al termine dell’operazione di ordinamento, eseguita con task paralleli sulle diverse CPU, si ottiene nuovamente un unico Stream sul quale si applica l’operazione terminale `sum()`.
 

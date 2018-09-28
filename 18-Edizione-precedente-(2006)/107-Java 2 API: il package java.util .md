@@ -198,53 +198,45 @@ trasforma il bitset in una stringa
 
 Proviamo il bit set con il seguente programma `CaratteriUsati`, che possiamo scrivere in un file chiamato `CaratteriUsati.java`, il quale prende una stringa in ingresso e vede quali caratteri sono stati usati.
 
+```
 import java.util.BitSet;
-
 public class CaratteriUsati
 {
-	public static void main (String\[\] a)
+	public static void main (String[] a)
 	{
 		String tmp;
-		
-		try { tmp=a\[0\]; }
+		try { tmp=a[0]; }
 		catch (ArrayIndexOutOfBoundsException e)
 		{ errore(); }
-		
-		elabora(a\[0\]);
+		elabora(a[0]);
 	}
-	
 	public static void errore()
 	{
 		System.out.println("ERRORE, ho bisogno di una stringa:");
-		System.out.println("\\tBattere:");
-		System.out.println("\\t\\tjava CaratteriUsati StrINGA.");
+		System.out.println("\tBattere:");
+		System.out.println("\t\tjava CaratteriUsati StrINGA.");
 		System.exit(0);
 	}
-
 	public static void elabora (String a)
 	{
 		String tmp = a;
 		BitSet usati= new BitSet();
-		
 		for (int i = 0; i < tmp.length() ; i++)
 			usati.set(tmp.charAt(i));
-		
-		String out="\[";
+		String out="[";
 		int dim=usati.size();
-		
 		for (int i = 0; i < dim; i++)
 		{
 			if (usati.get(i))
 			out+=(char )i;
 		};
-		
-		out+="\]";
+		out+="]";
 		System.out.println(out);
-		
 		System.out.println("Per l'elaborazione ho usato una bit set di "+usati.size()+" bit");
-		System.out.println ("\\t\\t\\tPietro ");
+		System.out.println ("\t\t\tPietro ");
 	}
 }
+```
 
 La classe Vector
 ----------------
@@ -433,51 +425,50 @@ Chi è abituato a programmare in altri linguaggi di programmazione potrà apprez
 
 Per capire meglio facciamo un esempio. Pensate al seguente vettore:
 
+```
 pippo = { true , 10 , "Ciao"};
+```
 
 Di che tipo sarà `pippo`? `int[]`? `boolean[]`? O `String[]`? Nessuno dei tre, in Java è impossibile creare un array così fatto, usando però le famose classi involucro, che fin’ora ci sembravano abbastanza inutili, possiamo creare un array così fatto, scriveremo qualcosa del tipo.
 
-Object\[\] pippo={ new Boolean(true), new Integer(10), new String("Ciao") };
+```
+Object[] pippo={ new Boolean(true), new Integer(10), new String("Ciao") };
+```
 
 Se inoltre usiamo la classe `Vector`, abbiamo anche parecchi metodi per gestire questo vettore di elementi eterogenei.
 
 Facciamo un piccolo esempio che usa i vettori, definiamo uno spazio geometrico tridimensionale di punti, linee e facce, così definiti:
 
+```
 class punto
 {
 	String nome;
 	int x,y,z;
-	
 	public punto(String n, int X,int Y,int Z)
 	{
 		x=X; y=Y; x=Z; nome=n;
 	}
-
 	public String toString()
 	{
-		return "\\n"+nome+"="+x+","+y+","+z+"\\n";
+		return "\n"+nome+"="+x+","+y+","+z+"\n";
 	}
 }
-
 class linea
 {
 	String nome;
 	punto inizio;
 	punto fine;
-	
 	public linea(String n, punto i,punto f)
 	{
 		inizio=i;
 		fine=f;
 		nome=n;
 	}
-
 	public String toString()
 	{
-		return "\\n"+nome+"=("+inizio.toString()+","+fine.toString()+")\\n";
+		return "\n"+nome+"=("+inizio.toString()+","+fine.toString()+")\n";
 	}
 }
-
 class faccia
 {
 	String nome;
@@ -487,7 +478,6 @@ class faccia
 	linea l1;
 	linea l2;
 	linea l3;
-	
 	public faccia(String n, punto X1,punto X2,punto X3)
 	{
 		x1=X1;
@@ -498,26 +488,25 @@ class faccia
 		l3=new linea(n+"-linea3",x1,x3);
 		nome=n;
 	}
-	
 	public String toString()
 	{
-		return "\\n"+nome+"={"+l1.toString()+","+l2.toString()+","+l3.toString()+"}\\n";
+		return "\n"+nome+"={"+l1.toString()+","+l2.toString()+","+l3.toString()+"}\n";
 	}
 }
+```
 
 Da notare che le classi contengono dei metodi `toString()`, che sovrascrivono i metodi standard, questo per creare l’output su file del programma. Queste classi le metteremo in un file chiamato `Geometria.java`, ove metteremo anche le import necessarie al programma e la classe Geometria contenente il main sotto definite:
 
+```
 import java.util.*;
 import java.io.*;
-
 // Definizione della class punto
 // Definizione della class linea
 // Definizione della class faccia
 public class Geometria
 {
 	public static int NUMERO = 3000;
-
-	public static void main(String\[\] arg)
+	public static void main(String[] arg)
 	{
 		Vector spazio=new Vector(1,1);
 		System.out.println("Geometria nello spazio:");
@@ -528,13 +517,11 @@ public class Geometria
 		int lin=NUMERO;
 		int fac;
 		fac=NUMERO;
-
 		System.out.println();
 		int d1=spazio.capacity();
 		System.out.println ("Capacità del vettore:"+spazio.capacity());
 		System.out.println("Genero i punti...");
 		int i=0;
-		
 		for ( i = 0 ; i<pti ; i++ )
 		{
 			float a=(float ) Math.random();
@@ -547,11 +534,9 @@ public class Geometria
 			punto tmpP=new punto(nome,x,y,z);
 			spazio.addElement(tmpP);
 		};
-
 		System.out.println ("Capacità del vettore:"+spazio.capacity());
 		int d2=spazio.capacity();
 		System.out.println("Genero le linee...");
-		
 		for ( i = 0 ; i<lin ; i++ )
 		{
 			float a=(float ) Math.random();
@@ -560,7 +545,6 @@ public class Geometria
 			float d=(float ) Math.random();
 			float e=(float ) Math.random();
 			float f=(float ) Math.random();
-
 			int x=Math.round(a*1000);
 			int y=Math.round(b*1000);
 			int z=Math.round(c*1000);
@@ -573,10 +557,8 @@ public class Geometria
 			linea tmpL=new linea(nome,P1,P2);
 			spazio.addElement(tmpL);
 		};
-
 		System.out.println ("Capacità del vettore:"+spazio.capacity());
 		int d3=spazio.capacity();
-
 		System.out.println("Genero le facce...");
 		for ( i = 0 ; i<lin ; i++ )
 		{
@@ -605,7 +587,6 @@ public class Geometria
 			faccia tmpF=new faccia(nome,P1,P2,P3);
 			spazio.addElement(tmpF);
 		};
-	
 		System.out.println ("Capacità finale del vettore:"+spazio.capacity());
 		int d4=spazio.capacity();
 		File FileOut=new File("Geometria.txt");
@@ -613,55 +594,54 @@ public class Geometria
 		try {Output=new FileWriter(FileOut);}
 		catch (IOException e) {Output=null;};
 		try {
-			Output.write("Geometria.txtnnumero oggetti="+3*NUMERO+"\\n");
-			Output.write("Dimensioni del Vector:nall'inizio:"+\\d1+"n dopo l'inserzione dei punti:"+d2);
-			Output.write("\\ndopo l'inserzione delle linee:"+\\d3+"ndopo l'inserzione delle facce:"+d4);
-			Output.write("\\n\\nContenuto:n");
+			Output.write("Geometria.txtnnumero oggetti="+3*NUMERO+"\n");
+			Output.write("Dimensioni del Vector:nall'inizio:"+\d1+"n dopo l'inserzione dei punti:"+d2);
+			Output.write("\ndopo l'inserzione delle linee:"+\d3+"ndopo l'inserzione delle facce:"+d4);
+			Output.write("\n\nContenuto:n");
 			Output.write(spazio.toString());
-			Output.write("\\n\\n\\n\\t\\tPietro Castellucci");
+			Output.write("\n\n\n\t\tPietro Castellucci");
 			Output.flush();
 		} catch (IOException e) {};
-		System.out.println("\\nGuarda il file Geometria.txt.\\n");
+		System.out.println("\nGuarda il file Geometria.txt.\n");
 	};
 }
+```
 
 Se mandiamo in esecuzione il programma vediamo come il Vector spazio cresce dinamicamente, con gli oggetti eterogenei punto, linea e faccia. Alla fine avremo un file chiamato Geometria.txt che conterrà la descrizione del vettore, il file con soli 5 elementi per ogni specie sarà qualcosa del tipo:
 
+```
 Geometria.txt
 numero oggetti=15 Dimensioni del Vector: all'inizio:1
 dopo l'inserzione dei punti:5
 dopo l'inserzione delle linee:10
 dopo l'inserzione delle facce:15
-
 Contenuto:
-\[
-Punto1=653,932,0, 
-Punto2=100,273,0, 
-Punto3=855,210,0, 
-Punto4=351,702,0, 
+[
+Punto1=653,932,0,
+Punto2=100,273,0,
+Punto3=855,210,0,
+Punto4=351,702,0,
 Punto5=188,996,0, 
-
 Linea1=(
-Punto 1 della Linea1=680,454,0, 
+Punto 1 della Linea1=680,454,0,
 Punto 2 della Linea1=69,16,0
-), 
+),
 Linea2=(
 Punto 1 della Linea2=116,651,0,
 Punto 2 della Linea2=371,15,0
-), 
+),
 Linea3=(
 Punto 1 della Linea3=947,335,0,
 Punto 2 della Linea3=477,214,0
-), 
+),
 Linea4=(
 Punto 1 della Linea4=391,671,0,
 Punto 2 della Linea4=692,725,0
-), 
+),
 Linea5=(
 Punto 1 della Linea5=762,283,0,
 Punto 2 della Linea5=582,192,0
 ), 
-
 Faccia1={
 Faccia1-linea1=(
 Punto 1 della Faccia1=826,235,0,
@@ -675,7 +655,6 @@ Faccia1-linea3=(
 Punto 1 della Faccia1=826,235,0,
 Punto 1 della Faccia1=12,950,0
 )}, 
-
 Faccia2={
 Faccia2-linea1=(
 Punto 1 della Faccia2=382,30,0,
@@ -689,7 +668,6 @@ Faccia2-linea3=(
 Punto 1 della Faccia2=382,30,0,
 Punto 1 della Faccia2=277,361,0
 )},
- 
 Faccia3={
 Faccia3-linea1=(
 Punto 1 della Faccia3=139,802,0,
@@ -699,12 +677,10 @@ Faccia3-linea2=(
 Punto 1 della Faccia3=643,921,0,
 Punto 2 della Faccia3=880,935,0
 ),
-
 Faccia3-linea3=(
 Punto 1 della Faccia3=139,802,0,
 Punto 1 della Faccia3=643,921,0
 )}, 
-
 Faccia4={
 Faccia4-linea1=(
 Punto 1 della Faccia4=516,614,0,
@@ -718,7 +694,6 @@ Faccia4-linea3=(
 Punto 1 della Faccia4=516,614,0,
 Punto 1 della Faccia4=979,860,0
 )}, 
-
 Faccia5={
 Faccia5-linea1=(
 Punto 1 della Faccia5=152,663,0,
@@ -732,11 +707,12 @@ Faccia5-linea3=(
 Punto 1 della Faccia5=152,663,0,
 Punto 1 della Faccia5=651,761,0
 )}
-\]
-
+]
 		Pietro Castellucci
+```
 
-Provate a mettere la costante NUMERO a 4000 e ad eseguire il programma. Come avete visto abbiamo tante strutture dati in java.util, descriverle tutte sarebbe un lavoraccio. La cosa da sottolinare è che tutte hanno metodi per inserire, togliere, recuperare e metodi per gestire la struttura stessa.
+Provate a mettere la costante NUMERO a 4000 e ad eseguire il programma. Come avete visto abbiamo tante strutture dati in java.util, descriverle tutte sarebbe un lavoraccio.  
+La cosa da sottolinare è che tutte hanno metodi per inserire, togliere, recuperare e metodi per gestire la struttura stessa.
 
 Le strutture dati implementate sono tabelle hash, liste, pile, code, alberi ecc… e a seconda della vostra esigenza ne userete una o l’altra, per i dettagli però vi consiglio di vedere la documentazione del Java Development Kit, dove sono descritte tutte queste classi.
 
@@ -757,85 +733,75 @@ Vedremo come le performances della ricerca cambiano in modo evidente al crescere
 
 Immaginiamo degli oggetti fatti così:
 
-class O 
-{
-	String nome=new String();
-	int valore;
-	
-	public O(String a, int v)
-	{
-		nome=a;
-		valore=v;
-	}
-}
-
-Creiamo un vettore di `100000` di questi elementi, ne cerchiamo uno e vediamo quanto tempo impieghiamo:
-
-import java.util.*;
-
+```
 class O
 {
 	String nome=new String();
 	int valore;
-	
 	public O(String a, int v)
 	{
 		nome=a;
 		valore=v;
 	}
 }
+```
 
+Creiamo un vettore di `100000` di questi elementi, ne cerchiamo uno e vediamo quanto tempo impieghiamo:
+
+```
+import java.util.*;
+class O
+{
+	String nome=new String();
+	int valore;
+	public O(String a, int v)
+	{
+		nome=a;
+		valore=v;
+	}
+}
 public class Rvettore
 {
 	public static int NUMERO = 100000;
-	
-	public static void main (String\[\] s)
+	public static void main (String[] s)
 	{
 		Vector V = new Vector(NUMERO);
 		int numnome=128756;
 		O O_30000 = null;
-
 		System.out.println("Genero il vettore, inserisco "+NUMERO+" oggetti di tipo O con valori scorrelati rispetto all'indice.");
-		
 		System.out.print("Inizio: O_"+numnome);
-		
 		for (int i=0; i< NUMERO;i++)
 		{
 			O tmp = new O("O_"+numnome, numnome);
-			
 			if (numnome==30000) O_30000 = tmp;
-			
 			numnome--;
 			V.add(i, tmp);
 		};
-
 		System.out.println(" Fine: O_"+numnome);
 		System.out.println("Inizio la ricerca di O_30000");
-		
 		long Inizio=System.currentTimeMillis();
 		int index=V.indexOf(O_30000);
-		
 		O tmp = (O) V.get(index);
-		
 		long Fine=System.currentTimeMillis();
-
 		System.out.println("Oggetto O_30000 trovato in "+(Fine-Inizio)+" millisec. all'indice "+index);
-		System.out.println("Esso vale:\\nNome:"+tmp.nome+"\\nValore:"+tmp.valore+"\\n");
+		System.out.println("Esso vale:\nNome:"+tmp.nome+"\nValore:"+tmp.valore+"\n");
 	}
 }
+```
 
 Il programma cercherà l’oggetto `O_30000`, l’output del programma è:
 
+```
 Genero il vettore, inserisco 100000 oggetti di tipo O con valori scorrelati rispetto all'indice.
-
-Inizio:  O\_128756 Fine:  O\_28756
+Inizio:  O_128756 Fine:  O_28756
 Inizio la ricerca di O_30000
 Oggetto O_30000 trovato in 50 millisec.   .....
+```
 
 Adesso scriviamo un programma simile usando come struttura una tabella hash:
 
+```
 import java.util.*;
-
 class O
 {
 	String nome=new String();
@@ -846,19 +812,16 @@ class O
 		valore=v;
 	}
 }
-
 public class Rhash
 {
 	public static int NUMERO = 100000;
-	
-	public static void main (String\[\] s)
+	public static void main (String[] s)
 	{
 		Hashtable H = new Hashtable(NUMERO+1);
 		int numnome=128756;
 		O O_30000=null;
 		System.out.println("Genero la tabella, inserisco "+NUMERO+" oggetti di tipo O.");
 		System.out.print("Inizio: O_"+numnome);
-		
 		for (int i=0; i< NUMERO;i++)
 		{
 			O tmp = new O("O_"+numnome,numnome);
@@ -866,22 +829,24 @@ public class Rhash
 			numnome--;
 			H.put(tmp,tmp);
 		};
-
 		System.out.println(" Fine O_"+numnome);
 		System.out.println("Inizio la ricerca di O_30000");
 		long Inizio=System.currentTimeMillis();
 		O tmp=(O ) H.get(O_30000);
 		long Fine=System.currentTimeMillis();
 		System.out.println("Oggetto O_30000 trovato in "+(Fine-Inizio)+" millisec. ");
-		System.out.println("Esso vale:\\nNome:"+tmp.nome+"\\nValore:"+tmp.valore+"\\n");	
+		System.out.println("Esso vale:\nNome:"+tmp.nome+"\nValore:"+tmp.valore+"\n");
 	}
 }
+```
 
 Ancora una volta il programma cercherà l’oggetto `O_30000`, l’output del programma questa volta sarà:
 
+```
 Genero il vettore, inserisco 100000 oggetti di tipo O.
-Inizio:  O\_128756 Fine:  O\_28756
+Inizio:  O_128756 Fine:  O_28756
 Inizio la ricerca di O_30000
 Oggetto O_30000 trovato in 0 millisec.   .....
+```
 
 Il package java.util non comprende solo queste strutture dati, esso comprende anche delle classi per facilitare la gestione di date e orari, per l’interazionalizzazione, ed altre classi di utilità, come lo string tokenizer, che prende da una stringa tutte le parole, e dei generatori di numeri casuali.

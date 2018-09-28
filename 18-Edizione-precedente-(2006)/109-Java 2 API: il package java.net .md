@@ -3,7 +3,8 @@ Il Package java.net
 
 Java, come già detto in precedenza è nato come linguaggio per la rete, solo successivamente è divenuto un vero e proprio linguaggio di programmazione.  
 Il suo ruolo di leader per la programmazione di rete è comunque indiscusso, come tale esso mette a disposizione del programmatore tutto vari package per effettuare tale programmazione.  
-Visto che lo scopo finale del corso è quello di programmare Applet, una infarinatura del package la dobbiamo avere. Il package è molto ampio, il suo contenuto è il seguente:
+Visto che lo scopo finale del corso è quello di programmare Applet, una infarinatura del package la dobbiamo avere.  
+Il package è molto ampio, il suo contenuto è il seguente:
 
 Interfacce
 ----------
@@ -63,7 +64,7 @@ Il seguente esempio ne mostra l’uso.
 import java.net.*;  
 public class IndirizziIP  
 {  
-public static void main(String \[\] a)  
+public static void main(String [] a)  
 {  
 String dom=”developer.java.sun.com”;  
 try {  
@@ -71,8 +72,8 @@ InetAddress loc=InetAddress.getByName(dom);
 System.out.println(“IP di “+dom+” : “+loc.getHostAddress());  
 }  
 catch (UnknownHostException e)  
-{System.out.println(“Non esiste il dominio “+dom);};  
-  
+{System.out.println(“Non esiste il dominio “+dom);};
+
 try {  
 InetAddress loc=InetAddress.getLocalHost();  
 System.out.println(“IP locale: “+loc.getHostAddress());  
@@ -81,9 +82,10 @@ System.out.println(“Nome locale”+loc.getHostName());
 catch (UnknownHostException e)  
 {};  
 }  
-}  
+}
 
-Come esercizio provare a far prendere come nome di dominio il primo argomento del programma, ad esempio java IndirizziIP html.it
+Come esercizio provare a far prendere come nome di dominio il primo argomento del programma, ad esempio  
+java IndirizziIP html.it
 
 Il package fornisce utili classi per trattare i socket fondamentali basati su TCP e su UDP, i quali sono i protocolli impiegati nella maggior parte delle applicazioni Internet. Noi queste non le vedremo, ma passiamo direttamente a classi che gestiscono applicazioni Web di livello più alto.  
 Vediamo la classe URL.  
@@ -98,9 +100,12 @@ Quando programmeremo gli applet useremo solo gli URL per accedere anche ai file 
 Le ultime versioni di Java stanno eliminando questa limitazione del linguaggio, usando delle firme, che rendono la lettura e la scrittura di file controllata anche sulla rete, quindi in futuro sarà possibile usare anche i file negli applet, a patto che ci si assuma qualche responsabilità.  
 Vediamo alcuni costruttori di oggetti URL:
 
-URL(String spec) , crea ul oggetto URL in base alla rappresentazione a stringa, ad esempio “html.it”  
-URL(String protocol, String host, int port, String file), crea un oggetto URL, specificando tutto, anche la porta.  
-URL(String protocol, String host, int port, String file, URLStreamHandler handler), come il precedente, solo che specifica anche l’URLStreamHandler, il quale è la superclasse comune per tutti i protocolli(HTTP,FTP,Gopher).  
+URL(String spec) , crea ul oggetto URL in base alla rappresentazione a stringa, ad esempio  
+“html.it”  
+URL(String protocol, String host, int port, String file), crea un oggetto URL, specificando tutto,  
+anche la porta.  
+URL(String protocol, String host, int port, String file, URLStreamHandler handler), come il  
+precedente, solo che specifica anche l’URLStreamHandler, il quale è la superclasse comune per tutti i protocolli(HTTP,FTP,Gopher).  
 URL(String protocol, String host, String file), crea un oggetto URL specificando protocollo, host e File sul server host, ad esempio: URL(“http”,”www.cli.di.unipi.it”,”~castellu/index.html”).
 
 Discutiamo ora alcuni metodi della classe
@@ -124,10 +129,10 @@ import java.net.*;
 import java.io.*;  
 public class getPage  
 {  
-public static void main(String\[\] arg)  
+public static void main(String[] arg)  
 {  
 String un;  
-try {un=arg\[0\];}  
+try {un=arg[0];}  
 catch (ArrayIndexOutOfBoundsException e)  
 {  
 un=”http://www.html.it”;  
@@ -160,8 +165,8 @@ String l;
 try  
 {  
 while ((l=stream.readLine())!=null)  
-{  
-  
+{
+
 Output.write(l);  
 };  
 Output.flush();  
@@ -169,10 +174,11 @@ Output.close();
 }  
 catch (IOException e){System.out.println(“Errore di lettura.”);};  
 }  
-}  
+}
 
 Il programma prende un url dai parametri d’ingresso, se non è valido o non ci sono parametri apre per default l’url http://html.it , preleva la pagina letta e la salva su disco.  
-Come vedete questo è una specie di web browser, basterebbe un po di grafica e si potrebbe anche visualizzare la pagina. Provate ad eseguire il programma mettendo i seguenti indirizzi:
+Come vedete questo è una specie di web browser, basterebbe un po di grafica e si potrebbe anche visualizzare la pagina.  
+Provate ad eseguire il programma mettendo i seguenti indirizzi:
 
 java getPage http://www.cli.di.unipi.it/~castellu/index.htm  
 java getPage http://www.cli.di.unipi.it/~castellu/pietro1.htm  

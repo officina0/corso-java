@@ -27,10 +27,10 @@ Come si vede dal codide, non c’è la necessità di importare librerie di terze
 
 Listato 16.1. Esempio di accesso DOM a un documento
 
-package it.html.xml;  
-  
+package it.html.xml;
+
 public class MainXML {  
-  public static void main(String\[\] args) throws Exception {  
+  public static void main(String[] args) throws Exception {  
     //Recupero concretamente l’engine di parsing DOM (di default)  
     DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();  
     DocumentBuilder domparser = dbfactory.newDocumentBuilder();  

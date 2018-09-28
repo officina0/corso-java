@@ -7,45 +7,67 @@ Infine facciamo un altro programma di qualunque genere, in questo noi possiamo u
 Tornando al discorso degli applet che chiamano dei frame, quardate questo esempio:
 
 import java.awt.*;  
-import java.applet.*;  
-  
+import java.applet.*;
+
 public class Mista extends Applet  
-{  
-Frame F;  
+{
+
+Frame F;
+
 public void init()  
-{  
-F = new Frame(“Ciao, questo è un Frame”);  
-F.setSize(100,50);  
-F.show();  
-}  
+{
+
+F = new Frame(“Ciao, questo è un Frame”);
+
+F.setSize(100,50);
+
+F.show();
+
+}
+
 public void paint(Graphics g)  
-{  
-g.drawString(“Io sono un’applet”,10,20);  
-new p();  
-}  
+{
+
+g.drawString(“Io sono un’applet”,10,20);
+
+new p();
+
+}
+
 public void destroy()  
-{  
-String \[\] param={“”};  
-Finestra.main(param);  
-}  
-}  
+{
+
+String [] param={“”};
+
+Finestra.main(param);
+
+}
+
+}
+
 class p extends Frame  
-{  
+{
+
 p()  
 {  
-setTitle(“Un’altro Frame lanciato dall’applet”);  
-setSize(250,100);  
-setLocation(200,300);  
-show();  
-new Dialog(this,”Questa è una dialog”);  
-}  
+setTitle(“Un’altro Frame lanciato dall’applet”);
+
+setSize(250,100);
+
+setLocation(200,300);
+
+show();
+
+new Dialog(this,”Questa è una dialog”);
+
+}
+
 public void paint(Graphics g)  
-{  
+{
+
 g.drawString(“Potrei essere un banner pubblicitario”,10,40);  
 }  
-}  
-
-  
+}
 
 lo metterete in un file chiamato Mista.java, e lo lancerede creando un file Mista.html contenente:
 
@@ -58,8 +80,5 @@ Il seguente è un applet:<BR>
 <applet code=”Mista.class” width=200 height=100>Il tuo browser è vecchio, cambialo!</APPLET>  
 </body>  
 </html>
-
-  
-  
 
 Lanciatelo e vedete cosa succede, ogni volta che l’applet passa in secondo piano, ovvero ci piazzate un’altra finestra sopra, e poi ritorna in promo piano.

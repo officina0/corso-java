@@ -8,15 +8,15 @@ Queue è un nuovo tipo che eredita direttamente da Collection e presenta diverse
 
 Listato 15.1. Una classe di prova per effettuare test
 
-package it.html.java5;  
-  
+package it.html.java5;
+
 import java.util.LinkedList;  
 import java.util.PriorityQueue;  
-import java.util.Queue;  
-  
-public class QueueTest {  
-  
-  public static void main(String\[\] args) {  
+import java.util.Queue;
+
+public class QueueTest {
+
+  public static void main(String[] args) {  
     System.out.println(“Ordinamento classico, secondo l’ordine d’arrivo”);  
     Queue<String> queue= new LinkedList<String>();  
       
@@ -39,8 +39,8 @@ Listato 15.2. Esempio di utilizzo di PriorityQueue
       
     for (int i=0; i<50; i++){  
       queuePrio.offer(“String #”+i);  
-    }  
-  
+    }
+
     while(!queuePrio.isEmpty()){  
       System.out.println(queuePrio.poll());  
     }  

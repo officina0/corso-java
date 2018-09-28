@@ -1,9 +1,8 @@
 Ci rimane da vedere un componente fondamentale per un interfaccia, ovvero il Testo.  
-Le abstract window Toolkit di Java mettono a disposizione due classi per il testo: TextArea e TextField, ambedue estendono la classe TextComponent.
+Le abstract window Toolkit di Java mettono a disposizione due classi per il testo:  
+TextArea e TextField, ambedue estendono la classe TextComponent.
 
 ![TextArea e TextField](http://html.it/guide/img/guida_java/25.gif)
-
-  
 
 In TextComponent troviamo una serie di metodi utili per la gestione del testo, sia in TextArea che in TextField, tra cui:
 
@@ -22,7 +21,11 @@ void setText(String t), setta il contenuto del componente di testo con il valore
 
 Inoltre in TextComponent si possono usare tutti i metodi di Component, ovvero:
 
-action, add, addComponentListener, addFocusListener, addHierarchyBoundsListener, addHierarchyListener, addInputMethodListener, addKeyListener, addMouseListener, addMouseMotionListener, addNotify, addPropertyChangeListener, addPropertyChangeListener, bounds, checkImage, checkImage, coalesceEvents, contains, contains, createImage, createImage, deliverEvent, disable, disableEvents, dispatchEvent, doLayout, enable, enable, enableEvents, enableInputMethods, firePropertyChange, getalignmentX, getalignmentY, getBounds, getBounds, getColorModel, getComponentAt, getComponentAt, getComponentOrientation, getCursor, getdropTarget, getfont, getfontMetrics, getForeground, getGraphics, getGraphicsConfiguration, getHeight, getInputContext, getInputMethodRequests, getLocale, getLocation, getLocation, getLocationOnScreen, getMaximumsize, getMinimumsize, getName, getParent, getPeer, getPreferredsize, getsize, getsize, getToolkit, gettreeLock, getwidth, getX, getY, gotFocus, handleEvent, hasFocus, hide, imageUpdate, inside, invalidate, isDisplayable, isDoubleBuffered, isEnabled, isFocustraversable, isLightweight, isOpaque, isShowing, isValid, isVisible, keyDown, keyUp, layout, list, list, list, list, list, locate, location, lostFocus, minimumsize, mouseDown, mouseDrag, mouseEnter, mouseExit, mouseMove, mouseUp, move, nextFocus, paint, paintAll, postEvent, preferredsize, prepareImage, prepareImage, print, printAll, processComponentEvent, processFocusEvent, processHierarchyBoundsEvent, processHierarchyEvent, processInputMethodEvent, processKeyEvent, processMouseEvent, processMouseMotionEvent, remove, removeComponentListener, removeFocusListener, removeHierarchyBoundsListener, removeHierarchyListener, removeInputMethodListener, removeKeyListener, removeMouseListener, removeMouseMotionListener, removePropertyChangeListener, removePropertyChangeListener, repaint, repaint, repaint, repaint, requestFocus, reshape, resize, resize, setBounds, setBounds, setComponentOrientation, setCursor, setdropTarget, setEnabled, setfont, setForeground, setLocale, setLocation, setLocation, setName, setsize, setsize, setVisible, show, show, size, toString, transferFocus, update, validate
+action, add, addComponentListener, addFocusListener, addHierarchyBoundsListener, addHierarchyListener, addInputMethodListener, addKeyListener, addMouseListener, addMouseMotionListener, addNotify, addPropertyChangeListener, addPropertyChangeListener, bounds, checkImage, checkImage, coalesceEvents, contains, contains, createImage, createImage, deliverEvent, disable, disableEvents, dispatchEvent, doLayout, enable, enable, enableEvents, enableInputMethods, firePropertyChange, getalignmentX, getalignmentY, getBounds, getBounds, getColorModel, getComponentAt, getComponentAt, getComponentOrientation, getCursor, getdropTarget, getfont, getfontMetrics, getForeground, getGraphics, getGraphicsConfiguration, getHeight, getInputContext, getInputMethodRequests, getLocale, getLocation, getLocation, getLocationOnScreen, getMaximumsize, getMinimumsize, getName, getParent, getPeer, getPreferredsize, getsize, getsize, getToolkit, gettreeLock,  
+getwidth, getX, getY, gotFocus, handleEvent, hasFocus, hide, imageUpdate, inside, invalidate, isDisplayable, isDoubleBuffered, isEnabled, isFocustraversable, isLightweight, isOpaque, isShowing, isValid, isVisible, keyDown, keyUp, layout, list, list, list, list, list, locate, location, lostFocus, minimumsize, mouseDown, mouseDrag, mouseEnter,  
+mouseExit, mouseMove, mouseUp, move, nextFocus, paint, paintAll, postEvent, preferredsize, prepareImage, prepareImage, print, printAll, processComponentEvent, processFocusEvent, processHierarchyBoundsEvent,  
+processHierarchyEvent, processInputMethodEvent, processKeyEvent, processMouseEvent, processMouseMotionEvent, remove, removeComponentListener, removeFocusListener, removeHierarchyBoundsListener, removeHierarchyListener, removeInputMethodListener, removeKeyListener, removeMouseListener, removeMouseMotionListener, removePropertyChangeListener, removePropertyChangeListener, repaint, repaint, repaint, repaint, requestFocus, reshape, resize, resize, setBounds, setBounds, setComponentOrientation, setCursor, setdropTarget, setEnabled, setfont, setForeground, setLocale, setLocation, setLocation, setName, setsize,  
+setsize, setVisible, show, show, size, toString, transferFocus, update, validate
 
 Vediamo quindi i TextField. Un TextField è in pratica una singola linea di testo editabile, con un aspetto grafico, è uno di quei campi che siamo abituati a vedere nelle Form che si trovano su internet per immettere nomi, cognomi, ecc.
 
@@ -56,16 +59,23 @@ I costruttori sono:
 TextArea(), costruisce una nuova TextArea.  
 TextArea(int r, int c) , costruisce una nuova TextArea, di r righe e c colonne.  
 TextArea(String text), costruisce una nuova TextArea inizializzata con il testo passato.  
-TextArea(String text, int rows, int columns) , costruisce una nuova TextArea inizializzata con il testo passato, di r righe e c colonne.  
-TextArea(String text, int rows, int columns, int scrollbars), come il precedente, solo che permette di specificare la politica di visualizazione delle scrollbar.
+TextArea(String text, int rows, int columns) , costruisce una nuova TextArea inizializzata con il  
+testo passato, di r righe e c colonne.  
+TextArea(String text, int rows, int columns, int scrollbars), come il precedente, solo che permette di  
+specificare la politica di visualizazione delle scrollbar.
 
 Vediamone alcuni metodi:
 
-void append(String str), appende il testo passato alla TextArea. (nelle vecchie versioni di Java è appendText(String str)).  
+void append(String str), appende il testo passato alla TextArea. (nelle vecchie versioni di Java è  
+appendText(String str)).  
 int getColumns(), int getrows() per avere informazioni sul numero di colonne o righe.  
-void insert(String str, int pos), inserisce il testo passato nella posizione passata. (nelle vecchie versioni di Java è insertText(String str)).  
-void replaceRange(String str, int start, int end), rimpiazza il testo da start a end con la stringa passata.  
-void setColumns(int columns) e void setrows(int rows) per settare il numero di colonne o righe della TextArea.
+void insert(String str, int pos), inserisce il testo passato nella posizione passata. (nelle vecchie  
+versioni di Java è  
+insertText(String str)).  
+void replaceRange(String str, int start, int end), rimpiazza il testo da start a end con la stringa passata.
+
+void setColumns(int columns) e void setrows(int rows) per settare il numero di colonne o righe  
+della TextArea.
 
 Per le dimensioni dell’oggetto GUI:
 
@@ -126,5 +136,6 @@ else TF.setText(“Inserito carattere INVIO”);
 public void keyTyped(KeyEvent e)  
 {  
 }  
-}  
+}
+
 }

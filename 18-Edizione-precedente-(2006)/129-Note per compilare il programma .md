@@ -1,15 +1,16 @@
-Visto che il programma è stato creato per un browser (che hanno le vecchie versioni di Java) ho dovuto usare String \[\] NOMI=Toolkit.getdefaultToolkit().getfontList(); per avere i caratteri, se si compila con JDK 1.2 o 1.3 si deve scrivere:
+Visto che il programma è stato creato per un browser (che hanno le vecchie versioni di Java) ho dovuto usare String [] NOMI=Toolkit.getdefaultToolkit().getfontList(); per avere i caratteri,  
+se si compila con JDK 1.2 o 1.3 si deve scrivere:
 
 Ø javac grafDemo.java -deprecation
 
 Il quale darà un warning per dire che si usa un metodo deprecato.  
 Se invece userete l’appletviewer per visualizzare l’applet potete cambiare
 
-String \[\] NOMI=Toolkit.getdefaultToolkit().getfontList();
+String [] NOMI=Toolkit.getdefaultToolkit().getfontList();
 
 con
 
-String \[\] NOMI=GraphicsEnvironment.  
+String [] NOMI=GraphicsEnvironment.  
 getLocalGraphicsEnvironment().  
 getAvailablefontFamilyNames();
 

@@ -31,73 +31,63 @@ Cerchiamo di chiarire ulteriormente la differenza tra i diversi tipi di metodi u
 
 Innanzi tutto definiamo una classe di metodi di servizio utilizzabili dovunque e non legati ad una specifica istanza, quindi tutti statici:
 
+```
 public class Geometry2DUtils {
 	public static final double PiGreco = 3.141592;
 	public static double areaParallelogramma(double base, double altezza) { }
 	public static double areaParallelogramma(double c1, double c2, double alpha) { }
-	
 	// ...
-	
 	public static double areaCerchio(double r) {
-		
-		// anche se static potrà usare la variabile statica PiGreco 
+		// anche se static potrà usare la variabile statica PiGreco
 		return PiGreco * r * r;
 	}
 }
+```
 
 continuiamo poi con una classe che rappresenti i parallelogrammi
 
+```
 public class Parallelogramma {
-
 	private double base, altezza;
-	
 	public Parallelogramma(double base, double altezza) { 
-		
 		// inzializza le variabili di istanza
 		this.base = base;
-		this.altezza = altezza; 
+		this.altezza = altezza;
 	} 
-
 	// questo metodo area non ha bisogno dei
 	// parametri in quanto utilizza le variabili della classe
 	public double area() {
-	
 		// utilizza il metodo (pubblico e statico) nella classe  di utility
 		// chiamandolo usando il nome della classe (poi il compilatore
 		// sceglie quello giusto sulla base dei parametri)
 		return Geometry2DUtils.areaParallelogramma(base, altezza);
 	}
-
-	// metodi per l'accesso (getters) delle variabili private della classe, 
-	// garantiscono, tra l'altro, che i field possano essere utilizzati ma non 
-	// modificati	
-	public double getBase()    { return base; } 
-	public double getAltezza() { return altezza; } 
+	// metodi per l'accesso (getters) delle variabili private della classe,
+	// garantiscono, tra l'altro, che i field possano essere utilizzati ma non
+	// modificati
+	public double getBase()    { return base; }
+	public double getAltezza() { return altezza; }
 }
+```
 
 A questo punto potremo utilizzare le nostre classi in un immaginario metodo main (static)
 
+```
 public class Programma {
-
-	public static void main(String\[\] args) {
-	
-		// creiamo una istanza della classe Parallelogramma 
+	public static void main(String[] args) {
+		// creiamo una istanza della classe Parallelogramma
 		// e la assegnamo alla variabile p (che ha il tipo opportuno)
 		Parallelogramma p = new Parallelogramma(4.0, 8.0);
-	
-		// creiamo una seconda istanza di Parallelogramma che avrà 
-		// metodi e variabili con i medesimi nomi di p ma distinti 
+		// creiamo una seconda istanza di Parallelogramma che avrà
+		// metodi e variabili con i medesimi nomi di p ma distinti
 		// quanto a valore e contesto di esecuzione
 		Parallelogramma p1 = new Parallelogramma(11.0, 18.0);
-	
 		double pArea  = p.area();  // assegna a pArea 4*8
 		double p1Area = p1.area(); // assegna a p1Area 11*18
-
 		// il medesimo risulato di pArea si avrebbe naturalmente con
 		double spArea = Geometry2DUtils.areaParallelogramma(p.getBase(), p.getAltezza());
-
 		// ma con una minore chiarezza circa l'oggetto dell'operazione effattuata. 
-	
 		//...
 	}
 }
+```

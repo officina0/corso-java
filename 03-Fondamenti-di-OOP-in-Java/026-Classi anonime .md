@@ -8,11 +8,15 @@ La sintassi per definire una classe anonima è idetica a quella utilizzata per l
 
 A seconda che la classe anonima estenda una classe o implementi un’interfaccia si possono avere due varianti:
 
-new ClassName ( \[ argument-list \] ) { class-body }
+```
+new ClassName ( [ argument-list ] ) { class-body }
+```
 
 oppure:
 
+```
 new InterfaceName () { class-body }
+```
 
 in cui la differenza consiste nel fatto che quando si istanzia anonimamente una classe si deve usare uno dei costruttori disponibili, al quale vanno dunque passati gli opportuni argomenti, mentre per istanziare una classe anonima basata su una interfaccia (che quindi la implementerà) è possibile fare uso solamente del costruttore ‘default’ senza argomenti.
 
@@ -20,45 +24,48 @@ Le classi anonime consentono di rendere il codice molto più conciso, dando la p
 
 Possiamo utilizzare le classi anonime quando abbiamo la necessità di utilizzare una classe localmente ed una volta sola. Consideriamo il seguente esempio, dove è data una interfaccia:
 
+```
 public interface TitledName {
-	
 	public String femaleTitle(String name);
 	public String maleTitle(String name);
 }
+```
 
 il modo “classico” di instanziare un oggetto sarebbe:
 
+```
 BaseTitle frenchTitle = new FrenchTitle();
+```
 
 che dovrebbe essere corredato dalla definizione di una opportuna classe che implementi l’interfaccia
 
+```
 public class FrenchTitle implements TitledName {
-
 	@Override
 	public String femaleTitle(String name) {
 		return "Mademoiselle "+name;
 	}
-
 	@Override
 	public String maleTitle(String name) {
 		return "Monsieur "+name;
 	}
 }
+```
 
 mentre una Instanza di un oggetto anonimo può essere ottenuta semplicemente ed in un sol colpo come:
 
+```
 BaseTitle englishTitle= new TitledName() {
-
 	@Override
 	public String femaleTitle(String name) {
 		return "Ms "+name;
 	}
-	
 	@Override
 	public String maleTitle(String name) {
 		return "Mister "+name;
 	}
 };
+```
 
 Nell’esempio possiamo notare che le classi anonime hanno caratteristiche precise:
 
@@ -80,19 +87,18 @@ Le classi anonime sono una caratteristica del linguaggio Java utilizzata in nume
 
 Per esempio per realizzare una intefaccia che utilizzi un bottone con [JavaFX](http://www.html.it/articoli/introduzione-a-javafx-1/ "JavaFX, introduzione") o con altre librerie per la creazione di interfacce grafiche (Swing, Java.awt), si dovrebbe scrivere qualcosa del tipo:
 
+```
 public void start(Stage primaryStage) {
-
 	Button btn = new Button();
-	
 	btn.setText("Click");
 	btn.setOnAction(new EventHandler<ActionEvent>() {
-	
 			@Override
 			public void handle(ActionEvent event) {
 				// instructions
 			}
 		});
 }
+```
 
 dove l’effetto del “click” sul bottone è controllato da un oggetto (chiamato in questo caso `EventHandler`, altre liberire usano, con poche differenze da questo punto di vista, il termine _Listener_) che viene creato “creato anonimamente” con notevole risparmio di codice rispetto alla creazione di una classe non anonima ed anche con un incremento della leggibilità (non appena si prenda dimestichezza con questo stile di programmazione).
 
@@ -102,29 +108,22 @@ Vale la pena di osservare che a causa del fatto che l’interfaccia `EventHandle
 
 Per tutte le classi nested vale la regola che la eventuale dichiarazione di una variabile, membro o paramentro che abbia il medesimo nome di una variabile, metodo o parametro della classe (o metodo) ospitante “shadows” (copre) la dichiarazione più esterna. In un esempio:
 
+```
 public class Ospite {
-
 	int variabile = 5;
-	
 	ClasseInner classeInner = new NomeInterfaccia() {
-	
 		int variabile = 6;
-		
 		// ...
-		
 		@Override
 		public metodoOverridden(...) {
 			System.out.println(variabile);  // STAMPA 6
 		}
-		
 		@Override
 		public altroMetodoOverridden(...,int variabile,...) {
-
 			System.out.println(variabile); // STAMPA il valore passato come parametro
-			
 			System.out.println(this.variabile); // STAMPA 6, field di questa classe
-             
 			System.out.println(Ospite.this.variabile); // STAMPA 5, field della classe Ospite
-		}               
+		}
 	}
 }
+```

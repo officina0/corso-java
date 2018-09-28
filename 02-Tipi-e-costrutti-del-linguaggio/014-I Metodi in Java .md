@@ -12,14 +12,14 @@ Definire un metodo in Java
 
 La sintassi per la definizione di un metodo è molto simile a quella per la definizione di una variabile con la quale mutua peraltro numerose caratteristiche:
 
-\[public|protected|private\] \[static\] \[final\] Tipo 
-	identificatore(\[Tipo1 parametro1, Tipo2 parametro2, ..., TipoN parametroN\]) 
-	\[throws Eccezione1, Eccezzione2, ...\] {
-		
+```
+[public|protected|private] [static] [final] Tipo
+	identificatore([Tipo1 parametro1, Tipo2 parametro2, ..., TipoN parametroN])
+	[throws Eccezione1, Eccezzione2, ...] {
 		// blocco di codice appartenente al metodo
-
-	return varTipo; 
+	return varTipo;
 }
+```
 
 Come di consuetidine tutte le parti tra parentesi quadre sono da considerarsi opzionali e, come vedremo tra poco lo statement **return** è opzionale nel caso in cui `Tipo` (il tipo di fronte all’identificatore) sia `void`.
 
@@ -34,28 +34,32 @@ Ad esempio, per scrivere un metodo che calcoli l’area di un parallelelogramma 
 
 La dichiarazione:
 
-public double areaParallelogramma(double base, double altezza) { 
-	// ... 
+```
+public double areaParallelogramma(double base, double altezza) {
+	// ...
 }
+```
 
 ha lo scopo di avvertire il compilatore che nel corpo del metodo (tra le parentesi graffe come al solito) i nomi `base` e `altezza` fanno riferimento ai valori di tipo `double` che saranno passati al metodo quando lo utilizzeremo. Per inciso i valori che inseriamo al momento della chiamata del metodo sono detti _parametri attuali_.
 
 Quindi possiamo scrivere il metodo in questo modo:
 
+```
 public double areaParallelogramma(double base, double altezza) {
-
 	double a = base * altezza;
 	return a;
 }
+```
 
 Richiamare il metodo
 --------------------
 
 Per chiamare il nostro metodo all’interno della classe in cui lo stiamo definendo (fuori dalla classe di definizione occorre una sintassi differente, che vedremo in seguito), sarà sufficiente scrivere qualcosa del genere:
 
+```
 double areaCalcolata;
-
 areaCalcolata = areaParallelogramma(7.0, 6.0);
+```
 
 Una volta eseguito questo codice la variabile `areaCalcolata` avrà valore `42.0`.
 
@@ -72,15 +76,14 @@ Lo statement **return** merita una certa attenzione anche perché, pur essendo s
 
 Questa caratteristica risulta più chiara se immaginiamo di voler modificare il calcolo dell’area in modo che il prodotto venga eseguito solo se i parametri sono diversi da 0:
 
+```
 public double areaParallelogramma(double base, double altezza) {
-
 	if(base == 0.0 || altezza == 0.0)
 		return 0.0; // questo return causa l'uscita dal metodo
-	
 	double a = base * altezza;
-
 	return a;
 }
+```
 
 Se uno dei due parametri è 0, viene eseguito il primo `return` e il controllo passa al codice chiamante. Quindi il calcolo del prodotto viene effettuato solo nel caso in cui entrambi i parametri siano diversi da 0.
 
@@ -91,21 +94,19 @@ Della keyword `throws` e dei tipi che la seguono parleremo in una opportuna sezi
 
 Per fissare le idee possiamo immaginare, sempre nel caso dell’area, di voler gestire il fatto che sia base che altezza sono da considerarsi lunghezze e quindi non ha senso che possano essere specificate come quantità negative (ma d’altro canto il tipo `double` non è abbaastanza espressivo per vincolare le nostre variabili ad essere positive); scriveremmo in tal caso qualcosa del tipo:
 
-public double areaParallelogramma(double base, double altezza) 
+```
+public double areaParallelogramma(double base, double altezza)
 		throws IllegalArgumentException {
-	
 	if(base < 0)
 		throw new IllegalArgumentException("base negativa");
-	
 	if(altezza < 0)
 		throw new IllegalArgumentException("altezza negativa");
-
 	if(base == 0.0 || altezza == 0.0)
 		return 0.0;
-	
 	double a = base * altezza;
 	return a;
 }
+```
 
 Senza dilungarci troppo, anche `throw` termina l’esecuzione del blocco corrente come `return` ma senza che debba essere specificato un valore di ritorno.
 
@@ -118,34 +119,31 @@ In questo modo possiamo sovraccaricare un identificatore di metodo con diverse d
 
 Sarebbe quindi del tutto lecito definire, accanto al metodo che prende in input il valore della base e dell’altezza definire, ad esempio, un metodo areaParallelogramma che prenda in input le lunghezze di due lati incidenti e l’angolo tra di loro:
 
-public double areaParallelogramma(double c1, double c2, double alfa) 
+```
+public double areaParallelogramma(double c1, double c2, double alfa)
 		throws IllegalArgumentException {
-
-	if(c1 < 0) 
+	if(c1 < 0)
 		throw new IllegalArgumentException("c1 negativa");
-	
-	if(c2 < 0) 
+	if(c2 < 0)
 		throw new IllegalArgumentException("c2 negativa");
-
 	if(c1 == 0.0 || c2 == 0.0)
 		return 0.0;
-
 	double a = c1 * c2 * Math.sin(alpha);
-	
 	return a;
 }
+```
 
 sarà il compilatore a scegliere al momento della chiamata quale metodo utilizzare sulla base del tipo (e del numero) degli argomenti attuali passati.
 
+```
 // chiama il primo
 areaParallelogramma(5.0, 4.0);      
-
 // chiama il secondo
 areaParallelogramma(5.0, 4.0, 0.5); 
-
 // errore in fase di compilazione:
 // non esiste un metodo che prende solo un argomento
-areaParallelogramma(5.0); 
+areaParallelogramma(5.0);
+```
 
 Modificatori di visibilità
 --------------------------

@@ -16,7 +16,7 @@ Listato 21.1. Esempio di un server che effettua un servizio tramite socket
 package it.html.threads;  
 public class EchoServer {  
     
-  public static void main(String\[\] args) {  
+  public static void main(String[] args) {  
     ServerSocket server = null;  
       
     //Avviamo il server  
@@ -61,19 +61,19 @@ class EchoThread implements Runnable{
 
 Abbiamo lasciato il servizio blank, visto che non rientra ai fini della discussione. A questo punto vediamo anche un semplice client per effettuare l’esecuzione di un thread (voi potete modificarlo aggiungendo più chiamate concorrenti).
 
-package it.html.threads;  
-  
+package it.html.threads;
+
 import java.io.IOException;  
 import java.net.Socket;  
-import java.net.UnknownHostException;  
-  
+import java.net.UnknownHostException;
+
 public class EchoClient {  
   /**  
    \* @param args  
    \* @throws IOException  
    \* @throws UnknownHostException  
    */  
-  public static void main(String\[\] args) throws UnknownHostException, IOException {  
+  public static void main(String[] args) throws UnknownHostException, IOException {  
     Socket socket = new Socket(“127.0.0.1”,6666);  
     System.out.println(“Connected!”);  
     //… fa qualcosa con lo stream  

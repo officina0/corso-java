@@ -6,8 +6,8 @@ La classe Proxy su cui la generazione dinamica RMI si basa è una classe piuttos
 
 Noi alla fine non ci accorgeremo di nulla, il nostro compito sarà sempre quello di definire la classe “server” e di installarla su una macchina e poi utilizzare quell’istanza richiamandola attraverso un registro RMI. Nell’esempio lo vediamo benissimo:
 
-package it.html.java5.rmi.generic;  
-  
+package it.html.java5.rmi.generic;
+
 import java.rmi.Remote;  
 import java.rmi.RemoteException;  
 public interface RemoteEchoExecutor extends Remote {  
@@ -21,13 +21,13 @@ Segue l’implementazione del server, che non deve fare null’altro che definir
 
 import it.html.java5.rmi.generic.RemoteEchoExecutor;  
 import java.rmi.RemoteException;  
-import java.rmi.server.UnicastRemoteObject;  
-  
+import java.rmi.server.UnicastRemoteObject;
+
 public class EchoExecutorServer extends UnicastRemoteObject implements RemoteEchoExecutor {  
   public EchoExecutorServer() throws RemoteException {  
     super();  
-  }  
-  
+  }
+
   //Implementiamo il metodo dell’interfaccia: l’esecuzione avviene sul server  
   public String echo(String textToEcho) throws RemoteException {  
     System.out.println(“Someone ask to echo: “+textToEcho);  
@@ -42,10 +42,10 @@ L’istanza della classe dovrà essere lanciata ed eseguita su un server, per fa
 package it.html.java5.rmi.registry;  
 import it.html.java5.rmi.server.EchoExecutorServer;  
 import java.rmi.Naming;  
-import java.rmi.registry.LocateRegistry;  
-  
+import java.rmi.registry.LocateRegistry;
+
 public class RegistryStart {  
-  public static void main(String\[\] args) throws Exception {  
+  public static void main(String[] args) throws Exception {  
     int registryPortNumber = 1099;  
     // Start RMI registry  
     LocateRegistry.createRegistry(registryPortNumber);  
@@ -59,15 +59,15 @@ Una volta avviato il main, qualsiasi client potrà utilizzare la classe remotame
 
 package it.html.java5.rmi.client;  
 import it.html.java5.rmi.generic.RemoteEchoExecutor;  
-import java.rmi.Naming;  
-  
+import java.rmi.Naming;
+
 public class EchoClientit {  
-  public static void main(String\[\] args) throws Exception {  
+  public static void main(String[] args) throws Exception {  
     String host = “localhost”;  
     int portNumber = 1099;  
     String lookupName = “//” + host + “:” + portNumber + “/” + “ECHOSERVER”;  
-    RemoteEchoExecutor executor = (RemoteEchoExecutor)Naming.lookup(lookupName);  
-  
+    RemoteEchoExecutor executor = (RemoteEchoExecutor)Naming.lookup(lookupName);
+
     String result = executor.echo(“Hello html.it user!”);  
     System.out.println(“Task executed for ” + result);  
   }  

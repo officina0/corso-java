@@ -2,16 +2,15 @@ Possiamo pensare all’esecuzione del codice Java come alla lettura di un libro,
 
 I costrutti condizionali sono quindi semplicemente il modo di tradurre sotto forma di codice algoritmi simili al seguente:
 
-SE condizione1 
+```
+SE condizione1
    codice da eseguire se condizione1 è soddisfatta  
-   
-SE INVECE condizione2 
+SE INVECE condizione2
    codice da eseguire se condizione2 è soddisfatta  
-
 ...
-   
-ALTRIMENTI 
-      codice da eseguire se tutte le precedenti condizioni non sono  soddisfatte  
+ALTRIMENTI
+      codice da eseguire se tutte le precedenti condizioni non sono  soddisfatte
+```
 
 In Java esistono sostanzialmente 2 costrutti condizionali, **if-else** (o _if-then-else_)e **switch-case**, in questa lezione li esamineremo entrambi.
 
@@ -20,18 +19,15 @@ Il costrutto if in Java
 
 Iniziamo da **if-else**. A volte si tende a chiamare questo costrutto condizionale _if-then-else_ anche se la keyword `then` non esiste. Lo esamineremo iniziando con il tradurre in Java l’algoritmo che abbiamo scritto in precedenza, in questo modo:
 
+```
 if(condizione1) {
-
   // ...
-
 } else if (condizione2) {
-
   // ...
-
 } else {
-  
   //...
 }
+```
 
 Fatto ciò possiamo esplorare le caratteristiche sintattiche di questo costrutto, grazie a qualche osservazione.
 
@@ -41,24 +37,22 @@ Iniziamo con il dire che tutte le “condizioni” devono essere espressioni di 
 
 Ecco qualche esempio:
 
+```
 int a = ...;
 int b = ...;
-
 // OK! Sintassi corretta!
 if(a == b) {
-	...  		 
+	...
 }
-
 // NO! Sintassi errata: 'a' è un 'int' e non un 'boolean'
 if(a) {
-
 }
-
-// mentre è valida la scrittura 
+// mentre è valida la scrittura
 boolean c = ...;
 if(c) {
 ...
 }
+```
 
 Meglio specificare questo particolare soprattutto per chi è abituato a linguaggi come C++ o JavaScript in cui espressioni di diversi tipi possono verificare le condizioni degli `if`.
 
@@ -66,29 +60,21 @@ Meglio specificare questo particolare soprattutto per chi è abituato a linguagg
 
 Gli `if` sono valutati in successione e sarà eseguito solamente il primo per il quale la condizione risultarà vera:
 
+```
 boolean c1 = true;
 boolean c2 = true;
 boolean c3 = false;
-
 if(c1) {
-    
 	// il blocco viene eseguito
-
 } else if(c2) {
-
    // il blocco non viene eseguito anche se 'c2' è 'true' 
-
 }
-
-
 if(c3) {
-
     // il blocco non viene eseguito perché 'c3' è 'false'
-
 } else if(c2) {
-
 	// il blocco viene eseguito, poiché 'c2' è 'true' mentre 'c3' è 'false'
 }
+```
 
 ### ‘else’ e ‘else if’ non sono obbligatori
 
@@ -102,23 +88,27 @@ Al verificarsi di una condizione il costrutto `if` esegue l’istruzione oppure 
 
 I seguenti due snippet sono equivalenti:
 
-if(condizione) 
-{ 
+```
+if(condizione)
+{
 	System.out.println("Condizione verificata");
 }
-
-if(condizione) 
+```
+```
+if(condizione)
 	System.out.println("Condizione verificata");
+```
 
 All’interno di un blocco si possono nidificare altri costrutti condizionali, in effetti anche `if` è un’istuzione. Quindi possiamo avere casi come questo:
 
+```
 if(condizioneUno) {
-	
 	if(condizioneDue)
 		System.out.println("Entrambe verificate");
 	else
 		System.out.println("Verificata solo condizioneUno");
 }
+```
 
 In questo caso e in generale quando ci sono più condizioni annidate, può essere una buona prassi decidere di utilizzare sempre le parentesi graffe, per non creare problemi di leggibilità e interpretazione del codice.
 
@@ -129,23 +119,20 @@ Pur essendo possibile usare if-else per costruire strutture condizionli arbitari
 
 Vediamo subito un esempio che poi commenteremo esplorando le caratteristiche peculiari di questo costrutto in Java:
 
+```
 switch(c) {
-
 	case value1:
 		...
 		break;
-
 	case value2:
 		...
 		break;
-	
 	// eventuali altri case
-
-	case valueN: 
+	case valueN:
 		...
-	
 	default:
 }
+```
 
 ### Tipi e valori
 
@@ -163,26 +150,22 @@ La parte su cui fare attenzione della frase precedente è “a partire da” in 
 
 Ad esempio:
 
+```
 int c = ...;
-
 switch (c) {
-
 	case 1:
 		System.out.print("1 ");
-	
 	case 2:
 		System.out.print("2 ");
 		break;
-
 	case 3:
 		System.out.println("3 ");
-
 	case 4:
 		System.out.println("4 ");
-	
-	default: 
+	default:
 		System.out.println("4+");
 }
+```
 
 Facciamo una tabella in cui mettiamo i diversi risultati stampati sulla console al cambiare del valore di `c`:
 

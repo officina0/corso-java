@@ -1,6 +1,7 @@
 Prima di cominciare questo che sarà uno dei capitoli più interessanti del corso, introduciamo il package awt e cosa è un componente GUI.  
 Vedremo anche dei componenti che sono contenitori per altri componenti.  
-Il package Abstract Window Toolkit, mette a disposizione del programmatore una serie di classi e Interfacce per la gestione di interfacce grafiche.  
+Il package Abstract Window Toolkit, mette a disposizione del programmatore una serie di classi e  
+Interfacce per la gestione di interfacce grafiche.  
 Il package java.awt ha anche dei sottopackage, essi sono:
 
 java.awt.color  
@@ -12,9 +13,7 @@ java.awt.geom
 java.awt.im  
 java.awt.image  
 java.awt.image.renderable  
-java.awt.print  
-
-  
+java.awt.print
 
 Di cui vedremo alcune funzionalità. Sulle classi awt sono state costruite le classi del package swing, che è attualmente il package più utilizzato per costruire delle interfacce grafiche, e che vedremo tra non molto.  
 Vediamo cosa contiene awt:
@@ -114,11 +113,10 @@ Errori
 
 AWTError
 
-  
-
 Vista questa panoramica sul package cerchiamo di capire a cosa servono queste classi.  
 tra tutte le classi, distinguiamo alcune classi nel package per quello che fanno.  
-Innanzitutto abbiamo visto delle classi Frame, Dialog e Windows, le quali rappresentano delle finestre, queste finestre conterranno dei menu (le prime due) e dei componenti GUI. Per contenerli Devono avere dei contenitori, di questa specie abbiamo visto Container e Panel. Ogni Contenitore può contenere un Layout Manager, che gestisce il posizionamento di più componenti nello stesso contenitore, e può contenere anche altri contenitori, in modo da creare strutture anche complesse.  
+Innanzitutto abbiamo visto delle classi Frame, Dialog e Windows, le quali rappresentano delle finestre, queste finestre conterranno dei menu (le prime due) e dei componenti GUI. Per contenerli  
+Devono avere dei contenitori, di questa specie abbiamo visto Container e Panel. Ogni Contenitore può contenere un Layout Manager, che gestisce il posizionamento di più componenti nello stesso contenitore, e può contenere anche altri contenitori, in modo da creare strutture anche complesse.  
 Infine abbiamo visto i componenti GUI veri e propri che vanno aggiunti ai contenitori, ad esempio Label. Nell’esempio che segue attacchiamo una label al contenitore di un Frame.
 
 import java.awt.*;  
@@ -133,38 +131,41 @@ add(et);
 pack();  
 show();  
 }  
-public static void main (String\[\] a)  
+public static void main (String[] a)  
 {  
 try  
-{new Etichetta(a\[0\]);}  
+{new Etichetta(a[0]);}  
 catch (ArrayIndexOutOfBoundsException e)  
 {System.out.println(“ERRORE: battere java Etichetta StrINGA”);};  
 }  
-}  
-
-  
+}
 
 Come abbiamo già detto, i GUI vanno sia su Frame che su Applet, quindi si può pensare alla versione applet del programma precedente.
 
 import java.applet.*;  
-import java.awt.*;  
-public class ApplEtichetta extends Applet  
-{  
-Label et=new Label();  
-public void init ()  
-{  
-et.setText(“Ciao”);  
-add(et);  
-}  
-}  
+import java.awt.*;
 
-  
+public class ApplEtichetta extends Applet  
+{
+
+Label et=new Label();
+
+public void init ()  
+{
+
+et.setText(“Ciao”);  
+add(et);
+
+}
+
+}
 
 Che sarà messo in un file chiamato ApplEtichetta.java e sarà chiamato da un file html contenente:
 
 <html>  
 <head>  
-<title>  
+<title>
+
 </title>  
 </head>  
 <body>  

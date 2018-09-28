@@ -16,11 +16,9 @@ Ascoltatori di eventi di tipo ActionListener possono essere associati agli ogget
 
 Button
 
-  
-
 List
 
-(quando si seleziona o deseleziona un elemento)  
+(quando si seleziona o deseleziona un elemento)
 
 MenuItem  
 TextField
@@ -44,18 +42,18 @@ Checkbox
 
 CheckboxMenuItem
 
-(non lo abbiamo visto, esso è come un MenuItem, solo che funziona come un Checkbox, ovvero può essere cliccato o meno, se associato ad un CheckboxGroup, diviene ancora una volta un radiobutton, solo che su un menu).  
+(non lo abbiamo visto, esso è come un MenuItem, solo che funziona come un  
+Checkbox, ovvero può essere cliccato o meno, se associato ad un CheckboxGroup, diviene ancora una volta un radiobutton, solo che su un menu).
 
 Choice
-
-  
 
 List
 
 Abbiamo anche visto gli ascoltatori degli eventi delle finestre, ovvero di tipo WindowListener.  
 Essi vengono associati alle finestre usando il metodo di queste addWindowListener(WindowListener WL), e per definirle bisogna implementare l’interfaccia WindowListener e ridefinirne i metodi:
 
-void windowActivated(WindowEvent e), invocato quando la finestra diviene attiva, ovvero viene in primo piano sul desktop.  
+void windowActivated(WindowEvent e), invocato quando la finestra diviene attiva, ovvero viene in  
+primo piano sul desktop.  
 void windowClosed(WindowEvent e), invocato quando la finestra si è chiusa.  
 void windowClosing(WindowEvent e), invocato quando si preme il bottone chiudiFinestra (X).  
 void windowDeactivated(WindowEvent e), invocato quando la finestra passa in secondo piano.  
@@ -72,7 +70,8 @@ oppure
 
 import java.awt.event.*;
 
-Gli eventi delle finestre avvengono sempre più o meno a coppie, ad esempio quando si preme la X in alto a destra della finestre, prima viene invocato windowClosing e poi windowClosed, oppure quando una finestra passa da icona ad attiva prima sente windowDeiconified e poi WindowActivated, eccetera.  
+Gli eventi delle finestre avvengono sempre più o meno a coppie, ad esempio quando si preme la X in alto a destra della finestre, prima viene invocato windowClosing e poi windowClosed, oppure quando una finestra passa da icona ad attiva prima sente windowDeiconified e poi WindowActivated, eccetera.
+
 E’ possibile sentire eventi di tipo finestra per gli elementi:
 
 Window  
@@ -84,10 +83,12 @@ Sono dei Frame senza icona , riduci a icona e massimizza, sonomolto utili per fa
 Una Dialog può essere modale o non modale, la prima è una Dialog che blocca completamente l’applicazione, la quale non sente più gli eventi, la seconda invace va in parallelo a questa.  
 Le dialog di awt non possono contenere dei menu, mentre quelle di swing (javax.swing.JDialog) si.
 
-Vediamo quali eventi possono essere ascoltati da oggetti di tipo TextComponent, ovvero oggetti di tipo TextField e TextArea. Possiamo ascoltare eventi di tipo TextEvent, implementando l’interfaccia TextListener, e ridefinendone il metodo textValueChanged(TextEvent e), invocato ogni volta che il testo viene modificato.  
+Vediamo quali eventi possono essere ascoltati da oggetti di tipo TextComponent, ovvero oggetti di tipo TextField e TextArea.  
+Possiamo ascoltare eventi di tipo TextEvent, implementando l’interfaccia TextListener, e ridefinendone il metodo textValueChanged(TextEvent e), invocato ogni volta che il testo viene modificato.  
 L’interfaccia e l’evento si trovano in java.awt.event
 
-Per oggetti di tipo container, ovvero per Panel, ScrollPane, Window (e quindi Dialog e Frame), posso ascoltare gli eventi sul contenitore, usando il metodo addContainerListener(ContainerListener l). Bisogna implementare l’interfaccia ContainerListener e ridefinire i metodi:
+Per oggetti di tipo container, ovvero per Panel, ScrollPane, Window (e quindi Dialog e Frame), posso ascoltare gli eventi sul contenitore, usando il metodo  
+addContainerListener(ContainerListener l). Bisogna implementare l’interfaccia ContainerListener e ridefinire i metodi:
 
 void componentAdded(ContainerEvent e)  
 void componentremoved(ContainerEvent e)
@@ -108,16 +109,14 @@ addKeyListener(KeyListener l)
 addMouseListener(MouseListener l)  
 addMouseMotionListener(MouseMotionListener l)  
 addPropertyChangeListener(PropertyChangeListener listener)  
-addPropertyChangeListener(String propertyName, PropertyChangeListener listener)  
+addPropertyChangeListener(String propertyName, PropertyChangeListener listener)
 
 Il ComponentListener ascolta eventi sul componente, si devono ridefinire i metodi:
 
 void componentHidden(ComponentEvent e)  
 void componentMoved(ComponentEvent e)  
 void componentresized(ComponentEvent e)  
-void componentShown(ComponentEvent e)  
-
-  
+void componentShown(ComponentEvent e)
 
 che vengono invocati quando il componente viene nascosto, mosso, cambiato di dimensioni e visualizzato.
 
@@ -126,7 +125,7 @@ Bisogna ridefinirne i metodi:
 
 focusGained(FocusEvent e)
 
-, chiamato quando il componente è selezionato.  
+, chiamato quando il componente è selezionato.
 
 focusLost(FocusEvent e)
 
@@ -139,7 +138,7 @@ Bisogna ridefinire i metodi:
 
 void ancestorMoved(HierarchyEvent e)
 
-, chiamata quando l’antenato viene mosso.  
+, chiamata quando l’antenato viene mosso.
 
 void ancestorResized(HierarchyEvent e)
 
@@ -147,24 +146,25 @@ void ancestorResized(HierarchyEvent e)
 
 HierarchyListener ascolta i cambiamenti degli antenati del componente, bisogna ridefinire il metodo hierarchyChanged(HierarchyEvent e), sarà HierarchyEvent a contenere il cambiamento fatto.
 
-KeyListener lo abbiamo gia visto, ascolta eventi provenienti dalla tastiera, dobbiamo ridefinire i metodi  
+KeyListener lo abbiamo gia visto, ascolta eventi provenienti dalla tastiera, dobbiamo ridefinire i metodi
 
 void keyPressed(KeyEvent e)
 
-, invocato quando un tasto viene premuto.  
+, invocato quando un tasto viene premuto.
 
 void keyReleased(KeyEvent e)
 
-, invocato quando un tasto viene lasciato.  
+, invocato quando un tasto viene lasciato.
 
 void keyTyped(KeyEvent e)
 
 , invocato quando un tasto si tiene premuto.  
 In pratica quando si preme un tasto vengono sentiti gli eventi nell’ordine: keyPressed, keyTyped e keyReleased.
 
-MouseListener ascolta gli eventi provenienti dal mouse, bisogna ridefinire i metodi:  
+MouseListener ascolta gli eventi provenienti dal mouse, bisogna ridefinire i metodi:
 
-void mouseClicked(MouseEvent e), invocato quando viene cliccato un bottone del muose sul componente.  
+void mouseClicked(MouseEvent e), invocato quando viene cliccato un bottone del muose sul  
+componente.  
 void mouseEntered(MouseEvent e), invocato quando il mouse entra nel componente.  
 void mouseExited(MouseEvent e), invocato quando il mouse esce dal componente.  
 void mousePressed(MouseEvent e), invocato quando il mouse si tiene premuto sul componente.  
@@ -174,11 +174,12 @@ MouseMotionListener, altri eventi del mouse sul componente:
 
 mouseDragged(MouseEvent e)
 
-, quando il mouse viene premuto e mosso sul componente.  
+, quando il mouse viene premuto e mosso sul componente.
 
 void mouseMoved(MouseEvent e)
 
-, invocato quando il mouse si muove sul componente, con o senza bottoni premuti.
+, invocato quando il mouse si muove sul componente, con o  
+senza bottoni premuti.
 
 L’ultima interfaccia per eventi del mouse è MouseInputListener, che implementa tutte e due le interfacce precedenti, quindi ascolta tutti gli eventi precedenti del mouse.
 
@@ -264,7 +265,7 @@ void preparaD(boolean m)
 {  
 D.setModal(m);  
 }  
-public static void main (String \[\] s)  
+public static void main (String [] s)  
 {  
 System.out.println(“Ascolto gli eventi.”);  
 new Ascolta();  
@@ -436,5 +437,6 @@ System.out.println(“KeyListener: Stai premendo il tasto “+e.getKeyChar()+
 ” codice “+  
 e.getKeyCode());  
 }  
-}  
+}
+
 }

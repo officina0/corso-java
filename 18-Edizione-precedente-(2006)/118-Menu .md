@@ -1,9 +1,9 @@
 Un menu in una applicazione non è altro che una MenuBar in cui vi sono vari menu.  
-Si pensi ad un programma qualsiasi con le voci di menu File Edit ed Help, queste tre voci In Java sono degli oggetti della classe Menu, e vanno aggiunte ad un oggetto della classe MenuBar il quale va attaccato alla finestra. Ogni menu ha varie voci, ad esempio il menu File avrà le voci: Apri, Chiudi, Salva e Esci, questi in Java sono degli oggetti della classe MenuItem (o anche Menu se conterranno altri sottomenu).
+Si pensi ad un programma qualsiasi con le voci di menu File Edit ed Help, queste tre voci  
+In Java sono degli oggetti della classe Menu, e vanno aggiunte ad un oggetto della classe MenuBar il quale va attaccato alla finestra.  
+Ogni menu ha varie voci, ad esempio il menu File avrà le voci: Apri, Chiudi, Salva e Esci, questi in Java sono degli oggetti della classe MenuItem (o anche Menu se conterranno altri sottomenu).
 
 ![Voci menu](http://html.it/guide/img/guida_java/23a.gif)
-
-  
 
 Quindi se ad una applicazione vogliamo aggiungere un menù dobbiamo in qualche ordine fare le seguenti cose:
 
@@ -14,19 +14,24 @@ Quindi se ad una applicazione vogliamo aggiungere un menù dobbiamo in qualche o
 E poi bisogna al solito scrivere dei gestori per gli eventi provenienti dai menu ed associarli ai menu.  
 Vediamo in pratica come si costruisce un menu, iniziamo dai MenuItem:  
 Gli eventi dei MenuItem sono quelli che devono essere gestiti da noi, a differenza degli eventi dei menu che li gestisce il sistema, infatti mentre i secondi servono a fare apparire e scomparire le voci di menu, i primi sono i click sul comando corrispondente all’Item.  
-Quindi per questi dovremo scrivere degli ActionListener, come per i bottoni, infatti essi non sono altro che dei bottoni speciali. I costruttori sono tre:
+Quindi per questi dovremo scrivere degli ActionListener, come per i bottoni, infatti essi non sono altro che dei bottoni speciali.  
+I costruttori sono tre:
 
 MenuItem() , che costruisce un MenuItem senza etichetta.  
 MenuItem(String label), che costruisce un MenuItem con etichetta label.  
-MenuItem(String label, MenuShortcut s), che costruisce un MenuItem con etichetta label e accelleratore (tasto di scelta rapida) definito in MenuShortcut s.
+MenuItem(String label, MenuShortcut s), che costruisce un MenuItem con etichetta label e  
+accelleratore (tasto di scelta rapida) definito in MenuShortcut s.
 
 Alcuni metodi sono:
 
-addActionListener(ActionListener l), associa un ActionListener al MenuItem per sentirne gli eventi di tipo ActionEvent (il click).  
+addActionListener(ActionListener l), associa un ActionListener al MenuItem per sentirne gli eventi  
+di tipo ActionEvent (il click).  
 void deleteShortcut(), cancella il tasto di scelta rapida per il menuitem.  
-String getActionCommand(), da l’azione associata al MenuItem, l’azione è quella passata alll’actionListener del bottone per identificare il bottone stesso, infatti più item possono avere lo stesso gestore di eventi, il quale potrà distinguere il bottone cliccato in base al comandoo che gli arriva.  
+String getActionCommand(), da l’azione associata al MenuItem, l’azione è quella passata  
+alll’actionListener del bottone per identificare il bottone stesso, infatti più item possono avere lo stesso gestore di eventi, il quale potrà distinguere il bottone cliccato in base al comandoo che gli arriva.  
 String getLabel(), restituisce l’etichetta del MenuItem  
-EventListener\[\]getListeners(Class listenerType) , restituisce tutti gli ascoltatori di eventi associati al MenuItem, deltipo listenerType.  
+EventListener[]getListeners(Class listenerType) , restituisce tutti gli ascoltatori di eventi associati al  
+MenuItem, deltipo listenerType.  
 MenuShortcut getShortcut(), restituisce la definizione dell’acceleratore per il MenuItem.  
 boolean isEnabled(), dice se il menu è abilitato o meno, se è disabilitato verrà visualizzato ingrigito.  
 void removeActionListener(ActionListener l), elimina l’ascoltatore associato.  
@@ -74,7 +79,7 @@ file.add(apri);
 file.add(salva);  
 file.add(chiudi);  
 file.addSeparator();  
-file.add(esci);  
+file.add(esci);
 
 A questo punto supponendo di avere creato anche Edit ed Help, dobbiamo aggiungerli ad una MenuBar, la quale si crea usando il costruttore MenuBar().  
 In questa ci sono i metodi remove e removeAll come per i menu, e c’è la add:
@@ -88,7 +93,8 @@ barra.add(file);
 barra.add(edit);  
 barra. setHelpMenu(help);
 
-Quest’ultimo metodo è un metodo speciale per aggiungere un menu di aiuto.  
+Quest’ultimo metodo è un metodo speciale per aggiungere un menu di aiuto.
+
 Infine non rimane che associare la barra di menu alla nostra finestra, questo è semplicissimo, perché la nostra finestra sarà una estensione di Frame, e in Frame c’è il metodo:
 
 setMenuBar(MenuBar mb);
@@ -98,9 +104,11 @@ ATTENZIONE: con awt non è possibile inserire menu in Dialog e in Applet (quelle
 Di seguito c’è il listato di una applicazione che definisce un menu e ne sente gli eventi:
 
 import java.awt.*;  
-import java.awt.event.*;  
+import java.awt.event.*;
+
 public class Finestramenu extends Frame  
-{  
+{
+
 MenuItem apri=new MenuItem(“Apri”);  
 MenuItem chiudi=new MenuItem(“Chiudi”);  
 MenuItem salva=new MenuItem(“Salva”);  
@@ -158,7 +166,7 @@ cerca.addActionListener(new AscoltatoreMenu());
 rimpiazza.addActionListener(new AscoltatoreMenu());  
 aiuto.addActionListener(new AscoltatoreMenu());  
 }  
-public static void main(String\[\] arg)  
+public static void main(String[] arg)  
 {  
 new Finestramenu();  
 }  
@@ -202,10 +210,11 @@ public void windowOpened(WindowEvent e)
 System.out.println(“Sentito un Window Opened”);  
 }  
 }  
-}  
+}
 
 Come si vede, nell’esempio c’è un altro ascoltatore di eventi. Questo sente eventi di tipo WindowEvent, e serve per ascoltare eventi della finestra.  
-Per associarlo alla finestra si usa il metodo addWindowListener(WindowListener l); dove WindowListener è l’ascoltatore di eventi. Per definire un ascoltatore di eventi bisogna quindi implementare l’interfaccia WindowListener e ridefinirne tutti i metodi:
+Per associarlo alla finestra si usa il metodo addWindowListener(WindowListener l); dove WindowListener è l’ascoltatore di eventi.  
+Per definire un ascoltatore di eventi bisogna quindi implementare l’interfaccia WindowListener e ridefinirne tutti i metodi:
 
 class MIOASCOLTATORE implements WindowListener
 
@@ -228,8 +237,9 @@ I menu visti non sono gli unici menu implementabili in Java, un altro tipo di me
 
 ![menu popup](http://html.it/guide/img/guida_java/23b.gif)
 
-  
+Per creare un menu popup bisogna creare un oggetto appartenente alla classe PopupMenu, usando uno dei cosrtuttori:  
+PopupMenu(), PopupMenu(String label), che creano rispettivamente un menu senza e con etichetta.
 
-Per creare un menu popup bisogna creare un oggetto appartenente alla classe PopupMenu, usando uno dei cosrtuttori: PopupMenu(), PopupMenu(String label), che creano rispettivamente un menu senza e con etichetta.
-
-PopupMenu è una estensione di Menu, quindi ne eredita i metodi e anche quelli per aggiungere ed eliminare dei MenuItem. tra i suoi metodi invece ce n’è uno per visualizzare il menu in una data posizione dello schermo rispetto ad un dato componente: show(Component origin, int x, int y).
+PopupMenu è una estensione di Menu, quindi ne eredita i metodi e anche quelli per aggiungere ed eliminare dei MenuItem.  
+tra i suoi metodi invece ce n’è uno per visualizzare il menu in una data posizione dello schermo rispetto ad un dato componente:  
+show(Component origin, int x, int y).

@@ -20,7 +20,9 @@ Creare un package
 
 Un package si crea in Java semplicemente definiendo delle classi che appartengono ad esso, cioè utilizzando l’espressione:
 
+```
 package a.b.c.d;
+```
 
 ed inserendo le stesse in opportune directory (in cui il separatore ‘`.`‘ va sostituito con ‘`/`‘).
 
@@ -46,46 +48,46 @@ Vale innanzitutto la regola che se per classi, metodi e field non viene esplicit
 Anche l’accesso agli elementi pubblici che fanno parte di un package diverso da quello in cui una classe si trova deve avvenire in modo diverso che non semplicemente facendo riferimento al nome della classe e deve avvenire in uno nei seguenti modi:
 
 *   Facendo riferimento all’oggetto attraverso il suo **fully qualified name**: quindi con il nome della classe al quale viene preposto il nome completo del package: `com.prova.mypackage.MyClass` invece che semplcemente `MyClass`
-*   **Importando una classe membro del package**: inserire all’inizio del file java l’istruzione  
-      
-    `import com.prova.mypackage.MyClass;`  
-      
+*   **Importando una classe membro del package**: inserire all’inizio del file java l’istruzione
+    
+    `import com.prova.mypackage.MyClass;`
+    
     che istruisce il compilatore ad ‘importare’, quindi rendere disponibile la classe MyClass che quindi potrà essere utilizzata come se stesse nel package corrente omettendo il package name (ma non cambiando le regole delal visibilità).
-*   **Importando l’intero package** con l’istruzione import e la wildcard asterisco (‘*’):  
-      
-    `import com.prova.mypackage.*`  
-      
+    
+*   **Importando l’intero package** con l’istruzione import e la wildcard asterisco (‘*’):
+    
+    `import com.prova.mypackage.*`
+    
     che rende visibili tutte le classi nel package.
+    
 
 Utilizzare i packages, un esempio
 ---------------------------------
 
 Supponiamo di avere una serie di classi che descrivono i diversi ruoli in un’azienda (come riportate di seguito) che implementano tutte la solita interfaccia Persona.
 
+```
 //nel file Persona.java
 public interface Persona {
 	...
 }
-
 //nel file Dipendente.java
 public abstract class Dipendente {
     ...
 }
-
 //nel file Amministrazione.java
 public class Amministrazione extends Dipendente implements Persona {
     . . .
 }
-
 //nel file Segreteria.java
 public class Segreteria extends Dipendente implements Persona {
     . . .
 }
-
 //nel file Tecnici.java
 public class Tecnici extends Dipendente implements Persona {
     . . .
 }
+```
 
 Tutte queste classi ed interfacce possono essere raggruppate in un unico package, per moltissime ragioni, fra le quali:
 
@@ -96,6 +98,8 @@ Tutte queste classi ed interfacce possono essere raggruppate in un unico package
 
 quindi in testa ad ognuna di queste classi potremmo inserire la dichiarazione del package:
 
+```
 package com.prova.team;
+```
 
 che specifica che tutte le classi appartengono al solito package `com.prova.team`.

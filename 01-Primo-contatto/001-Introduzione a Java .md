@@ -14,7 +14,7 @@ Dopo 2 anni di lavoro del Green Team nacque un linguaggio chiamato _Oak_ che ris
 
 Nel giro di pochi mesi riuscirono a sviluppare un web browser interamente in Java (Sun’s _HotJava_, 1994) con il quale poterono mostrare l’idea che avrebbe legato il nuovo linguaggio alla evoluzione di Internet: le **applets**, piccole applicazioni che attraverso un browser potevano essere distribuite ed eseguite come mai prima. Intessendo infine rapporti con Netscape Corporation ed arrivando ad avere il supporto per le applet nel Navigator nel 1995 Sun garantì una rapida diffusione a Java.
 
-![Duke](http://www.html.it/wp-content/uploads/2006/03/java01_01.png)
+![Duke](https://tbm-html.s3.amazonaws.com/app/uploads/2006/03/java01_01.png)
 
 Java e la OOP resa “facile”
 ---------------------------

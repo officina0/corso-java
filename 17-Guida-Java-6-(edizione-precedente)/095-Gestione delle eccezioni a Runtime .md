@@ -8,10 +8,10 @@ Attraverso questo nuovo concetto riusciamo a gestire, a livello di singola class
 
 Listato 19.1. Effettua un semplice compito per poter sollevare un’eccezione e vedere come viene gestita
 
-package it.html.threads;  
-  
-public class ExceptionalThread extends Thread {  
-  
+package it.html.threads;
+
+public class ExceptionalThread extends Thread {
+
   private int iterations;  
     
   public ExceptionalThread(String threadName,int iterations){  
@@ -50,10 +50,10 @@ La classe deve implementare il metodo `uncaughtException()` e definire la logica
 
 Listato 19.3. Classe di test per sollevare l’eccezione nel thread
 
-package it.html.threads;  
-  
+package it.html.threads;
+
 public class MainExceptionalThread {  
-  public static void main(String\[\] args) throws InterruptedException {  
+  public static void main(String[] args) throws InterruptedException {  
     //Definiamo un pò di thread, alcuni con iterazioni negative  
     ExceptionalThread et1 = new ExceptionalThread(“Thread 1”,10);  
     ExceptionalThread et2 = new ExceptionalThread(“Thread 2”,0);  

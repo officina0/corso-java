@@ -4,23 +4,23 @@ Tuttavia se dobbiamo utilizzare “daily” questo strumento per progetti medio/
 
 Perciò in questo articolo facciamo una breve rassegna degli ambienti di sviluppo (IDE – Integrated Development Environment) più famosi e più utilizzati nel mondo Java:
 
-![](http://www.html.it/wp-content/uploads/2014/08/netbeans.png)  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/netbeans.png)  
 NetBeans
 
-![](http://www.html.it/wp-content/uploads/2014/08/eclipse.png)  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/eclipse.png)  
 Eclipse
 
-![](http://www.html.it/wp-content/uploads/2014/08/idea.png)  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/idea.png)  
 IntelliJ Idea
 
 Anche la generazione dei un file jar ed in generale la **gestione complessiva dei progetti** non è pensabile come operazione da fare manualmente senza l’ausilio di altri strumenti che tengano in considerazione tutte le dipendenze, legami e configurazioni presenti fra i diversi elementi che compongono un progetto Java.
 
 I sistemi per l’**automazione del processo di build** ci vengono in aiuto in questo aspetto del ciclo di sviluppo delle applicazioni; in questa categoria prenderemo in considerazione:
 
-![](http://www.html.it/wp-content/uploads/2014/08/ant.png)  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/ant.png)  
 Ant
 
-![](http://www.html.it/wp-content/uploads/2014/08/maven.png)  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/maven.png)  
 Maven
 
 IDE – Integrated Development Environment
@@ -46,17 +46,23 @@ Per scaricarlo è sufficiente raggiungere la pagina di [download di NetBeans](ht
 
 Appena aperto, l’IDE vi mostrerà una scheda informativa con l’accesso a documentazione e tutorial; se volete iniziare a programmare chiudete la scheda informativa usando il pulsantino in alto a sinistra.
 
- [![](http://www.html.it/wp-content/uploads/2014/08/java04_01_s.png)](http://www.html.it/wp-content/uploads/2014/08/java04_01.png) 
+[  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_01_s.png)  
+](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_01.png)
 
 Per **creare un progetto Java con Netbeans** è sufficiente selezionare il menu `New > Project`. Il wizard ci guida poi fino alla creazione della prima classe nel progetto ed inserisce per noi anche il metodo `main`.
 
- [![](http://www.html.it/wp-content/uploads/2014/08/java04_02_s.png)](http://www.html.it/wp-content/uploads/2014/08/java04_02.png) 
+[  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_02_s.png)  
+](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_02.png)
 
 Come si vede in figura l’IDE ci aiuta nella scrittura del codice segnalandoci gli errori (il marker rosso alll’inizio della riga ancora non completa), assistendoci nella scelta dei nomi dei metodi (la dropdown list contiene tutti i metodi dell’oggetto `System.out` che matchano con la parte scritta) e dandoci immediatamente anche la documentazione (quella generata con _javadoc_).
 
 Infine per compilare ed eseguire il progetto non serve tenere a mente dove si trova il suo main, la struttura delle classi e il classpath, NetBeans lo fa per noi e basta utilizzare il pulsante `Play` (quello con la freccia verde in alto) per eseguire e vedere l’output senza lasciare l’ambiente di sviluppo.
 
- [![](http://www.html.it/wp-content/uploads/2014/08/java04_03_s.png)](http://www.html.it/wp-content/uploads/2014/08/java04_03.png) 
+[  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_03_s.png)  
+](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_03.png)
 
 ### Eclipse
 
@@ -68,15 +74,21 @@ Installare Eclipse è semplice: basta [scaricare l’archivio](http://www.eclips
 
 La pagina di benvenuto di Eclipse è simile a quella di NetBeans e mostra l’immancabile scheda introduttiva con i link alla documentazione ed i tutorial.
 
- [![](http://www.html.it/wp-content/uploads/2014/08/java04_04_s.png)](http://www.html.it/wp-content/uploads/2014/08/java04_04.png) 
+[  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_04_s.png)  
+](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_04.png)
 
 La **creazione di un progetto** è guidata da un semplice wizard (lanciato scegliendo, `new > java project`) .
 
- [![](http://www.html.it/wp-content/uploads/2014/08/java04_05_s.png)](http://www.html.it/wp-content/uploads/2014/08/java04_05.png) 
+[  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_05_s.png)  
+](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_05.png)
 
 Anche in questo caso è possibile con un solo pulsante `Play` (la freccia verde nella barra in alto) eseguire un programma Java e visualizzarne l’output senza lasciare l’IDE.
 
- [![](http://www.html.it/wp-content/uploads/2014/08/java04_06_s.png)](http://www.html.it/wp-content/uploads/2014/08/java04_06.png) 
+[  
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_06_s.png)  
+](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_06.png)
 
 Eclipse è diventato di uso comune anche perché google offre i plugin per sviluppare applicazioni Android, e Google App Engine e GWT.
 
@@ -97,7 +109,7 @@ Anche per quanto riguarda i build system (_maven_ in realtà non è semplicement
 
 [Apache Ant](https://ant.apache.org/ "Apache Ant") (più comunemente _Ant_) è un tool di sviluppo per l’automazione del processo di building, o semplicemente build system. È un progetto Apache, rilasciato Open Source sotto licenza Apache Software License.
 
-![](http://www.html.it/wp-content/uploads/2014/08/java04_07.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_07.png)
 
 Per fare un paragone, è simile a _Make_ (famoso tool per la complilazione di progetti C/C++). Anche se implementato completamente in Java ed appositamente progettato per la piattaforma Java, Ant può gestire qualunque tipo di progetto (anche C++).
 
@@ -107,31 +119,29 @@ Il build file contiene informazioni su come effettuare il build del progetto e p
 
 Ecco un esempio di file `build.xml` per un semplice progetto Java “Hello World”, Vengono definiti 4 target (`clean`, `clobber`, `compile` e `jar`), ciascuno dei quali ha associata una descrizione.
 
-<?xml version="1.0"?> 
+```
+<?xml version="1.0"?>
 <project name="Hello" default="compile"> 
-	
-	<target name="clean" description="remove intermediate files"> 
-		<delete dir="classes"/> 
+	<target name="clean" description="remove intermediate files">
+		<delete dir="classes"/>
 	</target> 
-	
-	<target name="clobber" depends="clean" description="remove all artifact files"> 
-		<delete file="hello.jar"/> 
+	<target name="clobber" depends="clean" description="remove all artifact files">
+		<delete file="hello.jar"/>
 	</target> 
-
-	<target name="compile" description="compile the Java source code to class files"> 
-		<mkdir dir="classes"/> 
-		<javac srcdir="." destdir="classes"/> 
+	<target name="compile" description="compile the Java source code to class files">
+		<mkdir dir="classes"/>
+		<javac srcdir="." destdir="classes"/>
 	</target> 
-
-	<target name="jar" depends="compile" description="create a Jar file for the application"> 
-		<jar destfile="hello.jar"> 
-			<fileset dir="classes" includes="**/*.class"/> 
-			<manifest> 
-				<attribute name="Main-Class" value="HelloProgram"/> 
-			</manifest> 
-		</jar> 
-	</target> 
+	<target name="jar" depends="compile" description="create a Jar file for the application">
+		<jar destfile="hello.jar">
+			<fileset dir="classes" includes="**/*.class"/>
+			<manifest>
+				<attribute name="Main-Class" value="HelloProgram"/>
+			</manifest>
+		</jar>
+	</target>
 </project>
+```
 
 Il target `jar` come dipendenza `compile`, questo significa che prima che Ant inizi ad eseguire il target `jar` dovrà aver prima eseguito correttamente il target `compile`.
 
@@ -155,7 +165,7 @@ Per ulteriori info e dettagli su come installare e configurare Ant (anche in bas
 
 [Apache Maven](http://maven.apache.org/ "Apache Maven") (o solo Maven) è un tool per l’automazione della fase di building di un progetto usato principalmente e primariamente per progetti Java.
 
-![](http://www.html.it/wp-content/uploads/2014/08/java04_08.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/08/java04_08.png)
 
 Maven mira principalmente a risolvere due aspetti:
 
@@ -168,25 +178,27 @@ Maven scarica automaticamente tutte le librerie Java ed i plugin necessari da un
 
 I progetti Maven vengono configurati utilizzando un **Project Object Model**, che è salvato in un file chiamato `pom.xml`. Di seguito un esempio minimalista:
 
+```
 <project>
-	<!\-\- model version is always 4.0.0 for Maven 2.x POMs --> 
-	<modelVersion>4.0.0</modelVersion> 
-	<!\-\- project coordinates, i.e. a group of values which uniquely identify this project --> 
-	<groupId>com.mycompany.app</groupId> 
-	<artifactId>my-app</artifactId> 
-	<version>1.0</version> 
-	<!\-\- library dependencies --> 
-	<dependencies> 
-		<dependency> 
-			<!\-\- coordinates of the required library --> 
-			<groupId>junit</groupId> 
-			<artifactId>junit</artifactId> 
-			<version>3.8.1</version> 
-			<!\-\- this dependency is only used for running and compiling tests --> 
-			<scope>test</scope> 
-		</dependency> 
-	</dependencies> 
+	<!-- model version is always 4.0.0 for Maven 2.x POMs -->
+	<modelVersion>4.0.0</modelVersion>
+	<!-- project coordinates, i.e. a group of values which uniquely identify this project -->
+	<groupId>com.mycompany.app</groupId>
+	<artifactId>my-app</artifactId>
+	<version>1.0</version>
+	<!-- library dependencies -->
+	<dependencies>
+		<dependency>
+			<!-- coordinates of the required library -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<!-- this dependency is only used for running and compiling tests -->
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 </project>
+```
 
 Questo POM definisce un identificatore univoco per il progetto (coordinates) e le sue dipendenze nel framework JUnit.
 

@@ -5,7 +5,7 @@ Preparare il proprio computer per sviluppare con Java è davvero un gioco da rag
 
 Gli strumenti principali che il **Java Development Kit (JDK)** ci mette a disposizione sono:
 
-`java` composto dalla macchina virtuale propriamente detta (JVM), le librerie standard (che compongono la cosidetta Java core API) ed il comando che serve per far partire la JVM ed eseguire i programmi.
+composto dalla macchina virtuale propriamente detta (JVM), le librerie standard (che compongono la cosidetta Java core API) ed il comando `java` che serve per far partire la JVM ed eseguire i programmi.
 
 Strumento
 
@@ -53,11 +53,13 @@ Java debugger.
 
 Se utilizzate uno di questi sistemi operativi vi basterà aprire con il vostro browser preferito l’URL:
 
+```
 [http://www.oracle.com/technetwork/java/javase/downloads/index.html](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+```
 
 e premere il pulsante “DOWNLOAD” per scaricare la release corrente ( Java Platform (JDK) 8, al momento in cui viene scritta la guida).
 
-![](http://www.html.it/wp-content/uploads/2006/03/java03_01.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2006/03/java03_01.png)
 
 Sarete automaticamente indirizzati alla pagina dei download e dovrete a questo punto accettare i termini della licenza prima di poter procedere al download.
 
@@ -67,7 +69,7 @@ Su Windows si dovrà effettuare il download di uno dei 2 file eseguibili `jdk-8-
 
 La procedura di installazione è totalmente automatica e sarà sufficiente accettare i default del sistema di installazione. Ad esempio l’installazione su Windows prevede pochi semplici passi: la selezione delle componenti da installare e la scelta della path del JRE.
 
-![](http://www.html.it/wp-content/uploads/2006/03/java03_02.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2006/03/java03_02.png)
 
 Dopo qualche secondo di attesa avrete installato tutti i tool necessari per sviluppare in Java.
 
@@ -78,7 +80,9 @@ Impostare le variabili d’ambiente (Windows / Linux )
 
 Il compilatore (`javac`) per default non è nella path e quindi per ‘provarlo’ dovrete andare a cercarlo nella direcroty di installazione, ad esempio:
 
-C:\\Program Files\\Java\\jdk1.8.0\\bin\
+```
+C:\Program Files\Java\jdk1.8.0\bin\
+```
 
 Po poterlo utilizzare senza doverci preoccupare di includere tutto il percorso possiamo includerlo nelle variabili di ambiente del sistema (PATH). Vediamo come fare nei casi più comuni.
 
@@ -86,7 +90,7 @@ Po poterlo utilizzare senza doverci preoccupare di includere tutto il percorso p
 
 Per le ultime versioni di Windows i passaggi sono piuttosto simili. Si parte dal pannello di controllo (quello desktop nel caso di Windows 8) e poi cerchiamo l’icona _Sistema_. Nella maschera che appare clicchiamo su _Impostazioni di sistema avanzate_ (sulla sinistra). Infine nella nuova maschera troviamo il pulsante _“Variabili d’ambiente”_. Che ci permetterà di accedere al pannello di modifica delle variabili di sistema.
 
-![](http://www.html.it/wp-content/uploads/2006/03/java03_04.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2006/03/java03_04.png)
 
 Qui non rimane che cercare la variabile _Path_ e aggiungere il percorso relativo allaa nostra installazione (copiamolo tutto fino a `[...]bin\`).
 
@@ -94,22 +98,28 @@ Qui non rimane che cercare la variabile _Path_ e aggiungere il percorso relativo
 
 Su Ubuntu il procedimento è ancora più semplice (e vale anche per altre distribuzioni che utilizzano bash o derivati). È sufficiente modificare il file `.bashrc` e aggiungere la riga:
 
+```
 export PATH=$PATH:{{percorso di Java}}
+```
 
 ad esempio:
 
+```
 export PATH=$PATH:/opt/jdk1.8.0/bin
+```
 
 Verificare l’installazione
 --------------------------
 
 Per verificare che l’istallazione abbia avuto successo potete provare ad eseguire la macchina virtuale, ad esempio aprendo l’interprete dei comandi (o il terminale) e provando a lanciare il comando:
 
+```
 java -version
+```
 
 Il risultato dovrebbe essere simile a quello in figura:
 
-![](http://www.html.it/wp-content/uploads/2006/03/java03_03.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2006/03/java03_03.png)
 
 Link utili
 

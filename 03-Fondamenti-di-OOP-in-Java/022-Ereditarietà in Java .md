@@ -26,78 +26,68 @@ Extends, estendere (o derivare da) una classe in Java
 
 In Java la relazione di derivazione viene resa con la keyword **extends** che deve essere usata nella dichiarazione della classe:
 
+```
 class A extends B {
-	
 	// ...
 }
+```
 
 Implica che ogni istanza della classe _A_ sarà anche di tipo _B_ ed avrà a disposizione tutti i metodi della classe _B_ (potrà ricevere tutti i messaggi che può ricevere la classe _B_, usando la terminologia delle precedenti sezioni) e nel suo stato saranno presenti tutte le variabili che si trovano nella super classe _B_.
 
 Nella **notazione UML** si esprime la relazione di ereditarietà fra _A_ e _B_ mediante una freccia che va da _A_ a _B_, come mostrato dalla seguente figura.
 
-![IS A](http://www.html.it/wp-content/uploads/2014/12/java22_01.png)
+![IS A](https://tbm-html.s3.amazonaws.com/app/uploads/2014/12/java22_01.png)
 
 Esempio di ereditarietà in Java
 -------------------------------
 
 Un esempio concreto di ereditarietà potrebbe essere il seguente, nel quale esempio intendiamo dare una bozza di modello per un generico magazzino in cui parte dei colli sono per la vendita.
 
-/\*\*
- \* Collo è la classe "base"
+```
+/**
+ * Collo è la classe "base"
  */
 public class Collo {
-	
 	// dati
-	private int x\_size, y\_size, z_size;
+	private int x_size, y_size, z_size;
 	protected int weight;
-
 	// funzione getter di Weight
 	public int getWeight() { return weight; }
-
 	// Costruttore
 	public Collo(int w, int xs, int ys, int zs) {
-	
 		this.weight = w;
 		this.x_size = xs;
 		this.y_size = ys;
 		this.z_size = zs;
 	}
-	
 	public int getVolume() {
-		
-		return x\_size * y\_size * z_size;
+		return x_size * y_size * z_size;
 	}
 }
-
-/\*\*
- \* ColloInVendita è la classe "derivata"
+/**
+ * ColloInVendita è la classe "derivata"
  */
 public class ColloInVendita extends Collo {
-   
 	// dati (oltre quelli di Collo)
 	private int price;
-   
 	// coefficienti da applicare alla vendita
-	private static final float A0 = 1;   
-	private static final float B0 = 1.2; 
+	private static final float A0 = 1;
+	private static final float B0 = 1.2;
 	private static final float C0 = 1.5; 
-
 	public int getPrice() {
 		return price;
 	}
-
 	// Costruttore della classe derivata
 	public ColloInVendita(int w, int xs, int ys, int zs, int price) {
-	
 		// richiama il costruttore della classe base
-		super(w, xs, ys, zs); 
+		super(w, xs, ys, zs);
 		this.price = price;
 	}
-	
 	public float getDeliveryCost() {
-		return A0\*weight + B0\*getVolume() + C0*price;
+		return A0*weight + B0*getVolume() + C0*price;
 	}
 }
+```
 
 È utile osservare come, nella dichiarazione di `ColloInVendita`, siano utilizzabili sia i metodi che i field (a patto che siano `public` o `protected`) della super-classe `Collo`, che possono essere eventualmente prefissati con la keyword `super` utile per eventuali disambiguazioni.
 

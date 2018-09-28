@@ -4,7 +4,7 @@ Già in uno dei capitoli precedenti abbiamo parlato della classe **ExecutorServi
 
 Detto così potrebbe suonare complicato. In realtà, modificando il metodo main visto nella precedente lezione, vedremo come poter effettuare la stessa operazione di ricerca ma in maniera parallela:
 
-public static void main(String args\[\]) throws InterruptedException{  
+public static void main(String args[]) throws InterruptedException{  
   //Definiamo un executor  
   ExecutorService executor = Executors.newSingleThreadExecutor();  
     

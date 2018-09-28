@@ -29,26 +29,28 @@ Il seguente programma apre la directory in cui si trova e cerca tutti i file .zi
 
 import java.util.*;  
 import java.util.zip.*;  
-import java.io.*;  
-  
+import java.io.*;
+
 public class ReadZip  
 {  
-public static void main(String \[\] a)  
+public static void main(String [] a)  
 {  
 File dir=new File(“.”);  
 System.out.println(“Apro la directory “+dir.getAbsolutePath());  
-File\[\] cont=dir.listFiles();  
+File[] cont=dir.listFiles();  
 int MAX=cont.length;  
 for (int i = 0; i<MAX; i++)  
 {  
-String tmp=cont\[i\].getName();  
+String tmp=cont[i].getName();  
 if ((tmp.endsWith(“.zip”))||(tmp.endsWith(“.ZIP”)))  
 {  
 // è un file .zip  
 System.out.println(“Ho trovato “+tmp);  
-controllaZip(cont\[i\]);  
+controllaZip(cont[i]);
+
 };  
-}  
+}
+
 }  
 public static void controllaZip(File f)  
 {  
@@ -60,35 +62,38 @@ catch (IOException e1){Zf=null;}
 ;  
 Enumeration files=Zf.entries();  
 while(files.hasMoreElements())  
-System.out.println(files.nextElement());  
-}  
-}  
+System.out.println(files.nextElement());
+
+}
+
+}
 
 Possiamo anche decomprimere questi files,il seguente programma prende tutti i .zip della directory dove viene eseguito e li decomprime.
 
 import java.util.*;  
 import java.util.zip.*;  
-import java.io.*;  
-  
+import java.io.*;
+
 public class Decomp  
 {  
-public static void main(String \[\] a)  
+public static void main(String [] a)  
 {  
 File dir=new File(“.”);  
 System.out.println(“Apro la directory “+dir.getAbsolutePath());  
-File\[\] cont=dir.listFiles();  
+File[] cont=dir.listFiles();  
 int MAX=cont.length;  
 for (int i = 0; i<MAX; i++)  
 {  
-String tmp=cont\[i\].getName();  
+String tmp=cont[i].getName();  
 if ((tmp.endsWith(“.zip”))||(tmp.endsWith(“.ZIP”)))  
 {  
 // è un file .zip  
 System.out.println(“Ho trovato “+tmp);  
-try {controllaZip(cont\[i\]);}  
+try {controllaZip(cont[i]);}  
 catch (IOException e){};  
 };  
-}  
+}
+
 }  
 public static void controllaZip(File f) throws IOException  
 {  
@@ -108,15 +113,18 @@ tmpFile.getCompressedsize()+” dimensione non compresso “+
 tmpFile.getsize()+” CRC “+tmpFile.getCrc());  
 System.out.println(“modificato “+tmpFile.getTime());  
 InputStream in= Zf.getInputStream(tmpFile);  
-FileOutputStream out= new FileOutputStream(tmpFile.getName());  
-  
-for (int ch=in.read();ch!=-1;ch=in.read()) out.write(ch);  
-  
+FileOutputStream out= new FileOutputStream(tmpFile.getName());
+
+for (int ch=in.read();ch!=-1;ch=in.read()) out.write(ch);
+
 out.close();  
-in.close();  
-}  
-}  
-}  
+in.close();
+
+}
+
+}
+
+}
 
 Il package java.util.jar mette a disposizione del programmatore delle classi e interfacce per trattare i file di tipo Java Archive (JAR), in particolare è possibile leggerli, e scriverli. I file JAR sono basati sullo standard ZIP, con un file opzionale detto manifest .  
 Il contenuto del package è il seguente:
@@ -128,7 +136,7 @@ JarEntry
 JarFile  
 JarInputStream  
 JarOutputStream  
-Manifest  
+Manifest
 
 Eccezion  
 JarExceptioni

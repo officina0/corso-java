@@ -5,8 +5,9 @@ I pacchetti aggiunti al linguaggio sono 4:
 3.  javax.sound.sampled
 4.  javax.sound.sampled.spi
 
-Le parti che finiscono per spi servono a leggere e scrivere files sonori, convertirli o leggere files di strumenti nel caso di midi. Noi non vedremo queste parti, mentre vedremo javax.sound.sampled e javax.sound.midi.  
-Il pacchetto javax.swing.sampled permette di registrare suonare e modificare dati sonori.  
+Le parti che finiscono per spi servono a leggere e scrivere files sonori, convertirli o leggere files di strumenti nel caso di midi.  
+Noi non vedremo queste parti, mentre vedremo javax.sound.sampled e javax.sound.midi.  
+Il pacchetto javax.swing.sampled permette di registrare suonare e modificare dati sonori.
 
 Il contenuto del pacchetto è:
 
@@ -85,7 +86,8 @@ DataLine.Info info = new DataLine.Info(
 Clip.class,  
 ais.getFormat(),  
 ((int) ais.getFrameLength() *  
-af.getFramesize()));  
+af.getFramesize()));
+
 Clip ol = (Clip) AudioSystem.getLine(info);
 
 Da ol, che è di tipo Clip possiamo suonare, e questo si fa aprendo la linea e invocando i metodi per suonare:
@@ -96,7 +98,8 @@ e quindi
 
 ol.loop(NUMERO);
 
-dove NUMERO indica il numero di ripetizioni del dile, nel nostro caso è Clip. LOOP_CONTINUOUSLY per indicare che bisogna ripetere all’infinito.
+dove NUMERO indica il numero di ripetizioni del dile, nel nostro caso è  
+Clip. LOOP_CONTINUOUSLY per indicare che bisogna ripetere all’infinito.
 
 L’esempio completo, editato in suono.java è il seguente:
 
@@ -104,35 +107,48 @@ import javax.swing.*;
 import javax.sound.sampled.*;  
 import java.io.*;  
 public class suono extends JFrame  
-{  
+{
+
 public suono()  
 {  
 File sf=new File(“italian.wav”);  
 AudioFileFormat aff;  
-AudioInputStream ais;  
+AudioInputStream ais;
+
 try  
 {  
 aff=AudioSystem.getAudioFileFormat(sf);  
-ais=AudioSystem.getAudioInputStream(sf);  
-AudioFormat af=aff.getFormat();  
+ais=AudioSystem.getAudioInputStream(sf);
+
+AudioFormat af=aff.getFormat();
+
 DataLine.Info info = new DataLine.Info(  
 Clip.class,  
 ais.getFormat(),  
 ((int) ais.getFrameLength() *  
-af.getFramesize()));  
-Clip ol = (Clip) AudioSystem.getLine(info);  
-ol.open(ais);  
-ol.loop(Clip.LOOP_CONTINUOUSLY);  
-System.out.println(“Riproduzione iniziata, premere CtrL-C per interrompere”);  
+af.getFramesize()));
+
+Clip ol = (Clip) AudioSystem.getLine(info);
+
+ol.open(ais);
+
+ol.loop(Clip.LOOP_CONTINUOUSLY);
+
+System.out.println(“Riproduzione iniziata, premere CtrL-C per interrompere”);
+
 }  
 catch(UnsupportedAudioFileException ee){}  
 catch(IOException ea){}  
-catch(LineUnavailableException LUE){};  
-}  
-public static void main(String\[\] ar)  
+catch(LineUnavailableException LUE){};
+
+}
+
+public static void main(String[] ar)  
 {  
-new suono();  
-}  
+new suono();
+
+}
+
 }
 
 Sembra un po macchinoso, ma seguendo questa procedura è possiblie leggere e suonare ogni file wav. Per effettuare altre operazioni il pacchetto è abbastanza complesso, e oggi non esistono manuali che ne spiegano il funzionamento (tranne la documentazione del JDK, che come avrete avuto modo di vedere non spiega come usare le cose, ma le descrive soltanto).

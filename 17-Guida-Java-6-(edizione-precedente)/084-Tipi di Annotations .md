@@ -8,8 +8,8 @@ public class TestDeprecated {
   @Deprecated  
   public void metodoA() {  
     System.out.println(“Questo metodo è DEPRECATO, usa metodoB().”);  
-  }  
-  
+  }
+
   public void metodoB() {  
     System.out.println(“Questo metodo è SUPPORTATO.”);  
   }  
@@ -32,8 +32,8 @@ class A{
   void metodo1(){  
     System.out.println(“Metodo 1”);  
   }  
-}  
-  
+}
+
 class B extends A{  
   @Override  
   void metodoo1(){  

@@ -20,7 +20,8 @@ Il Thread è in attesa di una risorsa occupata da un altro thread. Un esempio è
 
 **Suspended**
 
-Il thread può transitare verso questo stato attraverso l’uso del metodo suspend() della classe Thread. Questo metodo, cosi come resume(), è stato deprecato perchè può causare deadlock.
+Il thread può transitare verso questo stato attraverso l’uso del metodo suspend() della classe Thread. Questo metodo, cosi come resume(),  
+è stato deprecato perchè può causare deadlock.
 
 Ogni oggetto ha un lock che può essere controllato da un solo Thread. L’acquisizione del lock consente l’accesso al codice sincronizzato dell’oggetto, se il lock è libero il Thread corrente può acquisirlo, altrimenti, poichè il lock è sotto il controllo di un altro Thread, il Thread corrente transita nello stato `Seeking lock` in attesa di poter acquisire il lock sulla risorsa condivisa.
 
@@ -30,10 +31,11 @@ La sincronizzazione del codice condiviso può avvenire in due modi: il primo con
 
 Il secondo prevede di sincronizzare un blocco di codice all’interno di un metodo con l’espressione:
 
-                    syncronized(object){
+```
+syncronized(object){
                             ..
                     }
- 
+```
 
 In questo caso il lock viene ottenuto soltanto su un blocco di codice. I metodi alla base della sincronizzazione sono: `wait()`, `notify()` e `notifyAll()` della classe `Object` utilizzabili solo all’interno di codice sincronizzato. Un Thread in possesso del lock, può invocare il metodo `wait()` per passare allo stato `Waiting` in attesa di notifiche da parte di altri Thread per poter continuare il suo lavoro sulla risorsa condivisa.
 
@@ -43,29 +45,26 @@ Quando si usa `notify()` non è possibile scegliere quale thread risvegliare dal
 
 Vediamo un esempio di sincronizzazione tra due Thread che implementi il classico schema produttore-consumatore. Realizziamo una classe che si comporti da risorsa condivisa:
 
+```
 public class CubbyHole {
- 
  private boolean empty = true; 
- 
  public boolean isEmpty() {
 	    return empty;
  }
  public void setEmpty(boolean empty) {
 	    this.empty = empty;
  }
- 
 }
+```
 
 Essa implementa un contenitore nel quale il Thread `Producer` inserirà qualcosa e dal quale il Thread `Consumer` leggerà il contenuto. Continuiamo con il Thread Producer:
 
+```
 public class Producer extends Thread {
-	
 	private final CubbyHole cubbyHole;
-
 	public Producer(CubbyHole cubbyHole){
 		   this.cubbyHole = cubbyHole;
 	}
-
 	@Override
 	public void run() {
 		while (!isInterrupted()) {
@@ -84,21 +83,20 @@ public class Producer extends Thread {
 		}
 		System.out.println("Producer: interruzione");
 	}
-
 }
+```
 
-Il `Producer` riceve l’oggetto contenitore, in esecuzione entra poi in un loop dal quale esce solo dopo la ricezione di un interrupt. All’interno del loop si tenta di acquisire il lock sul contenitore, si cambia il valore della variabile booleana `empty` per simulare un inserimento, si invoca `notifyAll()` per notificare il rilascio imminente del lock ai Thread in attesa e, infine, si invoca il metodo `wait()` per passare nello stato `Waiting`.
+Il `Producer` riceve l’oggetto contenitore, in esecuzione entra poi in un loop dal quale esce solo dopo la ricezione di un interrupt. All’interno del loop si tenta di acquisire il lock sul contenitore, si cambia il valore della variabile booleana `empty` per simulare un inserimento, si invoca `notifyAll()` per notificare  
+il rilascio imminente del lock ai Thread in attesa e, infine, si invoca il metodo `wait()` per passare nello stato `Waiting`.
 
 Il Producer ha la stessa struttura, la differenza risiede nell’uso dello stesso oggetto condiviso:
 
+```
 public class Consumer extends Thread{
-	
 	private final CubbyHole cubbyHole;
-
 	public Consumer(CubbyHole cubbyHole){
 	   this.cubbyHole = cubbyHole;
 	  }
-
 	@Override
 	public void run() {
 		while (!isInterrupted()) {
@@ -121,29 +119,25 @@ public class Consumer extends Thread{
 		System.out.println("Consumer: interruzione");
 	}
 }
+```
 
 Realizziamo infine la classe `Demo` che istanzi i due oggetti Thread, li faccia dialogare per alcuni secondi e invii l’interrupt per arrestare la simulazione:
 
+```
 public class ThreadLockDemo {
-	public static void main(String\[\] args) {
-		
+	public static void main(String[] args) {
 		CubbyHole cubbyHole = new CubbyHole();
-		
 		Producer producer = new Producer(cubbyHole);
 		Consumer consumer = new Consumer(cubbyHole);
-		
 		producer.start();
 		consumer.start();
-
 		try {
 			Thread.sleep(10);
 		} catch (InterruptedException ex) {
 			ex.printStackTrace();
 		}
-
 		producer.interrupt();
 		consumer.interrupt();
-
 		try {
 			producer.join();
 			consumer.join();
@@ -152,9 +146,11 @@ public class ThreadLockDemo {
 		}
 	}
 }
+```
 
 Eseguendo il codice dovremmo ottenere un output come il seguente:
 
+```
 Producer: Inserisco qualcosa nel contenitore
 Consumer: Prelevo qualcosa dal contenitore
 Producer: Inserisco qualcosa nel contenitore
@@ -164,5 +160,6 @@ Consumer: Prelevo qualcosa dal contenitore
 ..
 Producer: interruzione
 Consumer: interruzione
+```
 
 Il metodo `join()` consente di far attendere al Thread principale la terminazione di `Producer` e `Consumer`.

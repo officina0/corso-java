@@ -18,7 +18,7 @@ L’integrazione dello stato e del behavior è comunemente chiamata _encapsulati
 
 È interessante osservare, che OOP è una metodologia ed uno stile di progettazione del software che, tranne in casi particolari, può essere impiegato indipendentemente dal linguaggio ma che risulta estremamente più facile da adottare se il linguaggio (come Java, C++ e altri) ne fornisce le primitive (come le classi in Java).
 
-Per citare un esempio, il codice di X11, l’ambiente grafico di Unix, ha sempre avuto un rigido approccio OO ma scritto in C con l’uso di puntatori a funzione per “emulare” i metodi e dichiarazioni di strutture non pubbliche per ’emularè l’information hiding.
+Per citare un esempio, il codice di X11, l’ambiente grafico di Unix, ha sempre avuto un rigido approccio OO ma scritto in C con l’uso di puntatori a funzione per “emulare” i metodi e dichiarazioni di strutture non pubbliche per ‘emularè l’information hiding.
 
 Classi e oggetti in Java
 ------------------------
@@ -35,31 +35,28 @@ La distinzione tra oggetto e classe è enfatizzata dalle seguenti definizioni:
 
 Una classe in java si definisce con la keyword `class`:
 
-/\*\* 
- \* Classe per rappresentare un Conto
+```
+/**
+ * Classe per rappresentare un Conto
  */
 public class Conto {
 	private double amount;
 	private String owner;
-	
 	// costruttore
 	public Conto(String owner, double initialAmount) {
 		this.owner = owner;
 		this.amount = initialAmount;
 	}
-
 	public  void  versamento(double qty) {
 		amount += qty;
 	}
-
 	public boolean prelievo(double qty) {
 		if(amount < qty)
 			return false;
 		amount -= qty;
 		return true;
 	}
-
-	/\* Getters */
+	/* Getters */
 	public double getAmount() {
 		return amount;
 	}
@@ -67,6 +64,7 @@ public class Conto {
 		return owner;
 	}
 }
+```
 
 dove si può osservare che:
 
@@ -109,7 +107,9 @@ Non è una keyword: si ha la visibilità di default se nessuna delle precedenti 
 
 Di particolare rilevanza è il metodo contrassegnato con il commento `// costruttore`: è diverso dagli altri metodi (`versamento` e `prelievo`) in quanto non dichiara un valore di ritorno e serve (come richiesto dalla definizione di classe di Yourdan) per creare nuove istanze di elementi di quella classe. Il costruttore delle classi deve essere utilizzato con la keyword **new**, la scrittura:
 
+```
 Conto myConto = new Conto("Francesca", 1.0e8);
+```
 
 Significa che vogliamo costruire (allocare in memoria) una nuova istanza di un oggetto della categoria `Conto` ed inizializzarlo con `owner` “Francesca” e `amount` 1 miliardo.
 
@@ -125,8 +125,10 @@ Si osservi come nel costruttore si usi `this` nella prima riga per disambiguare 
 
 Una volta costruito l’oggetto conto sarà possibile utilizzare i suoi metodi con la notazione:
 
+```
 conto.versamento(10);
 conto.prelievo(100);
+```
 
 L’accesso ai field sarebbe possibile con la medesima notation (e.g. `conto.amount = 5`) ma è proibito per scelta della nostra classe che definisce i field come `private` e quindi il compilatore ce lo segnalerebbe come errore.
 
@@ -135,29 +137,26 @@ Ereditarietà: estendere una classe
 
 L’utilità della strutturazione OO diventa palese, a mio parere, se si pensa a questo punto che potrebbe nascere la necessità di estendere l’immaginario programma per la gestione di conti con una banalizzazione di un conto in cui alcune somme vengano vincolate (e.g. nel tempo: sono nel conto ma disponibili solo dopo una certa data); in tal caso potremmo “estendere” direttamente la classe Conto:
 
+```
 public class ContoVincolato extends Conto {
-		
 	private double importoVincolato;
 	private Date fineVincolo;
-	
 	public ContoVincolato(String  o, double a) {
 		super(o,a);
 		importoVincolato=0;
 	}
-
 	public boolean vincola(double qty, Date fineVincolo) {
-		if(importoVincolato != 0 || getAmount() < qty) 
+		if(importoVincolato != 0 || getAmount() < qty)
 			return false;
 		else {
 			prelievo(qty);
 			importoVincolato = qty;
-			this.fineVincolo = fineVincolo; 
+			this.fineVincolo = fineVincolo;
 			return true;
 		}
 	}
-
-	/\*\* 
-	 \* svincola l'importo vincolato se è passata la data di vincolo
+	/**
+	 * svincola l'importo vincolato se è passata la data di vincolo
 	 */
 	public boolean svincola() {
 		if(importoVincolato > 0) {
@@ -170,22 +169,18 @@ public class ContoVincolato extends Conto {
 		}
 		return false;
 	}
-
 	//overloaded getAmount
 	public double getAmount(Date quando) {
-	
-		if(importoVincolato == 0 || quando.before(fineVincolo)) 
+		if(importoVincolato == 0 || quando.before(fineVincolo))
 			return getAmount();
-	
 		return getAmount() + importoVincolato;
 	}
-
 	public double getAmount() {
 		svincola();
 		return super.getAmount();
 	}
-
 }
+```
 
 Questo codice serve a mostrare come estendere (cioè aggiungere funzionalità) alla classe `Conto` senza doverne riscrivere il codice. In questo caso si è aggiunta la funzionalità di vincolare un importo fino ad una certa data e inserito un metodo che renderà di nuovo disponibile l’importo vincolato se chiamato dopo la data di scadenza del vincolo.
 

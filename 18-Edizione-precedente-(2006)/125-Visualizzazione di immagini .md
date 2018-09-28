@@ -1,11 +1,12 @@
 Iniziamo a vedere i metodi drawImage della classe Graphics, con i quali è possibile visualizzare delle immagini salvate con formato gif o jpg.  
 Nella classe Graphics ci sono vari metodi drawImage, essi sono:
 
-abstract boolean drawImage(Image img, int x, int y, Color bgcolor, ImageObserver observer) abstract boolean drawImage(Image img, int x, int y, ImageObserver observer)  
+abstract boolean drawImage(Image img, int x, int y, Color bgcolor, ImageObserver observer)  
+abstract boolean drawImage(Image img, int x, int y, ImageObserver observer)  
 abstract boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor, ImageObserver observer)  
 abstract boolean drawImage(Image img, int x, int y, int width, int height, ImageObserver observer)  
 abstract boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, Color bgcolor, ImageObserver observer)  
-abstract boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, ImageObserver observer)  
+abstract boolean drawImage(Image img, int dx1, int dy1, int dx2, int dy2, int sx1, int sy1, int sx2, int sy2, ImageObserver observer)
 
 Tutti i metodi richiedono i due parametri Image e ImageObserver.  
 Image rappresenta l’immagine da visualizzare, essa è una classe astratta che fornisce un accesso indipendente dal formato a immagini grafiche, oggetti di questa classe vengono creati usando metodi di altre classi che creano delle immagini, a seconda del conteso in cui si vogliono usare le immagini.  
@@ -29,8 +30,6 @@ Proviamo a fare un’esempio di visualizzazione di una immagine. Creiamo innanzi
 
 ![immagine](http://html.it/guide/img/guida_java/29a.jpg)
 
-  
-
 e la salviamo in formato gif usando un qualunque editore di immagini, chiamandola ad esempio pietro.jpg.  
 A questo punto creiamo la seguente applet:
 
@@ -53,7 +52,7 @@ public void paint(Graphics g)
 g.drawImage(ImmaginePietro,0,0,this);  
 getAppletContext().showStatus(“Visualizzo l’immagine pietro.jpg, Applet creata da Pietro Castellucci”);  
 }  
-}  
+}
 
 la mettiamo in un file chiamato VisualizzaImmagine.java e la invochiamo usando il documento html seguente (Immagine.html):
 
@@ -71,7 +70,7 @@ Quella di sopra è una applet, ma quella di sotto no!
 <BR>  
 <IMG src=”pietro.jpg”>  
 </body>  
-</html>  
+</html>
 
 Se eseguiamo l’applet ci accorgiamo che non vi è alcuna differenza tra l’immagine caricata nell’applet e quella caricata usando il tag IMG src dell’html, a parte il messaggio che appare quando vi si passa sopra con il mouse, potrebbe sembrare anche un lavoro inutile per le vostre pagine html.
 
@@ -103,53 +102,53 @@ b1.addItemListener(new IL());
 b2.addItemListener(new IL());  
 add(p,borderLayout.SOUTH);  
 }  
-boolean MOVIMENTO=false;  
-  
-int numero=0;  
-  
+boolean MOVIMENTO=false;
+
+int numero=0;
+
 int inc=1;  
 public void paint(Graphics g)  
 {  
 if (!MOVIMENTO)  
 {  
 g.drawImage(ImmaginePietro,0,0,this);  
-getAppletContext().showStatus(“Visualizzo l’immagine pietro.jpg, Immagine ferma, Applet creata da Pietro Castellucci”);  
-  
+getAppletContext().showStatus(“Visualizzo l’immagine pietro.jpg, Immagine ferma, Applet creata da Pietro Castellucci”);
+
 numero=0;  
 }  
 else  
 {  
 g.setPaintMode();  
-g.drawImage(Elabora(ImmaginePietro,numero),0,0,this);  
-  
-for (int k=0;k<=99;k++) getAppletContext().showStatus(“Visualizzo l’immagine pietro.jpg, Frame “+numero+”, Applet creata da Pietro Castellucci”);  
-  
+g.drawImage(Elabora(ImmaginePietro,numero),0,0,this);
+
+for (int k=0;k<=99;k++) getAppletContext().showStatus(“Visualizzo l’immagine pietro.jpg, Frame “+numero+”, Applet creata da Pietro Castellucci”);
+
 getAppletContext().showStatus(“Visualizzo l’immagine pietro.jpg, Frame “+numero+”, Applet creata da Pietro Castellucci”);  
 if (numero>=10) inc=-1;  
 if (numero<=0) inc=1;  
 numero+=inc;  
 }  
 repaint();  
-}  
-  
+}
+
 Image Elabora (Image img, int frm)  
-{  
-  
-return img.getScaledInstance(324-(frm\*20), 85-(frm\*4),img.SCALE_FAST);  
-  
+{
+
+return img.getScaledInstance(324-(frm\*20), 85-(frm\*4),img.SCALE_FAST);
+
 }  
 public class IL implements ItemListener  
 {  
 public void itemStateChanged(ItemEvent e)  
-{  
-  
+{
+
 if (b1.getState()) MOVIMENTO=false;  
 else MOVIMENTO=true;  
 repaint();  
+}
+
 }  
-  
-}  
-}  
+}
 
 Caricata dal file html seguente:
 
@@ -167,7 +166,7 @@ Quella di sopra è una applet, ma quella di sotto no!
 <BR>  
 <IMG src=”pietro.jpg”>  
 </body>  
-</html>  
+</html>
 
 La nuova classe Graphics2D mette a disposizione altri metodi drawImage, tra cui alcuni che hanno un parametro di tipo Affinetransform che come si capisce dal nome è una trasformazione affine dell’immagine, ovvero una scalatura, una rotazione o una traslazione, o una combinazione di queste.
 

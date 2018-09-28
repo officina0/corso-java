@@ -6,4 +6,5 @@ Pensiamo ad esempio ad un bottone, esso graficamente non è altro che una scatol
 
 Usando le caratteristiche di basso livello, possiamo costruirci i nostri GUI personalizzati, oppure modificare quelli esistenti secondo i nostri bisogni, ma non solo, possiamo estendere un componente particolare, un componente tela, su cui possiamo disegnare quello che vogliamo e metterlo nelle nostre interfacce come un qualsiasi altro GUI.
 
-Se usiamo gli applet piuttosto che le applicazioni possiamo evitare di usare la tela, in quanto l’applet ha implicitamente una tela. Ma iniziamo a vedere concretamente come è possiblie disegnare su un componente qualsiasi o su un applet, iniziamo a parlare delle applet, per poi estendere i ragionamenti fatti ai componenti in generale.
+Se usiamo gli applet piuttosto che le applicazioni possiamo evitare di usare la tela, in quanto l’applet ha implicitamente una tela.  
+Ma iniziamo a vedere concretamente come è possiblie disegnare su un componente qualsiasi o su un applet, iniziamo a parlare delle applet, per poi estendere i ragionamenti fatti ai componenti in generale.

@@ -10,13 +10,13 @@ In ambiente enterprise ciò risulta sempre, quindi è evidente che in questo cas
 
 Listato 13.1. Test sull’uso delle Stringhe
 
-package it.html.tiger;  
-  
+package it.html.tiger;
+
 public class StringComparison {  
   /**  
    \* @param args  
    */  
-  public static void main(String\[\] args) {  
+  public static void main(String[] args) {  
     long start=System.currentTimeMillis();  
     testString();  
     long end=System.currentTimeMillis();  
@@ -31,8 +31,8 @@ public class StringComparison {
     testStringBuilder();  
     end=System.currentTimeMillis();  
     System.out.println(“Tempo di esecuzione testStringBuilder() “+(end-start)+” millis.”);  
-  }  
-  
+  }
+
   private static void testString() {  
     String x = “”;  
     for(int i=0;i<15000;i++){  

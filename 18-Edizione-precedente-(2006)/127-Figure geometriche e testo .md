@@ -26,13 +26,14 @@ Poligoni
 
 Usando la drawPolygon si disegna un generico poligono. Esistono due tipi di drawPolygon:
 
-drawPoligon( int\[\] PUNTIx, int PUNTIy, int NUMEROPUNTI);
+drawPoligon( int[] PUNTIx, int PUNTIy, int NUMEROPUNTI);
 
 e
 
 drawPolygon (Polygon p)
 
-La seconda usa un oggetto della classe Polygon, che definisce un poligono. Esistono le corrispondenti fillPolygon.
+La seconda usa un oggetto della classe Polygon, che definisce un poligono.  
+Esistono le corrispondenti fillPolygon.
 
 Testo
 -----
@@ -40,13 +41,14 @@ Testo
 Per disegnare una stringa si può usare il metodo drawString (String TESTO, int x, int y);  
 Un testo può essere disegnato con diverse font, per cambiare le font Graphics mette a disposizione il metodo setfont(font font), dove font è l’oggetto che definisce il tipo di carattere.  
 font è la classe che definisce i caratteri, è possibile instanziarla creando uno specifico font, usando font(String name, int style, int size).  
-font è una classe abbastanza complicata, però è facile trovare ed usare i fonts del sistema mentre si esegue un programma java: Nelle vecchie versioni di java baste scrivere:
+font è una classe abbastanza complicata, però è facile trovare ed usare i fonts del sistema mentre si esegue un programma java:  
+Nelle vecchie versioni di java baste scrivere:
 
-String \[\] NOMI=Toolkit.getdefaultToolkit().getfontList();
+String [] NOMI=Toolkit.getdefaultToolkit().getfontList();
 
 Mentre nelle nuove versioni di Java (da JDK 1.2 )
 
-String \[\] NOMI=GraphicsEnvironment.  
+String [] NOMI=GraphicsEnvironment.  
 getLocalGraphicsEnvironment().  
 getAvailablefontFamilyNames();
 

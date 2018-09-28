@@ -4,8 +4,6 @@ Un applet ha bisogno di un file html che la richiama, ad esempio sia PrimoApplet
 
 <applet code=”PrimoApplet.class” ></applet>
 
-  
-
 Supponiamo che questo file si chiami pippo.html, a questo punto abbiamo due modi di eseguire l’applet, il primo in fase di debug è usando il programma appletviewer di JDK, e scriveremo in questo caso dal prompt del dos:
 
 appletviewer pippo.html
@@ -18,30 +16,33 @@ Per maggiori dettagli sulle pagine html vi consiglio di consultare sul sito HTML
 <head>  
 <title>Applet PrimoApplet</title>  
 </head>  
-<body>  
+<body>
 
 Il seguente è
 
 l’applet PrimoApplet.class
 
-  
-
 <applet code=”PrimoApplet.class” width=100 height=100>Il tuo browser è vecchio, cambialo!</APPLET>  
 </body>  
 </html>
 
-  
-
-Abbiamo visto come mandare in esecuzione l’applet, adesso creiamolo. Innanzitutto dobbiamo creare una classe chiamata PrimoApplet, che estende la classe java.applet.Applet, e dobbiamo definire alcuni metodi che il sistema (appletviewer o il browser) invocherà automaticamente. Uno di questi metodi si chiama paint(Graphics O), e Graphics è un oggetto che rappresenta lo schermo dell’applet, noi lo ridefiniremo in modo da fare uscire sullo schermo quello che preferiamo.  
+Abbiamo visto come mandare in esecuzione l’applet, adesso creiamolo.  
+Innanzitutto dobbiamo creare una classe chiamata PrimoApplet, che estende la classe java.applet.Applet, e dobbiamo definire alcuni metodi che il sistema (appletviewer o il browser) invocherà automaticamente. Uno di questi metodi si chiama paint(Graphics O), e Graphics è un oggetto che rappresenta lo schermo dell’applet, noi lo ridefiniremo in modo da fare uscire sullo schermo quello che preferiamo.  
 Useremo il metodo drawString della classe Graphics per stampare una stringa su schermo.  
 Il programma PrimoApplet.java è il seguente
 
 import java.applet.*;  
-import java.awt.*; public class PrimoApplet extends Applet  
-{ public void paint (Graphics g)  
+import java.awt.*;
+
+public class PrimoApplet extends Applet  
+{
+
+public void paint (Graphics g)  
 {  
 g.drawString(“Ciao, io sono il primo applet.”,0,50);  
-} }
+}
+
+}
 
 Il package applet contiene tre interfacce ed una classe:  
 Interfacce
@@ -50,24 +51,30 @@ AppletContext
 
 ,
 
-questa interfaccia corrisponde all’ambiente dell’applet, ovvero al documento che lo contiene e agli altri applets contenuti nello stesso documento.  
-AppletStub, riguarda l’ambiente di esecuzione dell’applet, sia esso il browser che l’appletviewer. AudioClip, l’interfaccia è una semplice astrazione per suonare degli audio.
+questa interfaccia corrisponde all’ambiente dell’applet, ovvero al documento che lo  
+contiene e agli altri applets contenuti nello stesso documento.  
+AppletStub, riguarda l’ambiente di esecuzione dell’applet, sia esso il browser che l’appletviewer.  
+AudioClip, l’interfaccia è una semplice astrazione per suonare degli audio.
 
 Classe  
 Applet
 
-  
-
 Analizziamo la classe Applet più in dettaglio.  
 Il costruttore è unico, senza argomenti.  
-Applet() Vi sono alcuni metodi chiamati dal browser o dall’appletviewer automaticamente, essi sono: void init(), questo metodo viene invocato appena l’applet viene completamente caricato nel sistema.  
+Applet()
+
+Vi sono alcuni metodi chiamati dal browser o dall’appletviewer automaticamente, essi sono:  
+void init(), questo metodo viene invocato appena l’applet viene completamente caricato nel sistema.  
 Esso tipicamente viene utilizzato per inizializzare l’applet.
 
-void start(), chiamato quando il sistema manda in esecuzione l’applet, lo informa di questo avvenimento.  
-void stop(), chiamato quando il sistema stoppa l’esecuzione dell’applet, lo informa dell’evento, chiamato quando si preme il bottone STOP dell’appletviewer, si cambia pagina nel browser.  
+void start(), chiamato quando il sistema manda in esecuzione l’applet, lo informa di questo  
+avvenimento.  
+void stop(), chiamato quando il sistema stoppa l’esecuzione dell’applet, lo informa dell’evento,  
+chiamato quando si preme il bottone STOP dell’appletviewer, si cambia pagina nel browser.  
 void destroy(),
 
-chiamato quando l’applet viene distrutto, ovvero quando si cambia esce dal browser o dall’appletviewer
+chiamato quando l’applet viene distrutto, ovvero quando si cambia esce dal browser  
+o dall’appletviewer
 
 Quindi il ciclo di vita di un’applet è il seguente:
 
@@ -106,9 +113,7 @@ public void destroy()
 super.destroy();  
 System.out.println(“Eseguito public void destroy()”);  
 }  
-}  
-
-  
+}
 
 Lo compiliamo con: javac Stadi.java  
 Per caricarlo creeremo il file Stadi.html che conterrà:
@@ -124,18 +129,27 @@ Il seguente è l’applet Stadi, che fa vedere gli stadi attraversati dall’app
 </body>  
 </html>
 
-Per eseguirlo batteremo : appleviewer Stadi.html, oppure faremo apri sul file Stadi.html con il nostro browser preferito. Gli altri metodi della classe Applet sono:
+Per eseguirlo batteremo : appleviewer Stadi.html, oppure faremo apri sul file Stadi.html con il  
+nostro browser preferito.
 
-AppletContext getAppletContext(), da l’AppletContext associato all’applet, ovvero il documento che lo ha mandato in esecuzione e gli altri applet invocati da questo.  
+Gli altri metodi della classe Applet sono:
+
+AppletContext getAppletContext(), da l’AppletContext associato all’applet, ovvero il documento  
+che lo ha mandato in esecuzione e gli altri applet invocati da questo.  
 String getAppletInfo(), da informazioni sull’applet, deve essere sovrascritta, la normale da null.  
-AudioClip getAudioClip(URL url), da l’oggetto di tipo AudioClip associato all’URL inserito. Ricordo che l’URL è una risorsa del web.  
-AudioClip getAudioClip(URL url, String name), da l’oggetto di tipo AudioClip associato all’URL e al nome.  
+AudioClip getAudioClip(URL url), da l’oggetto di tipo AudioClip associato all’URL inserito.  
+Ricordo che l’URL è una risorsa del web.  
+AudioClip getAudioClip(URL url, String name), da l’oggetto di tipo AudioClip associato all’URL e  
+al nome.  
 URL getCodeBase(), da l’url associato all’applet.  
 URL getdocumentBase(), da l’url del documento html che ha invocato l’applet.  
-Image getImage(URL url), da l’ oggetto di tipo Image associata all’url inserito, essa può essere stampata sullo schermo.  
+Image getImage(URL url), da l’ oggetto di tipo Image associata all’url inserito, essa può essere  
+stampata sullo schermo.  
 Image getImage(URL url, String name), da l’oggetto di tipo Image associato all’url e al nome.  
-Locale getLocale(), da l’oggetto di tipo Locale associato all’applet, esso si cura dell’internazionalizzazione, si trova nel package java.util.  
-String getParameter(String name), da il valore del parametro chiamato name preso dalla pagina html che invoca l’applet. L’applet infatti può essere invocato con dei valori di ingresso, come l’args del main, questo metodo li preleva.
+Locale getLocale(), da l’oggetto di tipo Locale associato all’applet, esso si cura  
+dell’internazionalizzazione, si trova nel package java.util.  
+String getParameter(String name), da il valore del parametro chiamato name preso dalla pagina  
+html che invoca l’applet. L’applet infatti può essere invocato con dei valori di ingresso, come l’args del main, questo metodo li preleva.
 
 Ad esempio se invoco l’applet Clock.class così:
 
@@ -145,17 +159,26 @@ Ad esempio se invoco l’applet Clock.class così:
 
 Se nel codice dell’applet scriverò getParameter(“Color”) il risultato che otterrò sarà “blue”.
 
-String\[\]\[\] getParameterInfo(), da un array che contiene informazioni sui parametri dell’applet. boolean isActive(), dice se l’applet è attivo.  
+String[][] getParameterInfo(), da un array che contiene informazioni sui parametri dell’applet.  
+boolean isActive(), dice se l’applet è attivo.  
 static AudioClip newAudioClip(URL url), prende un AudioClip da un dato url.  
 void play(URL url), suona l’audio clip preso dall’url assoluto.  
 void play(URL url, String name), suona il Clip dato dall’url e dal nome specificato.  
-void resize(Dimension d) o void resize(int width, int height), richiede all’applet di modificare le proprie dimensioni. Dimension è un oggetto awt che è una dimensione, ovvero un altezza e una larghezza.  
+void resize(Dimension d) o void resize(int width, int height), richiede all’applet di modificare le  
+proprie dimensioni. Dimension è un oggetto awt che è una dimensione,  
+ovvero un altezza e una larghezza.  
 void setStub(AppletStub stub), setta l’AppletStub dell’applet con il nuovo stub.  
-void showStatus(String msg), Richiede all’applet che la stringa venga stampata nella finestra di stato dell’applet.
+void showStatus(String msg), Richiede all’applet che la stringa venga stampata nella finestra di  
+stato dell’applet.
 
 Un applet è una estensione di Panel, il quale è un semplice contenitore, da questo eredita il metodo: addNotify
 
-Panel estende Container da cui eredita, e fa ereditare ad Applet i metodi: add, add, add, add, add, addContainerListener, addImpl, countComponents, deliverEvent, doLayout, findComponentAt, findComponentAt, getalignmentX, getalignmentY, getComponent, getComponentAt, getComponentAt, getComponentCount, getComponents, getInsets, getLayout, getMaximumsize, getMinimumsize, getPreferredsize, insets, invalidate, isAncestorOf, layout, list, list, locate, minimumsize, paint, paintComponents, paramString, preferredsize, print, printComponents, processContainerEvent, processEvent, remove, remove, removeAll, removeContainerListener, removeNotify, setfont, setLayout, update, validate, validatetree
+Panel estende Container da cui eredita, e fa ereditare ad Applet i metodi:  
+add, add, add, add, add, addContainerListener, addImpl, countComponents, deliverEvent,  
+doLayout, findComponentAt, findComponentAt, getalignmentX, getalignmentY, getComponent,  
+getComponentAt, getComponentAt, getComponentCount, getComponents, getInsets, getLayout,  
+getMaximumsize, getMinimumsize, getPreferredsize, insets, invalidate, isAncestorOf, layout,  
+list, list, locate, minimumsize, paint, paintComponents, paramString, preferredsize, print, printComponents, processContainerEvent, processEvent, remove, remove, removeAll, removeContainerListener, removeNotify, setfont, setLayout, update, validate, validatetree
 
 A sua volta Container estende Component, e quindi vi sono gli attributi
 
@@ -163,7 +186,8 @@ BOTTOM\_alignMENT, CENTER\_alignMENT, LEFT\_alignMENT, RIGHT\_alignMENT, TOP_ali
 
 e i metodi:
 
-action, add, addComponentListener, addFocusListener, addInputMethodListener, addKeyListener, addMouseListener, addMouseMotionListener, addPropertyChangeListener, addPropertyChangeListener, bounds, checkImage, checkImage, coalesceEvents, contains, contains, createImage, createImage, disable, disableEvents, dispatchEvent, enable, enable, enableEvents, enableInputMethods, firePropertyChange, getBackground, getBounds, getBounds, getColorModel, getComponentOrientation, getCursor, getdropTarget, getfont, getfontMetrics, getForeground, getGraphics, getHeight, getInputMethodRequests, getLocation, getLocation, getLocationOnScreen, getName, getParent, getPeer, getsize, getsize, gettreeLock, getwidth, getX, getY, gotFocus, handleEvent, hasFocus, hide, imageUpdate, inside, isDisplayable, isDoubleBuffered, isEnabled, isFocustraversable, isLightweight, isOpaque, isValid, isVisible, keyDown, keyUp, list, list, list, location, lostFocus, mouseDown, mouseDrag, mouseEnter, mouseExit, mouseMove, mouseUp, move, nextFocus, paintAll, prepareImage, prepareImage, printAll, processComponentEvent, processFocusEvent, processInputMethodEvent, processKeyEvent, processMouseEvent, processMouseMotionEvent, removeComponentListener, removeFocusListener, removeInputMethodListener, removeKeyListener, removeMouseListener, removeMouseMotionListener, removePropertyChangeListener, removePropertyChangeListener, repaint, repaint, repaint, repaint, requestFocus, reshape, resize, resize, setBackground, setBounds, setBounds, setComponentOrientation, setCursor, setdropTarget, setEnabled, setForeground, setLocale, setLocation, setLocation, setName, setsize, setsize, setVisible, show, size, toString, transferFocus
+action, add, addComponentListener, addFocusListener, addInputMethodListener, addKeyListener,  
+addMouseListener, addMouseMotionListener, addPropertyChangeListener, addPropertyChangeListener, bounds, checkImage, checkImage, coalesceEvents, contains, contains, createImage, createImage, disable, disableEvents, dispatchEvent, enable, enable, enableEvents, enableInputMethods, firePropertyChange, getBackground, getBounds, getBounds, getColorModel, getComponentOrientation, getCursor, getdropTarget, getfont, getfontMetrics, getForeground, getGraphics, getHeight, getInputMethodRequests, getLocation, getLocation, getLocationOnScreen, getName, getParent, getPeer, getsize, getsize, gettreeLock, getwidth, getX, getY, gotFocus, handleEvent, hasFocus, hide, imageUpdate, inside, isDisplayable, isDoubleBuffered, isEnabled, isFocustraversable, isLightweight, isOpaque, isValid, isVisible, keyDown, keyUp, list, list, list, location, lostFocus, mouseDown, mouseDrag, mouseEnter, mouseExit, mouseMove, mouseUp, move, nextFocus, paintAll, prepareImage, prepareImage, printAll, processComponentEvent, processFocusEvent, processInputMethodEvent, processKeyEvent, processMouseEvent, processMouseMotionEvent, removeComponentListener, removeFocusListener, removeInputMethodListener, removeKeyListener, removeMouseListener, removeMouseMotionListener, removePropertyChangeListener, removePropertyChangeListener, repaint, repaint, repaint, repaint, requestFocus, reshape, resize, resize, setBackground, setBounds, setBounds, setComponentOrientation, setCursor, setdropTarget, setEnabled, setForeground, setLocale, setLocation, setLocation, setName, setsize, setsize, setVisible, show, size, toString, transferFocus
 
 E quindi quelli di Object:  
 clone, equals, finalize, getClass, hashCode, notify, notifyAll, wait, wait, wait
@@ -178,8 +202,8 @@ import java.applet.*;
 import java.awt.*;  
 import java.awt.image.*;  
 public class Info extends Applet implements ImageObserver  
-{  
-  
+{
+
 public Info()  
 {  
 }  
@@ -188,8 +212,8 @@ public void init()
 super.init();  
 setBackground(Color.yellow);  
 resize(400,200);  
-}  
-  
+}
+
 public void start()  
 {  
 super.start();  
@@ -197,13 +221,13 @@ super.start();
 public void stop()  
 {  
 super.stop();  
-}  
-  
+}
+
 public void destroy()  
 {  
 super.destroy();  
-}  
-  
+}
+
 public void paint (Graphics g)  
 {  
 g.setColor(Color.darkGray);  
@@ -228,16 +252,16 @@ public String getAppletInfo()
 {  
 return “Applet di Pietro Castellucci”;  
 }  
-public String\[\]\[\] getParameterInfo()  
+public String[][] getParameterInfo()  
 {  
-String\[\]\[\] r={  
+String[][] r={  
 {“parametro1″,”intero”,”Tua età”},  
 {“parametro2″,”Stringa”, “Tuo Cognome”},  
 {“parametro3″,”Stringa”,”Tuo Nome”}  
 };  
 return r;  
 }  
-}  
+}
 
 Per caricare l’applet creeremo un file chiamato Info.html, che conterrà:
 

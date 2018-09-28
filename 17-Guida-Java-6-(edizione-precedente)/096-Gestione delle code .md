@@ -14,14 +14,14 @@ Per meglio capire, creeremo una serie di thread Consumer che consumano i messagg
 
 Listato 20.1. Simula il problema delle attese in caso di coda piena
 
-package it.html.threads;  
-  
+package it.html.threads;
+
 import java.util.concurrent.BlockingQueue;  
-import java.util.concurrent.LinkedBlockingQueue;  
-  
-public class MainTest {  
-  
-  public static void main(String\[\] args) {  
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class MainTest {
+
+  public static void main(String[] args) {  
     //Creiamo un’istanza di coda “blocking”  
     BlockingQueue queue = new LinkedBlockingQueue<String>();  
       
@@ -47,8 +47,8 @@ Il main si spiega da solo, è piuttosto semplice intuirne il comportamento.
 
 Listato 20.2. Classe che simula il consumo di messaggi di testo
 
-class Consumer extends Thread{  
-  
+class Consumer extends Thread{
+
   //teniamo un counter a livello di classe  
   static int id;  
     
@@ -80,8 +80,8 @@ Il thread Consumer è altrettanto intuitivo: in un ciclo infinito si mette in at
 
 Listato 20.3. Classe che simula la produzione di messaggi di testo
 
-class Producer extends Thread{  
-  
+class Producer extends Thread{
+
   BlockingQueue<String> queue;  
     
   public Producer(BlockingQueue<String> queue) {  

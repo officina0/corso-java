@@ -24,7 +24,7 @@ In Java intendiamo per “oggetto” l’istanza particolare di una certa classe
 
 In UML lo scambio di messaggi è rappresentato con un diagramma (un semplice schema) chiamato sequence simile a quello riportato in figura:
 
-![Sequence Diagram](http://www.html.it/wp-content/uploads/2014/11/java21_01.png)
+![Sequence Diagram](https://tbm-html.s3.amazonaws.com/app/uploads/2014/11/java21_01.png)
 
 che va letta come: l’oggetto `Sender` spedisce il messaggio corrispondente al metodo `methodXYZ` all’oggetto `Recipient`, il rettangolo vicino alla freccia (sotto `Recipient`) è comunemente detto _activation_ e rappresenta l’elaborazione necessaria a `Recipient` per operare sul suo stato e poter reagire al messaggio ricevuto.
 
@@ -42,7 +42,7 @@ _Una classe è esattamente il “blueprint” (il prototipo) di un oggetto_ in c
 
 Grazie all’UML possiamo utilizzare il **Class Diagram** come notazione e disegnare una classe in modo simile allo schema che segue:
 
-![Sequence Diagram](http://www.html.it/wp-content/uploads/2014/11/java21_02.png)
+![Sequence Diagram](https://tbm-html.s3.amazonaws.com/app/uploads/2014/11/java21_02.png)
 
 Lo schema mostra sia la notazione per la rappresentazione di una classe (con riportati attributi e metodi) sia quella per rappresentare una istanza. Nel secondo caso i medodi non hanno ragione di essere riportati (sono disponibili per il fatto che `aa` è istanza di `ClasseXYZ`). Sono riportati invece i valori degli attributi che sono significativi per ogni singola istanza (mentre il loro valore non avrebbe senso, tranne che per l’inizializzazione, se associato alla definizione di classe).
 
@@ -52,11 +52,15 @@ Come l’analisi di ogni problema deve essere affrontata in maniera iterativa, a
 
 Perciò gli schemi sopra riportati vanno condiderati solo di primo livello e potranno essere dettagliati aggiungendo per ogni attributo il relativo tipo e valore iniziale:
 
-typeAttribute: data\_type = initial\_valueClass
+```
+typeAttribute: data_type = initial_valueClass
+```
 
 mentre per ogni messaggio (metodo) si dovrà procedere a dettagliare la firma (signature):
 
+```
 Metod ( arg: type, …, arg: type ) : return_type
+```
 
 Analogamente sia per gli attributi che per i metodi andrà specificata in una fase più avanzata di analisi la **visibilità** che, nella notazione UML, consiste nell’anteporre al nome dei metodi e degli attributi:
 
@@ -88,41 +92,37 @@ La ragione di cercare di rappresentare in UML ogni aspetto delle classi (e delle
 
 A titolo di esempio riprendiamo schema della classe `Conto`, esaminato nella lezione introduttiva sulla classi in Java ed il cui codice riportiamo anche di seguito.
 
-/\*\* 
-\* Classe per rappresentare un Conto 
-*/ 
+```
+/**
+* Classe per rappresentare un Conto
+*/
 public class Conto { 
-	
-	private double amount; 
+	private double amount;
 	private String owner; 
-	
-	// costruttore 
-	public Conto(String owner, double initialAmount) { 
-		this.owner = owner; 
-		this.amount = initialAmount; 
+	// costruttore
+	public Conto(String owner, double initialAmount) {
+		this.owner = owner;
+		this.amount = initialAmount;
 	} 
-
-	public void versamento(double qty) { 
-		amount += qty; 
+	public void versamento(double qty) {
+		amount += qty;
 	} 
-
-	public boolean prelievo(double qty) { 
-		if(amount < qty) 
-			return false; 
-		amount -= qty; 
-		return true; 
+	public boolean prelievo(double qty) {
+		if(amount < qty)
+			return false;
+		amount -= qty;
+		return true;
 	}
-	
-	public double getAmount() { 
-		return amount; 
+	public double getAmount() {
+		return amount;
 	} 
-
-	public String getOwner() { 
-		return owner; 
-	} 
+	public String getOwner() {
+		return owner;
+	}
 }
+```
 
-![Sequence Diagram](http://www.html.it/wp-content/uploads/2014/11/java21_03.png)
+![Sequence Diagram](https://tbm-html.s3.amazonaws.com/app/uploads/2014/11/java21_03.png)
 
 Nel quale è mostrato anche come sia possibile in UML qualificare elementi per mezzo di quelli che sono comunemente chiamati **strereotype** `(<< ... >>`) e che servono per aggiungere significati alle entità non descritti direttamente in UML e rappresentano un naturale sistema di estenzione per l’UML stesso.
 

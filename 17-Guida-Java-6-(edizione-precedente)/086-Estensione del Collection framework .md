@@ -2,12 +2,12 @@ Nel precedente capitolo abbiamo visto come poter utilizzare il nuovo Collection 
 
 Listato 8.1. Esempio di Interfaccia Collection
 
-package java.util;  
-  
+package java.util;
+
 public interface Collection<E> extends Iterable<E> {  
   //..  
   Iterator<E> iterator();  
-  <T> T\[\] toArray(T\[\] a);  
+  <T> T[] toArray(T[] a);  
   boolean add(E e);  
   boolean containsAll(Collection<?> c);  
   boolean addAll(Collection<? extends E> c);  
@@ -36,11 +36,11 @@ A questo punto siamo pronti per definire la nostra struttura dati Generics. Non 
 
 Listato 8.3. Esempio di una struttura Generics
 
-package it.html.generics;  
-  
+package it.html.generics;
+
 import java.util.Iterator;  
-import java.util.Stack;  
-  
+import java.util.Stack;
+
 public class Pila<N extends Number> implements Iterable<N>{  
     
   private Stack<N> list;  
@@ -55,12 +55,12 @@ public class Pila<N extends Number> implements Iterable<N>{
     
   public N remove(){  
     return list.pop();  
-  }  
-  
+  }
+
   boolean isEmpty(){  
     return list.isEmpty();  
-  }  
-  
+  }
+
   @Override  
   public Iterator<N> iterator() {  
     return list.iterator();  
@@ -73,7 +73,7 @@ Codifichiamo quindi i metodi `add` e `remove` utilizzando come parametro N, che 
 
 Listato 8.4. Utilizza la pila vista in precedenza
 
-public static void main(String\[\] args) {  
+public static void main(String[] args) {  
   Pila<Integer> p2=new Pila<Integer>();    
   for(int i=0;i<50;i++){  
     p2.add(i);  

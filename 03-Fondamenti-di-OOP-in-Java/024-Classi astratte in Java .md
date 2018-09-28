@@ -2,10 +2,12 @@ Le **classi astratte in Java** sono utilizzate per poter dichiarare caratteristi
 
 La sua dichiarazione è caratterizzata dall’utilizzo della keyword **abstract**:
 
+```
 public abstract class A {
-	//campi 
+	//campi
 	//metodi
 }
+```
 
 Una classe astratta può contenere o meno metodi astratti, ma una classe che contiene metodi astratti deve necessariamente essere dichiarata come astratta, i.e. facendo uso della keyword abstract.
 
@@ -14,12 +16,15 @@ Esempi, classi e metodi astratti
 
 Il seguente esempio mostra una classe `A` che dichiara al suo iterno un metodo astratto. Questo codice dà errore di compilazione, in quanto, in base a quanto detto sopra, una classe che contiene metodi astratti deve necessariamente essere dichiarata come astratta.
 
+```
 public class A {
 	public abstract void metodo();
 }
+```
 
 L’esempio che segue invece è corretto dal punto di vista sintattico, infatti la classe ha dichiarato al suo interno un metodo abstract e la classe è di tipo astratto.
 
+```
 public abstract class A {
     //campi
     private boolean visible=true;
@@ -27,10 +32,15 @@ public abstract class A {
     public boolean isVisible() { return this.visible; }
     public abstract void metodo();
 }
+```
 
-Vale la pena di osservere che come in ogni altra classe, una classe astratta può dichiarare dei campi (che ne descrivono lo stato) e dei metodi (non astratti) che ne specificano il funzionamento. Un metodo astratto è un metodo che può essere dichiarato ma per il quale non viene fornita una implementazione; la sintassi da utilizzare in generale è la seguente:
+Vale la pena di osservere che come in ogni altra classe, una classe astratta può dichiarare dei campi (che ne descrivono lo stato) e dei metodi (non astratti) che ne specificano il funzionamento.
 
+Un metodo astratto è un metodo che può essere dichiarato ma per il quale non viene fornita una implementazione; la sintassi da utilizzare in generale è la seguente:
+
+```
 abstract <return type> nomeMetodo(lista dei parametri);
+```
 
 A cosa serve una classe astratta
 --------------------------------
@@ -47,50 +57,43 @@ Per esempio, immaginiamo che un certo processo necessita di tre fasi:
 
 Se le due fasi di inizializzazione e lo step successivo all’azione rimangono invariati, il terzo passo (cioè l’azione principale) può essere implementato e considerato come una classe astratta (in modo da essere specializzato dalle classi derivate).
 
+```
 public abstract class AbstractProcess {
-
 	public void process() {
 		init();
 		baseAction();
 		stepAfter();
 	}
-	
 	public void init() {
-		
-		// metodo dichiarato direttamente 
+		// metodo dichiarato direttamente
 		// all'interno della classe astratta
 	}
-	
 	public abstract void baseAction();
-	
-	// metodo astratto la cui implementazione 
+	// metodo astratto la cui implementazione
 	// è demandata alla sottoclasse
-	
 	public void stepAfter() {
-	
 		// metodo dichiarato direttamente
 		// all'interno della classe astratta
 	}
 }
-
 class MyProcess extends AbstractProcess {
-
 	@Override
 	public void baseAction() {
 		// implementazione del metodo baseAction()
 	}
 }
+```
 
 Notiamo che il metodo `baseAction()` nella classe `AbstractProcess` è astratto, quindi la sottoclasse che la estende deve effettuarne l’Overidde e darne l’implementazione (altrimenti anch’essa dovrebbe essere dichiarata `abstract`).
 
 A questo punto la chiamata al metodo `process()`:
 
+```
 MyProcess myProcess = new MyProcess();
-
 // AbstractProcess myProcess = new MyProcess(); 
-
 // equivalente alla precedente
 myProcess.process();
+```
 
 definito nella classe astratta esegue il processo, chiamando il metodo `baseAction` come definito in `MyProcess`.
 
@@ -169,22 +172,23 @@ Nelle sezioni precedenti abbiamo visto che se una classe implementa un’interfa
 
 Per esempio se abbiamo una interfaccia `InterfaceVideo`:
 
+```
 public interface InterfaceVideo {
-
 	static String format="xyz";
-	
 	public void run();
 	public void start();
 	public void stop();
 	public void rewind();
 }
+```
 
 La classe `BaseVideo` può estenderla ed implementare uno solo dei suoi metodi `run(`) e non tutti gli altri, ma deve essere dichiarata abstract altrimenti otteniamo un errore dal compilatore:
 
+```
 public abstract class Video implements BaseVideo {
-    
     @Override
     public void run() {
 		// definizione del funzionamento del metodo
     }
 }
+```

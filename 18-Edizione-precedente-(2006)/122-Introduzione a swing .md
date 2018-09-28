@@ -1,5 +1,8 @@
-Oltre al package java.awt, Java mette a disposizione del programmatore il package javax.swing per creare delle interfacce grafiche. In questo capitolo vedremo perché la Sun Microsystem ha creato quest’altro package e quali sono le differenze con awt. Per presentare il package parlerò del programma che sto facendo per la mia Tesi in Informatica all’Università di Pisa. Per informazioni riguardo ad Orespics potete contattare me, oppure le Prof.sse Laganà e Ricci presso il dipartimento di Informatica di Pisa (Corso Italia, 40). Il nome del programma è Orespics Programming Language, ed in pratica è un ambiente integrato in cui è possibile programmare agenti paralleli che comunicano tra di loro scambiandosi dei messaggi. L’ambiente permette di definire ed eseguire questi agenti, esso si propone come strumento didattico di supporto all’apprendimento delle modalità di programmazione parallela, programmazione che al programmatore abituato a programmare in modo sequenziale può risultare molto difficoltosa. Proprio perché lo strumento è uno strumento didattico, ha una interfaccia utente User Friendly. L’interfaccia è stata scritta usando il package Swing di Java.  
-Swing è stato interamente scrittto in Java, usando il package awt, e mette a disposizione all’utente tante classi presenti anche in awt, ma notevolmente migliorate e potenziate, mette inoltre tante altre classi non presenti in awt.  
+Oltre al package java.awt, Java mette a disposizione del programmatore il package javax.swing per creare delle interfacce grafiche. In questo capitolo vedremo perché la Sun Microsystem ha creato quest’altro package e quali sono le differenze con awt.  
+Per presentare il package parlerò del programma che sto facendo per la mia Tesi in Informatica all’Università di Pisa. Per informazioni riguardo ad Orespics potete contattare me, oppure le Prof.sse Laganà e Ricci presso il dipartimento di Informatica di Pisa (Corso Italia, 40).  
+Il nome del programma è Orespics Programming Language, ed in pratica è un ambiente integrato in cui è possibile programmare agenti paralleli che comunicano tra di loro scambiandosi dei messaggi. L’ambiente permette di definire ed eseguire questi agenti, esso si propone come strumento didattico di supporto all’apprendimento delle modalità di programmazione parallela, programmazione che al programmatore abituato a programmare in modo sequenziale può risultare molto difficoltosa.  
+Proprio perché lo strumento è uno strumento didattico, ha una interfaccia utente User Friendly. L’interfaccia è stata scritta usando il package Swing di Java.  
+Swing è stato interamente scrittto in Java, usando il package awt, e mette a disposizione all’utente tante classi presenti anche in awt, ma notevolmente migliorate e potenziate, mette inoltre tante altre classi non presenti in awt.
 
 Vediamo quindi quali sono le classi e le interfacce contenute nel pacchetto:
 
@@ -130,7 +133,7 @@ UIDefaults.LazyInputMap
 UIDefaults.ProxyLazyValue  
 UIManager  
 UIManager.LookAndFeelInfo  
-ViewportLayout  
+ViewportLayout
 
 Eccezioni
 ---------
@@ -145,8 +148,6 @@ Inoltre in swing possono essere usati i Tooltip, ovvero quei suggerimenti che es
 Vediamo l’effetto di questi componenti swing in Orespics.
 
 ![effetto dei componenti swing in Orespics](http://html.it/guide/img/guida_java/27a.gif)
-
-  
 
 Nella Figura possiamo notare la Toolbar (in cui ho nascosto i bordi) di altre 8 Toolbar, una per ogni categoria di bottoni. Si vedono i bottoni che contengono delle immagini, alcune attive e altre inattive.
 

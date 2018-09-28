@@ -2,28 +2,26 @@ Concludiamo il nostro discorso sulle classi per lo Stream orientate al byte con 
 
 Sappiamo che i caratteri in Java sono rappresentati in formato UNICODE, questo significa 2 byte per carattere. Per leggere un file di testo in formato UNICODE sarà sufficiente leggere due byte alla volta ed interpretarli come un singolo carattere. Iniziamo con il codice di base che realizza il collegamento degli Stream `FileInputStream` e `FileOutputStream` con gli Stream `DataInputStream` e `DataOutputStream` che consentono la lettura di dati primitivi da uno Stream di byte:
 
- public class BytesToCharsDemo {
-
+```
+public class BytesToCharsDemo {
     private static final String sourcePath = "/source/test.txt";
     private static final String destinationPath = "/destination/test.txt";
-
-    public static void main(String\[\] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         FileInputStream sourceStream = new FileInputStream(sourcePath);
         DataInputStream charSourceStream = new DataInputStream(sourceStream);
         FileOutputStream destStream = new FileOutputStream(destinationPath);
         DataOutputStream charDestStream = new DataOutputStream(destStream);
     }
 }
- 
+```
 
 Proseguiamo con il ciclo che legge due byte alla volta, attraverso il metodo `readChar()`, interpretandoli come un singolo carattere:
 
- public class BytesToCharsDemo {
-
+```
+public class BytesToCharsDemo {
     private static final String sourcePath = "/source/test.txt";
     private static final String destinationPath = "/destination/test.txt";
-
-    public static void main(String\[\] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         FileInputStream sourceStream = new FileInputStream(sourcePath);
         DataInputStream charSourceStream = new DataInputStream(sourceStream);
         FileOutputStream destStream = new FileOutputStream(destinationPath);
@@ -33,11 +31,13 @@ Proseguiamo con il ciclo che legge due byte alla volta, attraverso il metodo `re
         }
     }
 }
- 
+```
 
 Il metodo `available()` consente di verificare l’esistenza, nel nostro caso, di un numero di byte maggiore o uguale a 2 nello stream di input, di leggerli come un carattere, e di scrivere questo carattere nel file di destinazione.
 
-Quando lavoriamo in Java con file di testo è fondamentale considerare la codifica adottata dal file stesso, al fine di operare in sicurezza ed evitare effetti indesiderati. Infatti se avessimo editato il file txt con Notepad di Windows, il file sarebbe stato salvato in ASCII, che codifica i caratteri usando un byte.
+Quando lavoriamo in Java con file di testo è fondamentale considerare la codifica adottata dal file stesso, al fine di operare in sicurezza ed evitare effetti indesiderati.  
+Infatti se avessimo editato il file txt con Notepad di Windows, il file sarebbe stato salvato in ASCII, che codifica i caratteri  
+usando un byte.
 
 Lanciando il nostro programma puntando ad un file di testo in codifica ASCII potremmo incorrere in un’eccezione, in quanto non avendo più la garanzia di due byte per carattere il tipo di lettura implementato è inadeguato.
 

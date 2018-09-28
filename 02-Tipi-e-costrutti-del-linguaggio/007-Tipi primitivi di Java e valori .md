@@ -59,7 +59,7 @@ Numeri interi (per default con segno, signed) in un range `[-263, 263-1]`. Come 
 32 bit
 
 Numeri in virgola mobile in singola precisione secondo la specifica [IEEE 754](http://it.wikipedia.org/wiki/IEEE_754#Struttura_di_un_numero_in_virgola_mobile "IEEE 754: Wikipedia"), utilizzando la rappresentazione segno, mantissa esponente.  
-`(-1)segno * mantissa * 2esponente`  
+`(-1)segno * mantissa * 2esponente`
 
 Nella versione a 32bit il range rappresentabile va calcolato pensando ad un bit di segno, una mantissa a 23bit e un esponente a 8bit con valori compresi tra -126 e 127.
 
@@ -105,16 +105,22 @@ I possibili valori del tipo **boolean** sono esprimibili con le keyword `true` e
 
 Valori per i tipi **int e long** sono esprimibili come interi in base 10 utilizzando la comune notazione posizionale:
 
+```
 int lifeUniverseAndEverything = 42;
+```
 
 oppure in _rappresentazione esadecimale_ (Hex, in base 16) utilizzando il suffisso ‘`0x`‘ o binaria (base 2, dalla versione 7 di java) utilizzando il suffisso ‘`0b`‘:
 
+```
 int lifeUniverseAndEverythingBis = 0x2A;        // esadecimale
 int lifeUniverseAndEverythingTer = 0b00101010;  // binario
+```
 
 Questi stessi literals possono essere utilizzati anche per esprimere valori di tipo **byte e short** mentre per esprimere valori **long** si pospone alla rappresentazione la lettera ‘`L`‘ (è valido anche il carattere minuscolo ma sconsigliato a causa della sua scarsa leggibilità essendo confondibile con il numero ‘`1`‘):
 
+```
 long bigLUE = 4242424242L;
+```
 
 **Valori di tipo non intero** possono essere analogamente espressi separando la parte decimale con il simbolo ‘`.`‘ (punto) e saranno considerati di tipo **double** a meno che non sia posposta la lettera ‘`F`‘ (o ‘`f`‘).
 
@@ -122,13 +128,17 @@ I literals di tipo **double** possono essere terminati con la lettera ‘`D`‘ 
 
 È ammessa anche la cosiddetta **notazione scientifica** per i numeri in virgola mobile che consiste nell’utilizzo della lettera `E` (o `e`) seguita da un numero che esprime la potenza di 10 da moltiplicare al numero espresso prima di essa:
 
+```
 double mille      = 1000.0;
 double milleSci   = 1.0e3;
 float  milleFloat = 1000.0f;
+```
 
 A partire dalla versione 7 di Java è possibile utilizzare **il carattere underscore** (‘`_`‘) in tutti i literal numerici per aumentarne la leggibilità, ad esempio separando le migliaia:
 
+```
 float milleEasy = 1_000.0f;
+```
 
 il carattere ‘`_`‘ non ha alcun uso se non quello di facilitarne la lettura e può essere utilizzato esclusivamente tra coppie di numeri (non come primo o ultimo carattere, non adiacente al ‘`.`‘ o agli altri caratteri ammessi nelle notazioni).
 
@@ -136,8 +146,10 @@ il carattere ‘`_`‘ non ha alcun uso se non quello di facilitarne la lettura 
 
 I valori di tipo carattere possono essere espressi per mezzo di caratteri Unicode (UTF-16) racchiusi tra apici singoli che possono eventualmente essere espressi sotto forma di charcode utilizzando “Unicode escape” :
 
+```
 char nCirconflesso     = 'ñ';
-char nCorconflessoCode = '\\u00F1'; 
+char nCorconflessoCode = '\u00F1';
+```
 
 Sono supportati anche alcune speciali rappresentazioni (dette **escape sequences** o _sequenze di escape_):
 
@@ -184,7 +196,9 @@ In Java, accanto agli 8 tipi primitivi sono da considerarsi tipi di dato special
 
 Basti sapere al momento che le variabili di tipo `String` sono sequenze di `char` che possono essere inizializzate utilizzando le virgolette (doppi apici):
 
+```
 String author = "Douglas Noël Adams";
+```
 
 mentre i tipi `Integer`, `Byte`, `Long`, `Float` e `Double` (controparti dei medesimi tipi primitivi scritti con la prima lettera minuscola) sono inizializzabili con i medesimi literals presentati per i corrispondenti tipi nativi ma tutti quanti vengono per default inizializzati al literal `null` (letto nullo) se non assegnamo loro esplicitamente un valore.
 

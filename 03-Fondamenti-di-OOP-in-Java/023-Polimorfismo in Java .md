@@ -2,7 +2,9 @@ Il termine polimorfismo, dal greco _πολυμορφοσ_ (polymorfos, “avere 
 
 Secondo questa generica definizione, è dunque polimorfa anche l’espressione:
 
+```
 a + b
+```
 
 che, in base al tipo di `a` e `b`, potrebbe rappresentare un valore di tipo `int`, `float` (o numerico in generale, operando in ogni caso l’opportuna operazione di somma aritmetica) oppure addirittura di tipo `String` (ed in tal caso operare il concatenamento delle String `a` e `b`).
 
@@ -26,27 +28,28 @@ Detta più comunemente “**method overloading**” (oppure “_operator overlod
 
 Prendiamo per esempio la situazione in cui abbiamo la classe Triangolo e dobbiamo implementare il metodo _“area”_. Dovremo utilizzare una delle formule per il calcolo dell’area, ad esempio:
 
-Area = base * altezza / 2 
+```
+Area = base * altezza / 2
+```
 
 per applicare la quale è necessario conoscere `base` e `altezza`.Oppure la formula:
 
-![Area = det([X][Y][1])/2](http://www.html.it/wp-content/uploads/2015/02/java23_01.png)
+![Area = det([X][Y][1])/2](https://tbm-html.s3.amazonaws.com/app/uploads/2015/02/java23_01.png)
 
 che invece prevede la conoscenza delle coordinate `(xi, yi), {i=1,2,3}` dei vertici del triangolo.
 
 Entrambe le formule potrebbero essere utili ed entrambe avrebbero soprattutto il diritto di avere implementazione in un metodo che si chiama `area`: _ad hoc polymorphism_ ci permette proprio di ridefinire il metodo area per set di parametri diversi:
 
+```
 public double area(double base, double altezza) { 
-    
 	return base * altezza * 0.5;
 }
-
-public double area(double x1, double y1, 
-                   double x2, double y2, 
+public double area(double x1, double y1,
+                   double x2, double y2,
                    double x3, double y3) { 
-    
-	return 0.5 * (x1\*y2 + y1\*x3 + x2\*y3 - x3\*y2 - y3\*x1 - x2\*y1); 
+	return 0.5 * (x1*y2 + y1*x3 + x2*y3 - x3*y2 - y3*x1 - x2*y1);
 }
+```
 
 Poiché i 2 metodi hanno parametri diversi (2 double il primo, 6 double il secondo) Java è in grado di capire, durante la compilazione (a “compile-time”), quale è il metodo che intendiamo utilizzare e decidere quindi quale invocare.
 
@@ -61,23 +64,19 @@ Ricordiamo che per il principio di sostituzione di Liskov le istanze della class
 
 In Java per default tutti i metodi non `private` sono ridefinibili ma è possibile specificare la keyword **final** per istruire il compilatore a non ammetterne la ridefinizione.
 
+```
 public class B {
-
 	public int metodo(int i, int j) {
 		return i+j;
     }
-	
 	public final int metodoFinal(int i, int j) {
 		return i+j;
 	}
 }
-
 public class A extends B {
-	
 	public int metodo(int i, int j) {
 		return i-j;
 	}
-	
 	// questa ridefinizione non è ammessa in quanto il metodo è final
 	// Infatti se de-commentiamo queste righe il compilatore
 	// segnala un errore
@@ -87,32 +86,33 @@ public class A extends B {
 	}
 	*/
 }
+```
 
 Se osserviamo invece il seguente main program:
 
-public static void main(String\[\] args) {
-
+```
+public static void main(String[] args) {
 	B b = new B();
 	A a = new A();
-	B aa = new A(); // A è sottoclasse di B quindi è 
-                    // assegnabile a variabili di tipo B	 
+	B aa = new A(); // A è sottoclasse di B quindi è
+                    // assegnabile a variabili di tipo B
 	int c;	 
-	
-	c = b.metodo(5, 7);  
+	c = b.metodo(5, 7);
 	System.out.println(c);
-	
 	c = a.metodo(5, 7);
 	System.out.println(c);
-	
 	c = aa.metodo(5, 7);
 	System.out.println(c);
 }
+```
 
 che fornisce come output
 
+```
 12
 -2
 -2
+```
 
 è possibile convincersi che la sovrascrittura dei metodi nel subtyping è operazione dinamica (diversamente dall’overloading che avviene sempre a compile time):
 
@@ -131,19 +131,17 @@ In object Oriented programming, un “covariant return type” è un metodo il c
 
 I **covariant return types** sono stati (parzialmente) introdotti in Java dalla versione 1.5 (quindi l’esempio sotto non compila in versioni precedenti):
 
+```
 public class D {
-
-	public B dammiUnB() { 
+	public B dammiUnB() {
 		// ...
-	}  
+	}
 }
-
 public class E extends D {
-
-   public A dammiUnB() {  
-     // ritorna un'istanza di A 
+   public A dammiUnB() {
+     // ritorna un'istanza di A
    }
-   
 }
+```
 
 Qui si vede che la classe `E`, derivata dalla classe `D` non solo ridefinisce (override) il metodo `dammiUnB` ma ne cambia anche il valore di ritorno specificando che non sarà una generica istanza di tipo `B` ad essere ritornata ma una istanza di tipo `A` che è una sottoclasse di `B`.

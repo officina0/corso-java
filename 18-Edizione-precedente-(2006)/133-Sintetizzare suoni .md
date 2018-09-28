@@ -18,8 +18,8 @@ Sintetizzatore SINTETIZZATORE=new Sintetizzatore();
 // GUI  
 JLabel tastiera1=new JLabel(new ImageIcon(“tastiera1.gif”));  
 JLabel tastiera2=new JLabel(new ImageIcon(“tastiera2.gif”));  
-JButton OkB=new JButton(“Ok”);  
-  
+JButton OkB=new JButton(“Ok”);
+
 JComboBox Strumenti=new JComboBox();  
 JComboBox Canali=new JComboBox();  
 JLabel uns=new JLabel(“Ultima nota suonata”);  
@@ -44,8 +44,8 @@ Dimension win=getsize();
 win=getsize();  
 setLocation(d.width/2-(win.width/2)-1,d.height/2-(win.height/2)-1);  
 show();  
-}  
-  
+}
+
 void setupAspetto()  
 {  
 tastiera1.setCursor(new Cursor(Cursor.HAND_CURSOR));  
@@ -59,8 +59,8 @@ tastiera2.setToolTipText(
 );  
 OkB.setToolTipText(  
 “Esco dal programma”  
-);  
-  
+);
+
 JPanel P=new JPanel(new borderLayout());  
 JPanel Pannello=new JPanel(new GridLayout(2,1));  
 Pannello.add(tastiera1);  
@@ -98,12 +98,11 @@ SL.setPaintTicks(true);
 SL.setPainttrack(true);  
 SL.setSnapToTicks(true);  
 SL.setValue(TEMPO);  
-P.add(SL,borderLayout.EAST);  
-  
+P.add(SL,borderLayout.EAST);
+
 setContentPane(P);  
-}  
-  
-  
+}
+
 void setupValori()  
 {  
 try  
@@ -111,20 +110,20 @@ try
 int i=0;  
 while (true)  
 {  
-String nome= SINTETIZZATORE.Strumenti\[i++\].getName();  
+String nome= SINTETIZZATORE.Strumenti[i++].getName();  
 Strumenti.addItem(nome);  
 }  
 }  
 catch (ArrayIndexOutOfBoundsException e)  
-{};  
-  
+{};
+
 try  
 {  
 int i=0;  
 while (true)  
 {  
 String nome=”Canale”+” “+(i+1);  
-SINTETIZZATORE.CANALI\[i++\].allNotesOff();  
+SINTETIZZATORE.CANALI[i++].allNotesOff();  
 Canali.addItem(nome);  
 }  
 }  
@@ -132,15 +131,13 @@ catch (ArrayIndexOutOfBoundsException e)
 {};  
 if (Strumenti.getItemCount()>0)  
 Strumenti.setSelectedIndex(StrUMENTO);  
-}  
-  
-  
+}
+
 void setupEventi()  
 {  
 tastiera1.addMouseListener(new Tastiera1Listener());  
-tastiera2.addMouseListener(new Tastiera2Listener());  
-  
-  
+tastiera2.addMouseListener(new Tastiera2Listener());
+
 Strumenti.addItemListener(new ItemListener()  
 {  
 public void itemStateChanged(ItemEvent e)  
@@ -149,8 +146,8 @@ SINTETIZZATORE.setStrumento(
 Strumenti.getSelectedIndex(),CANALE);  
 }  
 }  
-);  
-  
+);
+
 Canali.addItemListener(new ItemListener()  
 {  
 public void itemStateChanged(ItemEvent e)  
@@ -158,8 +155,8 @@ public void itemStateChanged(ItemEvent e)
 CANALE=Canali.getSelectedIndex();  
 SINTETIZZATORE.cambiaCanale(CANALE);  
 }  
-});  
-  
+});
+
 OkB.addActionListener(new ActionListener()  
 {  
 public void actionPerformed(ActionEvent e)  
@@ -168,12 +165,11 @@ System.out.println(“Grazie per avere suonato con me!”);
 System.exit(0);  
 }  
 }  
-);  
-  
-  
+);
+
 }  
-// Eventi  
-  
+// Eventi
+
 public class Tastiera1Listener implements MouseListener  
 {  
 public void mouseClicked(MouseEvent e)  
@@ -193,8 +189,8 @@ msg.setText(“”+(UNS+1));
 }  
 public void mouseReleased(MouseEvent e)  
 {}  
-}  
-  
+}
+
 public class Tastiera2Listener implements MouseListener  
 {  
 public void mouseClicked(MouseEvent e)  
@@ -214,23 +210,21 @@ msg.setText(“”+(UNS+1));
 }  
 public void mouseReleased(MouseEvent e)  
 {}  
-}  
-  
-  
+}
+
 // Utility fun  
 int getNota (int pos)  
 {  
 int nota;  
 nota=(pos/12);  
 return nota;  
-}  
-  
-  
-public static void main(String\[\] arg)  
+}
+
+public static void main(String[] arg)  
 {  
 new sintetizzatore();  
-}  
-  
+}
+
 //*****************************************  
 // SOUND MANAGER  
 //*****************************************  
@@ -243,8 +237,8 @@ private Synthesizer SYNT;
 private Sequencer sequencer;  
 private Sequence seq;  
 private Soundbank BANK;  
-public Instrument\[\] Strumenti;  
-public MidiChannel\[\] CANALI;  
+public Instrument[] Strumenti;  
+public MidiChannel[] CANALI;  
 public Sintetizzatore()  
 {  
 setupSintetizzatore();  
@@ -279,19 +273,19 @@ Strumenti=null;
 public void setStrumento(int str,int can)  
 {  
 SA=str;  
-int prog=Strumenti\[str\].getPatch().getProgram();  
-CANALI\[can\].programChange(prog);  
+int prog=Strumenti[str].getPatch().getProgram();  
+CANALI[can].programChange(prog);  
 }  
 private int SA=0;  
 public void cambiaCanale(int can)  
 {  
-int prog=Strumenti\[SA\].getPatch().getProgram();  
-CANALI\[can\].programChange(prog);  
+int prog=Strumenti[SA].getPatch().getProgram();  
+CANALI[can].programChange(prog);  
 }  
 public void suona(int nota,int tempo, int canale)  
 {  
-CANALI\[canale\].allNotesOff();  
-CANALI\[canale\].noteOn(nota,tempo);  
+CANALI[canale].allNotesOff();  
+CANALI[canale].noteOn(nota,tempo);  
 }  
 public void suona(int nota,int tempo)  
 {  
@@ -299,13 +293,16 @@ suona(nota,tempo,0);
 }  
 public void zitto()  
 {  
-CANALI\[0\].allNotesOff();  
-}  
-  
+CANALI[0].allNotesOff();  
+}
+
 } // End of Sintetizzatore  
 }
 
-Avrete notato la corposità del programma, non fatevi spaventare, perché la maggior parte del codice serve per la grafica e per sentire gli eventi, la parte interessante per sintetizzare suoni l’ho racchiusa nella sottoclasse Sintetizzatore, ovvero in sintetizzatore.Sintetizzatore ovvero la seguente:
+Avrete notato la corposità del programma, non fatevi spaventare, perché la maggior parte del codice serve per la grafica e per sentire gli eventi, la parte interessante per sintetizzare suoni l’ho racchiusa nella sottoclasse Sintetizzatore, ovvero in  
+sintetizzatore.Sintetizzatore
+
+ovvero la seguente:
 
 //***********************************************************  
 // Sintetizzatore:  
@@ -316,8 +313,8 @@ private Synthesizer SYNT;
 private Sequencer sequencer;  
 private Sequence seq;  
 private Soundbank BANK;  
-public Instrument\[\] Strumenti;  
-public MidiChannel\[\] CANALI;  
+public Instrument[] Strumenti;  
+public MidiChannel[] CANALI;  
 public Sintetizzatore()  
 {  
 setupSintetizzatore();  
@@ -352,19 +349,19 @@ Strumenti=null;
 public void setStrumento(int str,int can)  
 {  
 SA=str;  
-int prog=Strumenti\[str\].getPatch().getProgram();  
-CANALI\[can\].programChange(prog);  
+int prog=Strumenti[str].getPatch().getProgram();  
+CANALI[can].programChange(prog);  
 }  
 private int SA=0;  
 public void cambiaCanale(int can)  
 {  
-int prog=Strumenti\[SA\].getPatch().getProgram();  
-CANALI\[can\].programChange(prog);  
+int prog=Strumenti[SA].getPatch().getProgram();  
+CANALI[can].programChange(prog);  
 }  
 public void suona(int nota,int tempo, int canale)  
 {  
-CANALI\[canale\].allNotesOff();  
-CANALI\[canale\].noteOn(nota,tempo);  
+CANALI[canale].allNotesOff();  
+CANALI[canale].noteOn(nota,tempo);  
 }  
 public void suona(int nota,int tempo)  
 {  
@@ -372,7 +369,7 @@ suona(nota,tempo,0);
 }  
 public void zitto()  
 {  
-CANALI\[0\].allNotesOff();  
+CANALI[0].allNotesOff();  
 }  
 } // End of Sintetizzatore
 

@@ -9,20 +9,28 @@ La classe System
 
 La prima classe che vediamo è la classe **System**, la quale interfaccia il nostro programma Java con il sistema operativo sul quale sussiste la virtual machine. Iniziamo esaminando tre attributi statici:
 
+```
 static PrintStream err
 static InputStream in
 static PrintStream out
 
+```
+
 Rappresentano rispettivamente gli i flussi (stream) di informazioni scambiati con la console (`standard error`, `standard input` e `standard output`), ciascuno di essi è un oggetto e sfrutta i metodi della classe relativa. Ad esempio in scrittura invochiamo il metodo `println` della classe `PrintStream`, perché `out` è di tipo `PrintStream`.
 
+```
 System.out.println("Ciao");
+```
 
 Nei nostri esempi abbiamo usato indifferentemente le espressioni:
 
+```
 System.out.println("Ciao");
 System.out.println(true);
 System.out.println(10);
 System.out.println('C');
+
+```
 
 In generale in Java non è possibile invocare un metodo passando un parametro attuale di un tipo diverso rispetto al parametro formale (quello che si trova nella firma). È possibile però invocare il metodo `println` con tutti questi tipi di dato diversi, perché `PrintStream` contiene tutti i metodi `println` dichiarati con il parametro formale adatto, sono definiti infatti:
 
@@ -50,6 +58,7 @@ Lo stesso vale per `err`, anch’esso di tipo `PrintStream`.
 
 **L’oggetto ‘err’** viene usato per segnalare gli errori che avvengono durante l’esecuzione del programma, non è raro trovare nei programmi espressioni del tipo:
 
+```
 try {
   System.out.println(stringa+" vs "+altrastringa+" = " +stringa.compareTo(altrastringa));
 }
@@ -57,21 +66,27 @@ catch (nullPointerException e) {
   System.err.println("ERRORE: La seconda stringa stringa è nulla");
 };
 
+```
+
 **L’oggetto ‘in’** è invece di tipo `InputStream` e come abbiamo detto serve a ricervere il flusso di informazioni che il sistema operativo serve come “standard input”, tipicamente si tratta dell’input di una tastiera o di un terminale. Pertanto leggiamo il flusso in arrivo con i **metodi read**:
 
+```
 abstract int read() 
-int read(byte\[\] b) 
-int read(byte\[\] b, int off, int len)
+int read(byte[] b) 
+int read(byte[] b, int off, int len)
+
+```
 
 Trattandosi di un oggetto di tipo `InputStream` esso legge dei `byte` o dei blocchi di `byte`, per ottenere dati in formati particolari dobbiamo lavorare un po’, come nell’esempio seguente che chiamiamo `StandardIO.java`:
 
+```
 import java.io.*;
 
 class StandardIO 
 {
-  public static void main(String\[\] argomenti)
+  public static void main(String[] argomenti)
   {
-    System.out.println("Scrivi più righe e premi \[INVIO\] per separarlen Per uscire dal programma scrivi 'end'");
+    System.out.println("Scrivi più righe e premi [INVIO] per separarlen Per uscire dal programma scrivi 'end'");
     
     // in 'a' prendiamo il flusso di standard input
     InputStreamReader a = new InputStreamReader(System.in);
@@ -99,28 +114,36 @@ class StandardIO
   }
 }
 
+```
+
 La classe System contiene diversi metodi, in fondo alla pagina si può consultare un breve [elenco dei metodi](#systemclass "Elenco dei metodi della classe System") principali.
 
 Troviamo dei metodi per riassegnare gli standard input, output ed err, in altri flussi, ad esempio per scrivere o leggere file, solo impostando in modo nuovo gli oggetti `err`, `in` e `out`.
 
+```
 static void setErr(PrintStream err) 
 static void setIn(InputStream in) 
 static void setOut(PrintStream out)
 
+```
+
 I seguenti metodi invece servono ad impostare le proprietà del sistema:
 
+```
 static void setProperties(Properties props)
 static String setProperty(String key, String value)
+```
 
 Abbiamo usato degli oggetti di tipo **Properties**, si tratta di specializzazioni di tabelle hash di java, semplificando possiamo pensarle come tabelle che reappresentano coppie chiave-valore (in realtà sono delle strutture molto usate in informatica per il reperimento veloce di informazioni).
 
 Un elenco con le [properties di sistema](#systemprop "Guarda la tabella con le properties di sistema") è riportato in basso, intanto vediamo come scrivere un programmino che scriva in un file le informazioni sul sistema, lo chiamiamo `Sistema.java`:
 
+```
 import java.io.*;
 
 public class Sistema
 {
-  public static void main(String\[\] arg)
+  public static void main(String[] arg)
   {
     // Cambio lo standard output, uso il file Sistema.txt
     File outFile=new File("Sistema.txt");
@@ -212,8 +235,11 @@ public class Sistema
   }
 }
 
+```
+
 Una volta lanciata l’esecuzione viene creato un file di testo che conterrà qualcosa di simile a questo:
 
+```
 Tempo in millisecondi: 1317306980661
 Tempo in secondi: 1317306980
 Tempo in ore h365918 m36 s20
@@ -259,6 +285,7 @@ New Line:
 Account name dell'utente: Andrea
 Home directory dell'utente: C:UsersAndrea
 Working directory dell'utente: E:EclipseUsersAndreaworkspaceprova
+```
 
 La classe Object
 ----------------
@@ -285,7 +312,9 @@ trasforma l’oggetto in una stringa, questo metodo deve essere implementasto ne
 
 Prendiamo questa istruzione:
 
+```
 String somma="Sommando"+10+" e "+11+", ottengo "+(10+11);
+```
 
 Si crea una stringa usando delle stringhe e degli `int`, automaticamente Java in questo caso ne invoca il metodo `toString()` della classe involucro corrispondente. Questo accade in ogni espressione che coinvolge stringhe e oggetti del tipo `"Stringa"+Oggetto`.
 
@@ -327,7 +356,8 @@ trasformazioni di angoli
 
 *   static double toDegrees(double angrad) – converte radianti in gradi
 *   static double toRadians(double angdeg) – converte gradi in radianti
-*   static double atan2(double a, double b) – converte coordinate cartesiane (b,a) in coordinate polari (r,theta)
+*   static double atan2(double a, double b) – converte coordinate cartesiane (b,a) in coordinate polari  
+    (r,theta)
 
 Funzioni esponenziali e logaritmiche
 

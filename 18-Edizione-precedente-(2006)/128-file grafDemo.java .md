@@ -27,32 +27,33 @@ Scrollbar B=new Scrollbar(Scrollbar.VERTICAL, 0, 1, 0, 255);
 Choice FN=new Choice();  
 Choice GR=new Choice();  
 Checkbox F=new Checkbox(“Figure chiuse piene”,false);  
-int \[\] puntiX={1,100,200,300,399,300,200,100};  
-int \[\] puntiY={200,150,50,150,200,100,250,130};  
+int [] puntiX={1,100,200,300,399,300,200,100};  
+int [] puntiY={200,150,50,150,200,100,250,130};  
 int punti=8;  
 public void init()  
 {  
 // Calcolo i font del sistema:  
-// String\[\] NOMI=GraphicsEnvironment.  
+// String[] NOMI=GraphicsEnvironment.  
 // getLocalGraphicsEnvironment().  
 // getAvailablefontFamilyNames();  
 /*  
 Per Java presente sui browser  
-String \[\] NOMI=Toolkit.getdefaultToolkit().getfontList();  
+String [] NOMI=Toolkit.getdefaultToolkit().getfontList();  
 */  
-String \[\] NOMI=Toolkit.getdefaultToolkit().getfontList();  
+String [] NOMI=Toolkit.getdefaultToolkit().getfontList();  
 try  
 {  
 int indice=0;  
 while (true)  
 {  
-FN.addItem(NOMI\[indice++\]);  
+FN.addItem(NOMI[indice++]);  
 }  
 }  
 catch (ArrayIndexOutOfBoundsException e)  
 {};  
 setLayout(new borderLayout());  
-Panel np=new Panel(new GridLayout(1,3));  
+Panel np=new Panel(new GridLayout(1,3));
+
 Panel rosso=new Panel(new FlowLayout());  
 rosso.add(new Label(“Rosso”));  
 rosso.add(R);  
@@ -92,7 +93,8 @@ B.addAdjustmentListener(new AL());
 GR.addItemListener(new IL());  
 FN.addItemListener(new IL());  
 F.addItemListener(new IL());  
-}  
+}
+
 public void paint(Graphics g)  
 {  
 g.setColor(new Color(255-R.getValue(),  
@@ -142,8 +144,8 @@ if (pg==6)
 g.drawPolygon(puntiX,puntiY,punti);  
 if (filled) g.fillPolygon(puntiX,puntiY,punti);  
 return;  
-}  
-  
+}
+
 if (pg==7)  
 {  
 g.drawString(“Questa è una stringa”,1,200);  
@@ -154,7 +156,8 @@ if (pg==8)
 g.drawArc(1,50,398,200,10,270);  
 if (filled) g.fillArc(1,50,398,200,10,270);  
 return;  
-}  
+}
+
 }  
 public class IL implements ItemListener  
 {  
@@ -169,5 +172,6 @@ public void adjustmentValueChanged(AdjustmentEvent e)
 {  
 repaint();  
 }  
-}  
+}
+
 }

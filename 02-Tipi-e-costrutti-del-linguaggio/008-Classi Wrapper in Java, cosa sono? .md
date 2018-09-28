@@ -46,33 +46,37 @@ Tutte le classi wrapper sono definite nel package _java.lang_ e sono qualificate
 
 Mentre `Boolean` e `Character` derivano direttamente da `Object`, tutti i Data Object di tipo numerico derivano da **Number**, che a sua volta è un discendente diretto di `Object`.
 
-![](http://www.html.it/wp-content/uploads/2014/09/wrapper.png)
+![](https://tbm-html.s3.amazonaws.com/app/uploads/2014/09/wrapper.png)
 
 Dai tipi semplici ai Data Object
 --------------------------------
 
 Anche se Java 1.5 ha introdotto il concetto di ‘autoboxing/unboxing’, che approfondiremo in una apposita lezione, passare da un tipo primitivo alla sua versione wrappata è in linea di principio semplice ma laborioso:
 
+```
 int val = 44;
-
 //dato un tipo primitivo si crea la classe wrapper
 Integer value = new Integer(val); 
-
 //dalla classe wrapper è possibile "estrarre" il valore
 int valueBack = value.intValue();
+```
 
 Metodi speciali per il parsing
 ------------------------------
 
 Le classi wrapper sono in Java anche il posto in cui trovano posto gli utilissimi metodi che servono per fare il parsing di stringe e convertirle in valori numerici, ad esempio:
 
+```
 String quarantatre = "43";
 Integer q = new Integer(quarantatre);
+```
 
 Quando utilizziamo questi metodi per la conversione occorre gestire una eventuale generazione di errori. Infatti non tutte le possibili sequenze di caratteri sono numeri, prendiamo ad esempio il seguente snippet:
 
+```
 String quarantaquattro = "quarantaquattro";
 Integer q = new Integer(quarantaquattro);
+```
 
 Il parser non sarebbe in grado di processare con successo la stringa e otterremmo un errore che la JVM segnala attraverso una eccezione di tipo [NumberFormatException](http://docs.oracle.com/javase/8/docs/api/java/lang/NumberFormatException.html) (più avanti approfond
 
